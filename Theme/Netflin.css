@@ -1,0 +1,6283 @@
+/*! Netflin: a Netflix-style theme for Jellyfin (Modern layout) */
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap");
+
+/* ═══════════════════════════════════════════════════════════════════════
+ * 1. Tokens
+ * ═══════════════════════════════════════════════════════════════════════ */
+
+:root {
+    --nf-red: #e50914;
+    --nf-red-hover: #c11119;
+
+    --nf-bg: #101010;
+    --nf-bg-rgb: 16 16 16;
+    --nf-surface: #181818;
+    --nf-surface-2: #232323;
+    --nf-surface-3: #2f2f2f;
+    --nf-surface-4: #404040;
+    --nf-line: rgb(255 255 255 / 0.1);
+    --nf-outline: rgb(255 255 255 / 0.5);
+
+    --nf-text: #fff;
+    --nf-text-2: #e5e5e5;
+    --nf-text-dim: #b3b3b3;
+    --nf-text-mute: #8c8c8c;
+
+    --nf-fill-btn: rgb(109 109 110 / 0.7);
+    --nf-fill-btn-hover: rgb(109 109 110 / 0.4);
+    --nf-fill-disc: rgb(42 42 42 / 0.6);
+    --nf-fill-disc-hover: rgb(42 42 42 / 0.85);
+    --nf-fill-hover: rgb(255 255 255 / 0.08);
+    --nf-fill-panel: rgb(255 255 255 / 0.04);
+    --nf-fill-tag: rgb(255 255 255 / 0.12);
+    --nf-fill-white-hover: rgb(255 255 255 / 0.75);
+    --nf-fill-menu: rgb(24 24 24 / 0.96);
+    --nf-track: rgb(128 128 128 / 0.55);
+    --nf-scrim: rgb(0 0 0 / 0.7);
+    --nf-scrim-card: linear-gradient(0deg, rgb(0 0 0 / 0.75), rgb(0 0 0 / 0) 60%);
+
+    --nf-field-bg: rgb(22 22 22 / 0.7);
+    --nf-field-line: rgb(128 128 128 / 0.7);
+    --nf-field-line-hover: rgb(255 255 255 / 0.7);
+
+    --nf-success: #46d369;
+    --nf-warning: #e87c03;
+    --nf-error: #eb3942;
+    --nf-star: #f5c518;
+
+    --nf-font: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --nf-font-brand: "Bebas Neue", var(--nf-font);
+    --nf-fs-h1: clamp(1.5rem, 1.1rem + 1.2vw, 2.25rem);
+    --nf-fs-h2: clamp(1.05rem, 0.7rem + 0.75vw, 1.5rem);
+
+    --nf-gutter: 3.3%;
+
+    --nf-radius-xs: 2px;
+    --nf-radius: 4px;
+    --nf-radius-lg: 6px;
+
+    --nf-shadow-1: 0 0.5em 1em -0.6em rgb(0 0 0 / 0.9);
+    --nf-shadow-2: 0 3px 10px rgb(0 0 0 / 0.75);
+    --nf-shadow-3: 0 1.5rem 3rem rgb(0 0 0 / 0.7);
+    --nf-shadow-disc: 0 1px 2px rgb(0 0 0 / 0.3), 0 6px 18px -4px rgb(0 0 0 / 0.55);
+    --nf-shadow-disc-hover: 0 1px 2px rgb(0 0 0 / 0.3), 0 10px 24px -6px rgb(0 0 0 / 0.65);
+
+    --nf-ease: cubic-bezier(0.5, 0, 0.1, 1);
+    --nf-ease-out: cubic-bezier(0.2, 0, 0, 1);
+    --nf-dur-1: 150ms;
+    --nf-dur-2: 250ms;
+    --nf-dur-3: 400ms;
+
+    --nf-focus: 2px solid #fff;
+    --nf-focus-offset: 2px;
+
+    --nf-icon-play: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7.67 4.5 20.67 12 7.67 19.5Z' fill='%23000' stroke='%23000' stroke-width='2.2' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+/* ── Jellyfin palette ────────────────────────────────────────────────────── */
+:root,
+:root[data-theme] {
+    --jf-palette-background-default: var(--nf-bg);
+    --jf-palette-background-defaultChannel: var(--nf-bg-rgb);
+    --jf-palette-background-paper: var(--nf-surface);
+    --jf-palette-background-paperChannel: 24 24 24;
+    --jf-palette-AppBar-defaultBg: var(--nf-bg);
+    --jf-palette-AppBar-transparentBg: transparent;
+    --jf-palette-text-primary: var(--nf-text);
+    --jf-palette-text-primaryChannel: 255 255 255;
+    --jf-palette-text-secondary: var(--nf-text-dim);
+    --jf-palette-text-secondaryChannel: 179 179 179;
+    --jf-palette-primary-main: var(--nf-red);
+    --jf-palette-primary-mainChannel: 229 9 20;
+    --jf-palette-primary-light: var(--nf-red-hover);
+    --jf-palette-primary-dark: var(--nf-red-hover);
+    --jf-palette-primary-contrastText: #fff;
+    --jf-palette-secondary-main: var(--nf-red);
+    --jf-palette-secondary-mainChannel: 229 9 20;
+    --jf-palette-secondary-contrastText: #fff;
+    --jf-palette-error-light: var(--nf-red);
+    --jf-palette-error-main: var(--nf-error);
+    --jf-palette-error-mainChannel: 235 57 66;
+    --jf-palette-warning-main: var(--nf-warning);
+    --jf-palette-warning-mainChannel: 232 124 3;
+    --jf-palette-success-main: var(--nf-success);
+    --jf-palette-success-mainChannel: 70 211 105;
+    --jf-palette-info-main: #6d6d6e;
+    --jf-palette-info-mainChannel: 109 109 110;
+    --jf-palette-TableCell-border: var(--nf-line);
+    --jf-palette-Avatar-defaultBg: var(--nf-surface-3);
+    --jf-palette-LinearProgress-primaryBg: var(--nf-track);
+    --jf-palette-LinearProgress-secondaryBg: var(--nf-track);
+    --jf-palette-LinearProgress-errorBg: var(--nf-track);
+    --jf-palette-LinearProgress-infoBg: var(--nf-track);
+    --jf-palette-LinearProgress-successBg: var(--nf-track);
+    --jf-palette-LinearProgress-warningBg: var(--nf-track);
+    --jf-palette-divider: var(--nf-line);
+    --jf-palette-action-hover: var(--nf-fill-hover);
+    --jf-palette-action-focus: rgb(255 255 255 / 0.12);
+    --jf-palette-FilledInput-bg: var(--nf-field-bg);
+    --jf-palette-FilledInput-hoverBg: var(--nf-field-bg);
+    --jf-palette-FilledInput-borderColor: var(--nf-field-line);
+    --jf-palette-Button-inheritContainedBg: var(--nf-fill-btn);
+    --jf-palette-Button-inheritContainedHoverBg: var(--nf-fill-btn-hover);
+    --jf-palette-SnackbarContent-bg: var(--nf-surface-2);
+    --jf-palette-SnackbarContent-color: var(--nf-text-2);
+    --jf-card-borderRadius: var(--nf-radius);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+ * 2. Base
+ * ═══════════════════════════════════════════════════════════════════════ */
+
+html,
+body,
+.backgroundContainer,
+.mainDrawer,
+.dialog {
+    background-color: var(--nf-bg);
+}
+
+html {
+    font-family: var(--nf-font);
+    color: var(--nf-text-2);
+}
+
+body,
+h1, h2, h3, h4, h5, h6,
+button, input, select, textarea,
+.emby-button,
+[class*="Mui"]:not(.MuiIcon-root, .material-icons) {
+    font-family: var(--nf-font);
+}
+
+* {
+    scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+::selection {
+    background: var(--nf-red);
+    color: #fff;
+}
+
+body {
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: calc(env(safe-area-inset-bottom) + 5em);
+    background: linear-gradient(to top, var(--nf-bg) 0%, transparent 100%);
+    z-index: 100;
+    pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+ * 3. App bar
+ * ═══════════════════════════════════════════════════════════════════════ */
+
+.MuiAppBar-root.MuiAppBar-colorTransparent,
+.MuiAppBar-root.MuiAppBar-colorDefault {
+    background: transparent;
+    box-shadow: none;
+    border: 0;
+    color: var(--nf-text-2);
+    transition: background-color var(--nf-dur-3) var(--nf-ease-out);
+}
+
+.MuiAppBar-root.MuiAppBar-colorTransparent {
+    background-image: linear-gradient(180deg, rgb(0 0 0 / 0.7) 10%, transparent);
+}
+
+.MuiAppBar-root.MuiAppBar-colorDefault {
+    background-color: rgb(var(--nf-bg-rgb) / 0.72);
+    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    backdrop-filter: blur(18px) saturate(1.4);
+}
+
+/* ── Nav links ───────────────────────────────────────────────────────────── */
+.MuiAppBar-root .MuiStack-root > .MuiButton-root {
+    background: none !important;
+    color: var(--nf-text-2);
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: normal;
+    text-transform: none;
+    min-width: 0;
+    padding: 0.25rem 0;
+    flex: none;
+    margin-inline: 0 1.25rem;
+    white-space: nowrap;
+    transition: color var(--nf-dur-3) var(--nf-ease-out);
+}
+
+@media (max-width: 60em) {
+    .MuiAppBar-root .MuiToolbar-root:has(> .MuiStack-root > .MuiButton-root) {
+        flex-wrap: nowrap;
+    }
+
+    .MuiAppBar-root .MuiToolbar-root > .MuiStack-root:has(> .MuiButton-root) {
+        flex: 1 1 auto;
+        min-width: 0;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+}
+
+@media (max-width: 36em) {
+    .MuiAppBar-root .MuiToolbar-root:has(> .MuiStack-root > .MuiButton-root) {
+        flex-wrap: wrap;
+    }
+
+    .MuiAppBar-root .MuiToolbar-root > .MuiStack-root:has(> .MuiButton-root) {
+        order: 1;
+        flex-basis: 100%;
+        padding-bottom: 0.25rem;
+    }
+
+    .MuiAppBar-root .MuiToolbar-root > .MuiStack-root > .MuiButton-root:has(.MuiButton-startIcon > img) {
+        position: absolute; /* out of the scrolling links, onto the icons' row */
+        top: 0;
+        height: var(--nf-appbar);
+    }
+
+    .MuiAppBar-root .MuiToolbar-root > .MuiStack-root:has(> .MuiButton-root) + .MuiBox-root {
+        margin-left: auto;
+    }
+}
+
+.MuiAppBar-root .MuiStack-root > .MuiButton-root:hover {
+    color: var(--nf-text-dim);
+}
+
+.MuiAppBar-root .MuiStack-root > .MuiButton-root .MuiButton-startIcon {
+    display: none;
+}
+
+.MuiAppBar-root .MuiStack-root > .MuiButton-textPrimary {
+    color: var(--nf-text) !important;
+    font-weight: 700;
+}
+
+.MuiAppBar-root .MuiStack-root > .MuiButton-root .MuiTouchRipple-root {
+    display: none;
+}
+
+/* ── Brand ───────────────────────────────────────────────────────────────── */
+.MuiAppBar-root .MuiStack-root > .MuiButton-root:has(.MuiButton-startIcon > img) {
+    font-size: 0 !important;
+    margin-right: 2.5rem;
+}
+
+.MuiAppBar-root .MuiStack-root > .MuiButton-root:has(.MuiButton-startIcon > img)::before,
+.MuiDrawer-paper > .MuiBox-root > .MuiList-root:first-child > li:first-child > a::before {
+    content: "JELLYFIN";
+    color: var(--nf-red);
+    font: 400 2.25rem/1 var(--nf-font-brand);
+    letter-spacing: 0.02em;
+    filter: drop-shadow(0 1px 6px rgb(0 0 0 / 0.35));
+}
+
+/* ── Icons and avatar ────────────────────────────────────────────────────── */
+.MuiAppBar-root .MuiIconButton-root {
+    color: var(--nf-text);
+}
+
+.MuiAppBar-root .MuiIconButton-root:hover {
+    background: var(--nf-fill-hover);
+}
+
+.MuiAppBar-root .MuiAvatar-root,
+.MuiAppBar-root .MuiToolbar-root > .MuiBox-root:last-child img {
+    border-radius: var(--nf-radius);
+}
+
+.MuiAppBar-root .MuiAvatar-root {
+    width: 1.75rem;
+    height: 1.75rem;
+}
+
+.MuiAppBar-root .MuiIconButton-root:has(> .MuiAvatar-root) {
+    padding: 0.4rem;
+}
+
+/* ── User menu ───────────────────────────────────────────────────────────── */
+:is(#app-user-menu, #library-view-menu) .MuiMenu-paper {
+    min-width: 13.5rem;
+    margin-top: 0.4rem;
+}
+
+/* ── Library toolbar ─────────────────────────────────────────────────────── */
+.MuiAppBar-root > .MuiToolbar-root:nth-child(2) {
+    padding-bottom: 1rem;
+}
+
+.MuiAppBar-root > .MuiToolbar-root:nth-child(2) > .MuiStack-root > .MuiButtonGroup-text ~ .MuiButtonGroup-text {
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 0.75rem;
+}
+
+.MuiAppBar-root > .MuiToolbar-root:nth-child(2) > .MuiStack-root > .MuiButtonGroup-text ~ .MuiButtonGroup-text > .MuiButton-root {
+    box-sizing: border-box;
+    width: 2rem;
+    min-width: 0;
+    height: 2rem;
+    padding: 0;
+    border-radius: 50%;
+}
+
+.MuiAppBar-root > .MuiToolbar-root:nth-child(2) > .MuiStack-root > .MuiButtonGroup-text ~ .MuiButtonGroup-text > .MuiButton-root:disabled {
+    opacity: 0.35;
+}
+
+.MuiAppBar-root > .MuiToolbar-root:nth-child(2) > .MuiButton-root {
+    color: var(--nf-text);
+    font-size: 2.1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-transform: none;
+    padding-left: 0;
+    background: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+ * 4. Buttons, fields, menus, dialogs
+ * ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Focus ───────────────────────────────────────────────────────────────── */
+
+:is(a, button, [tabindex], .card, .listItem, .emby-tab-button):focus-visible {
+    outline: var(--nf-focus);
+    outline-offset: var(--nf-focus-offset);
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+
+.MuiButton-root {
+    text-transform: none;
+    border-radius: var(--nf-radius);
+}
+
+.MuiButton-containedPrimary,
+.button-submit {
+    font-weight: 700;
+    box-shadow: none;
+}
+
+.button-submit:focus {
+    background: var(--nf-red-hover);
+}
+
+.raised,
+.fab,
+.button-submit,
+.button-delete,
+.emby-button.raised {
+    border-radius: var(--nf-radius);
+}
+
+.raised:not(.button-submit, .button-delete),
+.raised:not(.button-submit, .button-delete):focus,
+.dashboardDocument .mainAnimatedPage .MuiButton-containedError {
+    background: var(--nf-fill-btn);
+    color: var(--nf-text);
+}
+
+.raised:not(.button-submit, .button-delete):hover,
+.dashboardDocument .mainAnimatedPage .MuiButton-containedError:hover {
+    background: var(--nf-fill-btn-hover);
+}
+
+.button-flat.button-flat:hover,
+.button-link.button-link {
+    color: inherit;
+}
+
+.button-flat:not(.detailButton, .cardOverlayButton):hover {
+    color: var(--nf-text);
+}
+
+.raised:is(.button-cancel, .btnCancel),
+.raised:is(.button-cancel, .btnCancel):focus,
+.upNextDialog .upNextDialog-button.btnHide,
+body .sections.watchlist :is(.sort-button, .show-all-btn) {
+    background: transparent;
+    box-shadow: inset 0 0 0 1px var(--nf-outline);
+    color: var(--nf-text);
+}
+
+.raised:is(.button-cancel, .btnCancel):hover,
+.upNextDialog .upNextDialog-button.btnHide:hover,
+body .sections.watchlist :is(.sort-button, .show-all-btn):hover {
+    background: var(--nf-fill-hover);
+    box-shadow: inset 0 0 0 1px #fff;
+}
+
+:is(.formDialogContent, .dashboardDocument .mainAnimatedPage) .fab,
+.mainDetailButtons .detailButton,
+body #slides-container :is(.detail-button, .favorite-button, .watchlist-button, .arrow),
+.MuiAppBar-root > .MuiToolbar-root:nth-child(2) > .MuiStack-root > .MuiButtonGroup-text ~ .MuiButtonGroup-text > .MuiButton-root,
+.skip-button {
+    border: 2px solid var(--nf-outline);
+    background: var(--nf-fill-disc);
+    color: var(--nf-text);
+}
+
+:is(.formDialogContent, .dashboardDocument .mainAnimatedPage) .fab:hover,
+.mainDetailButtons .detailButton:hover,
+body #slides-container :is(.detail-button, .favorite-button, .watchlist-button, .arrow):hover,
+.MuiAppBar-root > .MuiToolbar-root:nth-child(2) > .MuiStack-root > .MuiButtonGroup-text ~ .MuiButtonGroup-text > .MuiButton-root:not(:disabled):hover,
+.skip-button:hover {
+    border-color: #fff;
+    background: var(--nf-fill-disc-hover);
+    color: var(--nf-text);
+}
+
+.MuiAppBar-root .MuiButtonGroup-contained {
+    gap: 0.5rem;
+    box-shadow: none;
+}
+
+.MuiAppBar-root .MuiButtonGroup-contained > .MuiButton-containedPrimary {
+    border: 0 !important;
+    border-radius: var(--nf-radius) !important;
+    background: var(--nf-fill-btn);
+    color: #fff;
+    transition: background-color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+.MuiAppBar-root .MuiButtonGroup-contained > .MuiButton-containedPrimary:hover {
+    background: var(--nf-fill-btn-hover);
+}
+
+.MuiAppBar-root .MuiButtonGroup-contained > .MuiButton-containedPrimary:first-child,
+.upNextDialog .upNextDialog-button.btnStartNow {
+    background: #fff;
+    color: #000;
+}
+
+.MuiAppBar-root .MuiButtonGroup-contained > .MuiButton-containedPrimary:first-child:hover,
+.upNextDialog .upNextDialog-button.btnStartNow:hover {
+    background: var(--nf-fill-white-hover);
+}
+
+.paper-icon-button-light:hover:not(:disabled),
+.paper-icon-button-light:active:not(:disabled) {
+    background-color: var(--nf-fill-hover);
+    color: var(--nf-text);
+}
+
+/* ── Chips ───────────────────────────────────────────────────────────────── */
+.MuiChip-root.MuiChip-filledDefault {
+    height: 1.6rem;
+    border-radius: var(--nf-radius-xs);
+    background: var(--nf-fill-tag);
+    color: var(--nf-text-2);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.MuiChip-root.MuiChip-filledDefault .MuiChip-label {
+    padding: 0 0.55em;
+}
+
+/* ── Filter chips ────────────────────────────────────────────────────────── */
+.dashboardDocument .MuiToggleButtonGroup-root .MuiToggleButton-root.MuiToggleButton-root,
+.dashboardDocument .MuiChip-root.MuiChip-clickable.MuiChip-clickable,
+#searchPage .smart-search-btn,
+body .sections.watchlist .stats-range-chip,
+.verticalSection .scrollSlider > a.emby-button.raised {
+    height: 2rem;
+    border: 1px solid var(--nf-line);
+    border-radius: var(--nf-radius);
+    background: var(--nf-surface-2);
+    color: var(--nf-text-2);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.dashboardDocument .MuiToggleButtonGroup-root .MuiToggleButton-root.MuiToggleButton-root:hover,
+.dashboardDocument .MuiChip-root.MuiChip-clickable.MuiChip-clickable:hover,
+#searchPage .smart-search-btn:hover,
+body .sections.watchlist .stats-range-chip:hover,
+.verticalSection .scrollSlider > a.emby-button.raised:hover {
+    background: var(--nf-surface-3);
+    color: var(--nf-text);
+}
+
+.dashboardDocument .MuiToggleButtonGroup-root .MuiToggleButton-root.MuiToggleButton-root.Mui-selected,
+.dashboardDocument .MuiChip-root.MuiChip-clickable.MuiChip-colorPrimary,
+#searchPage .smart-search-btn.active,
+body .sections.watchlist .stats-range-chip.is-active {
+    border-color: #fff;
+    background: #fff;
+    color: #000;
+}
+
+.dashboardDocument .MuiToggleButtonGroup-root .MuiToggleButton-root.MuiToggleButton-root,
+#searchPage .smart-search-btn {
+    margin: 0;
+    padding: 0 0.875rem;
+    text-transform: none;
+}
+
+/* ── Panels ──────────────────────────────────────────────────────────────── */
+.formDialogContent .paperList,
+.formDialog .mediaInfoStream,
+.trackSelections,
+#itemDetailPage .programGuide .vertical-list,
+.dashboardDocument .mainAnimatedPage :is(.MuiPaper-root, .MuiCard-root):not(.MuiAlert-root, .MuiAppBar-root),
+.dashboardDocument .mainAnimatedPage .MuiList-root:not(.MuiPaper-root *),
+.MuiAlert-root.MuiAlert-standard,
+.dashboardDocument .mainAnimatedPage .checkboxList.paperList,
+body .sections.watchlist .progress-card,
+body .sections.watchlist .progress-card-completed,
+body .sections.watchlist :is(.stat-card, .top-shows-container, .stats-chart-card, .stats-list-card) {
+    border: 1px solid var(--nf-line);
+    border-radius: var(--nf-radius-lg);
+    background: var(--nf-fill-panel);
+    box-shadow: none;
+}
+
+/* ── Fields ──────────────────────────────────────────────────────────────── */
+
+.emby-input.emby-input, /* doubled: core's lazy chunks can load after */
+.emby-textarea.emby-textarea,
+.emby-select-withcolor.emby-select-withcolor,
+.MuiInputBase-root.MuiFilledInput-root,
+.dashboardDocument .mainAnimatedPage div:has(> .MuiInputBase-root:not(.MuiFilledInput-root, .MuiOutlinedInput-root, .MuiInput-root)) {
+    border: 1px solid var(--nf-field-line);
+    border-radius: var(--nf-radius);
+    background: var(--nf-field-bg);
+    color: var(--nf-text);
+    transition: border-color var(--nf-dur-1) var(--nf-ease-out), box-shadow var(--nf-dur-1) var(--nf-ease-out);
+}
+
+.emby-select-withcolor > option {
+    background: var(--nf-surface-2);
+    color: var(--nf-text);
+}
+
+:is(.emby-input, .emby-textarea, .emby-select-withcolor):not(:disabled, .detailTrackSelect):hover,
+.MuiInputBase-root.MuiFilledInput-root:hover:not(.Mui-disabled),
+.dashboardDocument .mainAnimatedPage div:has(> .MuiInputBase-root:not(.MuiFilledInput-root, .MuiOutlinedInput-root, .MuiInput-root)):hover {
+    border-color: var(--nf-field-line-hover);
+}
+
+:is(.emby-input, .emby-textarea, .emby-select-withcolor):not(.detailTrackSelect):focus,
+.MuiInputBase-root.MuiFilledInput-root.Mui-focused,
+.dashboardDocument .mainAnimatedPage div:has(> .MuiInputBase-root.Mui-focused:not(.MuiFilledInput-root, .MuiOutlinedInput-root, .MuiInput-root)) {
+    border-color: #fff !important;
+    box-shadow: 0 0 0 1px #fff;
+    outline: none;
+}
+
+.inputLabel.inputLabel,
+.selectLabel.selectLabel,
+.textareaLabel.textareaLabel,
+.checkboxListLabel.checkboxListLabel,
+.paperListLabel.paperListLabel {
+    color: var(--nf-text-2);
+    font-weight: 500;
+}
+
+.inputLabelFocused,
+.selectLabelFocused,
+.textareaLabelFocused {
+    color: var(--nf-text);
+}
+
+.fieldDescription {
+    color: var(--nf-text-mute);
+    margin-top: .75em;
+}
+
+/* ── Checkboxes ──────────────────────────────────────────────────────────── */
+.checkboxOutline.checkboxOutline {
+    top: 50%;
+    translate: 0 -50%;
+    width: 1.25em;
+    height: 1.25em;
+    border: 1px solid var(--nf-field-line-hover);
+    border-radius: var(--nf-radius-xs);
+    background: transparent;
+    transition: background-color var(--nf-dur-1) var(--nf-ease-out), border-color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+.checkboxOutline > .checkboxIcon {
+    font-size: 1.05em;
+}
+
+.emby-checkbox-label:hover .checkboxOutline,
+.emby-checkbox:focus:not(:checked) + span + .checkboxOutline {
+    border-color: #fff;
+}
+
+.emby-checkbox.emby-checkbox:checked + span + .checkboxOutline {
+    background-color: #fff;
+    border-color: #fff;
+}
+
+.emby-checkbox.emby-checkbox:checked + span + .checkboxOutline > .checkboxIcon {
+    color: #000;
+}
+
+.emby-checkbox:focus-visible + span + .checkboxOutline {
+    outline: var(--nf-focus);
+    outline-offset: var(--nf-focus-offset);
+}
+
+/* ── Menus ───────────────────────────────────────────────────────────────── */
+
+.MuiPaper-root.MuiMenu-paper,
+.MuiPaper-root.MuiPopover-paper,
+.actionSheet,
+.kefinTweaks-popover,
+.playerStats,
+.iconOsd,
+.upNextContainer {
+    border: 1px solid var(--nf-line);
+    border-radius: var(--nf-radius-lg) !important;
+    background: var(--nf-fill-menu) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+    backdrop-filter: blur(20px) saturate(1.4) !important;
+    box-shadow: var(--nf-shadow-2) !important;
+}
+
+.MuiMenu-list,
+.actionSheetContent {
+    padding: 0.375rem 0;
+}
+
+.actionSheetContent {
+    border: 0;
+    border-radius: 0;
+    background: none !important;
+}
+
+.MuiMenuItem-root,
+.actionSheet .actionSheetMenuItem {
+    gap: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0.55rem 1rem;
+    color: var(--nf-text-2);
+    font-size: 0.875rem;
+    transition: background-color var(--nf-dur-1) var(--nf-ease-out), color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+.MuiMenuItem-root:hover,
+.actionSheetMenuItem:hover {
+    background: var(--nf-fill-hover);
+    color: var(--nf-text);
+}
+
+.MuiMenuItem-root.Mui-selected,
+.MuiMenuItem-root.Mui-selected:hover {
+    background: var(--nf-fill-hover);
+    color: var(--nf-text);
+    font-weight: 600;
+}
+
+:is(.MuiMenuItem-root, .actionSheetMenuItem) :is(.MuiListItemIcon-root, .actionsheetMenuItemIcon) {
+    min-width: 2rem;
+    margin: 0;
+    color: var(--nf-text-mute);
+    transition: color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+:is(.MuiMenuItem-root, .actionSheetMenuItem):hover :is(.MuiListItemIcon-root, .actionsheetMenuItemIcon) {
+    color: var(--nf-text);
+}
+
+.MuiMenu-list > .MuiDivider-root,
+.actionSheet .actionsheetDivider {
+    margin: 0.375rem 0;
+}
+
+.MuiMenuItem-root .MuiTypography-root {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+:is(.MuiMenuItem-root, .actionSheetMenuItem) :is(.MuiListItemIcon-root > *, .actionsheetMenuItemIcon) {
+    font-size: 1.25rem;
+}
+
+.actionSheet .actionsheetMenuItemIcon {
+    margin: 0 !important;
+}
+
+.actionSheet .actionsheetListItemBody,
+.actionSheet .actionSheetItemText {
+    padding: 0 !important;
+    font-size: inherit;
+    line-height: 1.3;
+}
+
+.actionSheet .actionSheetTitle {
+    margin: 0;
+    padding: 0.6rem 1rem 0.35rem;
+}
+
+.actionSheetMenuItem:has(.actionsheetMenuItemIcon.delete),
+.actionSheetMenuItem:has(.actionsheetMenuItemIcon.delete) .actionsheetMenuItemIcon {
+    color: var(--nf-error);
+}
+
+.dialogBackdrop:has(+ .dialogContainer > .actionsheet-not-fullscreen) {
+    opacity: 0;
+}
+
+/* ── Dialogs ─────────────────────────────────────────────────────────────── */
+
+.dialog:not(.actionSheet),
+.formDialogHeader:not(.formDialogHeader-clear),
+.formDialogFooter:not(.formDialogFooter-clear) {
+    background-color: var(--nf-surface);
+}
+
+.dialog:not(.actionSheet) {
+    box-shadow: var(--nf-shadow-3);
+}
+
+.dialog:not(.actionSheet, [class*="fullscreen"]) {
+    border-radius: var(--nf-radius-lg);
+}
+
+.dialogBackdropOpened {
+    opacity: 0.7;
+}
+
+/* ── Form dialogs ────────────────────────────────────────────────────────── */
+.formDialogHeader:not(.formDialogHeader-clear) {
+    gap: 0.25rem;
+    padding: 1rem 1rem 1rem 1.5rem;
+    border-bottom: 1px solid var(--nf-line);
+}
+
+.formDialogHeader:not(.formDialogHeader-clear):has(> .btnCancel:first-child:not(.hide)) {
+    padding-left: 0.75rem;
+}
+
+.formDialogHeaderTitle {
+    margin: 0;
+    line-height: 1.3;
+}
+
+.formDialogHeader .paper-icon-button-light {
+    color: var(--nf-text-dim);
+}
+
+.formDialogHeader .paper-icon-button-light:hover {
+    color: var(--nf-text);
+}
+
+.formDialog .dialogContentInner {
+    padding-top: 1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.formDialog .dialog-content-centered {
+    max-width: 42rem;
+    margin: 0;
+}
+
+@media (min-width: 80em) and (min-height: 45em) {
+    .dialog-small:has(.dialog-content-centered) {
+        width: min(47rem, 60%);
+        height: auto;
+        max-height: 80%;
+    }
+
+    .dialog-small:has(.dialog-content-centered) .dialog-content-centered {
+        padding-bottom: 1.5rem;
+    }
+}
+
+.formDialogFooter:not(.formDialogFooter-clear) {
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--nf-line);
+}
+
+.formDialogFooter:not(.formDialogFooter-clear) > .formDialogFooterItem,
+.formDialogFooter:not(.formDialogFooter-clear) > .raised {
+    flex: 0 0 auto;
+    width: auto; /* .emby-button.block is 100% */
+    min-width: 7rem;
+    margin: 0 !important; /* core: margin !important */
+}
+
+.formDialogContent h2 {
+    color: var(--nf-text);
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+:is(.formDialogContent, .dashboardDocument .mainAnimatedPage) .fab {
+    width: 2rem;
+    height: 2rem;
+    margin: 0 0 0 0.5rem;
+    padding: 0;
+    border-radius: 50%;
+    transition: border-color var(--nf-dur-1) var(--nf-ease-out), background-color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+:is(.formDialogContent, .dashboardDocument .mainAnimatedPage) .fab .material-icons {
+    font-size: 1.1rem;
+}
+
+.formDialogContent :is(.editableListviewContainer, .imageEditor-buttons) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.formDialogContent :is(.editableListviewContainer, .imageEditor-buttons) > h2 {
+    margin: 0;
+}
+
+.formDialogContent .editableListviewContainer > .paperList {
+    flex-basis: 100%;
+}
+
+.formDialogContent .paperList {
+    margin: 0.75rem 0 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.formDialogContent .paperList > .listItem + .listItem,
+#itemDetailPage .programGuide .listItem + .listItem {
+    border-top: 1px solid var(--nf-line);
+}
+
+.formDialogContent .paperList .listItemBodyText:not(.secondary) {
+    color: var(--nf-text-2);
+}
+
+.formDialogContent .paperList .secondary {
+    color: var(--nf-text-mute);
+}
+
+.formDialogContent .paperList .listItem .paper-icon-button-light {
+    color: var(--nf-text-mute);
+}
+
+.formDialogContent .paperList .listItem .paper-icon-button-light:hover {
+    color: var(--nf-error);
+}
+
+.imageEditorCard .visualCardBox {
+    background: none;
+    box-shadow: none;
+}
+
+.imageEditorCard .cardFooter {
+    padding: 0.4rem 0 0;
+    background: none;
+}
+
+.imageEditorCard .cardFooter .paper-icon-button-light {
+    color: var(--nf-text-mute);
+}
+
+.imageEditorCard .cardFooter .paper-icon-button-light:hover {
+    color: var(--nf-text);
+}
+
+.formDialog .mediaInfoContent {
+    width: auto;
+    margin: 0;
+}
+
+.formDialog .mediaInfoStream {
+    width: min(100%, 22rem);
+    margin: 1rem 1rem 0 0;
+    padding: 0.25rem 1.25rem 1rem;
+    line-height: 1.6;
+}
+
+.formDialog .mediaInfoLabel {
+    color: var(--nf-text-mute);
+    font-weight: 500;
+}
+
+.formDialog .mediaInfoAttribute {
+    color: var(--nf-text-2);
+}
+
+.formDialog .mediaInfoContent .btnCopy {
+    color: var(--nf-text-mute);
+}
+
+.formDialog .mediaInfoContent .btnCopy:hover {
+    color: var(--nf-text);
+}
+
+/* ── Type ────────────────────────────────────────────────────────────────── */
+
+#myPreferencesMenuPage .verticalSection:first-child > .headerUsername,
+.dashboardDocument .mainAnimatedPage .MuiTypography-h1,
+.dashboardDocument .content-primary > .verticalSection:first-child > .sectionTitleContainer > .sectionTitle,
+body .sections.watchlist .tab-header h2 {
+    color: var(--nf-text);
+    font-size: var(--nf-fs-h1);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.MuiDialog-paper .MuiDialogTitle-root,
+.dashboardDocument .mainAnimatedPage .MuiTypography-h2,
+.dashboardDocument .mainAnimatedPage h2.paperListLabel,
+.userPreferencesPage form :is(.verticalSection > .sectionTitle, .MuiStack-root > h2.MuiTypography-h2),
+.formDialogHeaderTitle {
+    color: var(--nf-text);
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.actionSheet .actionSheetTitle,
+#myPreferencesMenuPage .verticalSection:not(:first-child) > .sectionTitle,
+.MuiDrawer-paper .MuiListSubheader-root,
+.playerStats .playerStats-stat-header > .playerStats-stat-label,
+.upNextDialog .upNextDialog-nextVideoText,
+.formDialog:has(.menuSortBy):not(:has(.formDialogHeaderTitle)) .formDialogHeader + div > h2 {
+    color: var(--nf-text-mute);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* ── Tooltips and notices ────────────────────────────────────────────────── */
+
+.MuiTooltip-tooltip {
+    padding: 0.45rem 0.75rem;
+    border-radius: var(--nf-radius);
+    background: #fff;
+    color: #141414;
+    font: 700 0.8125rem/1.2 var(--nf-font);
+    box-shadow: var(--nf-shadow-2);
+}
+
+.MuiTooltip-arrow {
+    color: #fff;
+}
+
+.toast,
+.MuiSnackbarContent-root {
+    border: 1px solid var(--nf-line);
+    border-radius: var(--nf-radius-lg);
+    box-shadow: var(--nf-shadow-2);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+ * 5. Rows and cards
+ * ═══════════════════════════════════════════════════════════════════════ */
+
+.sectionTitle,
+.sectionTitle-cards {
+    color: var(--nf-text-2);
+    font-size: var(--nf-fs-h2);
+    font-weight: 700;
+    letter-spacing: -0.005em;
+    margin-bottom: 0.15em;
+}
+
+.sectionTitleTextButton,
+a.more,
+.sectionTitle a {
+    color: inherit;
+}
+
+/* ── Row titles ──────────────────────────────────────────────────────────── */
+.sectionTitle.sectionTitle {
+    line-height: 1.35;
+}
+
+:is(.sectionTitleTextButton, a.more) > .material-icons,
+a.clearLink > .sectionTitle + svg,
+.sectionTitle .material-icons {
+    flex: none;
+    width: 1em;
+    height: 1em;
+    align-self: flex-start;
+    translate: 0 0.25em;
+    color: var(--nf-text-mute);
+    font-size: var(--nf-fs-h2);
+    transition: transform var(--nf-dur-2) var(--nf-ease), color var(--nf-dur-2) var(--nf-ease-out);
+}
+
+a.clearLink > .sectionTitle + svg {
+    padding: 0;
+}
+
+:is(.sectionTitleTextButton, a.more, a.clearLink) > .sectionTitle {
+    transition: color var(--nf-dur-2) var(--nf-ease-out);
+}
+
+:is(.sectionTitleTextButton, a.more, a.clearLink):is(:hover, :focus-visible) > .sectionTitle {
+    color: var(--nf-text);
+}
+
+:is(.sectionTitleTextButton, a.more):is(:hover, :focus-visible) > .material-icons,
+a.clearLink:is(:hover, :focus-visible) > .sectionTitle + svg,
+.sectionTitle a:is(:hover, :focus-visible) .material-icons,
+#myPreferencesMenuPage a.listItem-border:hover .listItem::after,
+.dashboardDocument a.MuiButton-root:has(> .MuiTypography-h3):is(:hover, :focus-visible) .MuiButton-endIcon {
+    color: var(--nf-text);
+    transform: translateX(0.2em);
+}
+
+.sectionTitleContainer > a.clearLink:has(> button.more) {
+    align-self: center;
+    margin: 0 0 0.15em 1em;
+    padding: 0;
+}
+
+.sectionTitleContainer > a.clearLink > button.more.raised {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+    color: var(--nf-text-mute);
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: color var(--nf-dur-2) var(--nf-ease-out);
+}
+
+.sectionTitleContainer > a.clearLink > button.more.raised::after {
+    content: "\e5cc"; /* chevron_right */
+    font-family: "Material Icons";
+    font-size: 1.35em;
+    font-weight: 400;
+    line-height: 1;
+    transition: transform var(--nf-dur-2) var(--nf-ease);
+}
+
+.sectionTitleContainer > a.clearLink:is(:hover, :focus-visible) > button.more.raised {
+    color: var(--nf-text);
+}
+
+.sectionTitleContainer > a.clearLink:is(:hover, :focus-visible) > button.more.raised::after {
+    transform: translateX(0.2em);
+}
+
+/* ── Cards ───────────────────────────────────────────────────────────────── */
+.cardScalable,
+.cardImageContainer,
+.cardPadder,
+.cardContent,
+.cardOverlayContainer,
+.blurhash-canvas {
+    border-radius: var(--nf-radius);
+}
+
+.cardBox:not(.visualCardBox) .cardPadder {
+    background-color: var(--nf-surface-2);
+}
+
+.cardPadder .cardImageIcon {
+    color: #3a3a3a;
+}
+
+/* ── Loading skeleton ────────────────────────────────────────────────────── */
+.card :is(.blurhash-canvas, .cardImageContainer > div:not([class]) > canvas) {
+    display: none;
+}
+
+.card:has(> .cardBox > .cardScalable .cardImageContainer > div:not([class]) > span) {
+    --nf-skeleton-clock: paused;
+}
+
+.card:has(> .cardBox > .cardScalable :is(.cardImageContainer > div:not([class]) > :is(span, img[style*="opacity: 0"]), .cardImageContainer.lazy-hidden)),
+.card:has(> .cardBox > .cardScalable :is(.cardImageContainer > div:not([class]) > :is(span, img[style*="opacity: 0"]), .cardImageContainer.lazy-hidden)) * {
+    animation: nf-skeleton-inert 10s;
+    animation-play-state: var(--nf-skeleton-clock, running);
+}
+
+.card:has(> .cardBox > .cardScalable :is(.cardImageContainer > div:not([class]) > :is(span, img[style*="opacity: 0"]), .cardImageContainer.lazy-hidden)) .cardText {
+    width: fit-content;
+    max-width: 100%;
+    animation: nf-skeleton-text 10s;
+    animation-play-state: var(--nf-skeleton-clock, running);
+}
+
+.card:has(> .cardBox > .cardScalable :is(.cardImageContainer > div:not([class]) > :is(span, img[style*="opacity: 0"]), .cardImageContainer.lazy-hidden)) :is(.cardPadder > .cardImageIcon, .cardImageContainer > .indicators, .cardImageContainer > .MuiLinearProgress-root),
+.card:has(> .cardBox > .cardScalable :is(.cardImageContainer > div:not([class]) > :is(span, img[style*="opacity: 0"]), .cardImageContainer.lazy-hidden)) .cardText::before {
+    animation: nf-skeleton-hide 10s;
+    animation-play-state: var(--nf-skeleton-clock, running);
+}
+
+@keyframes nf-skeleton-inert {
+    from, to { pointer-events: none; }
+}
+
+@keyframes nf-skeleton-hide {
+    from, to { opacity: 0; pointer-events: none; }
+}
+
+@keyframes nf-skeleton-text {
+    from, to {
+        pointer-events: none;
+        --kefin-card-title-color: transparent;
+        color: transparent;
+        background: linear-gradient(var(--nf-surface-2), var(--nf-surface-2)) 0 50% / 100% 0.85em no-repeat content-box;
+    }
+}
+
+@keyframes nf-skeleton {
+    50% { opacity: 0.45; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .card:has(> .cardBox > .cardScalable :is(.cardImageContainer > div:not([class]) > :is(span, img[style*="opacity: 0"]), .cardImageContainer.lazy-hidden)) .cardPadder {
+        animation: nf-skeleton 1.6s ease-in-out 6;
+        animation-play-state: var(--nf-skeleton-clock, running);
+    }
+
+    .card:has(> .cardBox > .cardScalable :is(.cardImageContainer > div:not([class]) > :is(span, img[style*="opacity: 0"]), .cardImageContainer.lazy-hidden)) .cardText {
+        animation: nf-skeleton-text 10s, nf-skeleton 1.6s ease-in-out 6;
+        animation-play-state: var(--nf-skeleton-clock, running);
+    }
+}
+
+.defaultCardBackground,
+[class*="defaultCardBackground"] {
+    background-color: var(--nf-surface-2) !important;
+}
+
+.card.card:not(.show-animation) { /* core's paint containment clips the zoom */
+    contain: layout style;
+}
+
+/* ── Card hover ──────────────────────────────────────────────────────────── */
+@media (hover: hover) and (pointer: fine) {
+    :is(.card-hoverable, .chapterCard) .cardBox {
+        transition: transform var(--nf-dur-3) var(--nf-ease);
+    }
+
+    :is(.card-hoverable, .chapterCard):hover {
+        z-index: 2;
+        position: relative;
+    }
+
+    :is(.card-hoverable, .chapterCard):hover .cardBox {
+        transform: scale(1.06);
+    }
+
+    :is(.card-hoverable, .chapterCard):hover .cardScalable {
+        box-shadow: 0 0 0 1px var(--nf-line), var(--nf-shadow-1);
+    }
+}
+
+.emby-scroller {
+    overflow-y: visible;
+}
+
+/* ── Card overlay ────────────────────────────────────────────────────────── */
+.cardOverlayContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: flex-end;
+    justify-content: center;
+    gap: 0.25rem;
+    padding: 0.6rem;
+    background: var(--nf-scrim-card);
+}
+
+.cardOverlayContainer > .cardOverlayButton-br {
+    position: relative;
+    padding: 0;
+}
+
+.cardOverlayContainer > .cardImageContainer {
+    position: absolute;
+    inset: 0;
+    width: auto;
+    height: auto;
+}
+
+:is(.backdropCard, .overflowBackdropCard, .smallBackdropCard) .cardOverlayContainer {
+    justify-content: space-between;
+}
+
+:is(.backdropCard, .overflowBackdropCard, .smallBackdropCard) .cardOverlayContainer > .cardOverlayButton-br {
+    margin: 0 -0.35rem 0 auto;
+}
+
+.cardOverlayButton,
+.cardOverlayButton-br,
+.cardOverlayButton-br .cardOverlayButton {
+    color: var(--nf-text);
+}
+
+.cardOverlayButton:hover {
+    background: rgb(255 255 255 / 0.15);
+}
+
+/* ── Play disc ───────────────────────────────────────────────────────────── */
+
+.cardOverlayContainer > .cardOverlayFab-primary,
+.listItemImageButton,
+.chapterCard .cardScalable > [class*="cardPadder"],
+.layout-mobile :is(.backdropCard, .overflowBackdropCard, .smallBackdropCard) :is(.cardScalable > button.cardOverlayButton-br[data-action="play"], .cardScalable > a > .cardOverlayButton-br > .cardOverlayButton) {
+    --nf-rise: 0.35rem;
+    --nf-grow: 1;
+    width: 2.75rem;
+    height: 2.75rem;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--nf-icon-play) center / 50% no-repeat, #fff !important;
+    color: transparent !important;
+    box-shadow: var(--nf-shadow-disc);
+    transform: translateY(var(--nf-rise)) scale(var(--nf-grow));
+    transition: opacity var(--nf-dur-2) var(--nf-ease-out), transform var(--nf-dur-3) var(--nf-ease), box-shadow var(--nf-dur-2) var(--nf-ease-out);
+}
+
+:is(.cardOverlayFab-primary, .listItemImageButton) > :is(.material-icons, svg),
+.layout-mobile :is(.backdropCard, .overflowBackdropCard, .smallBackdropCard) :is(.cardScalable > button.cardOverlayButton-br[data-action="play"], .cardScalable > a > .cardOverlayButton-br > .cardOverlayButton) > :is(.material-icons, svg) {
+    display: none;
+}
+
+.cardOverlayContainer > .cardOverlayFab-primary:hover,
+.listItemImageButton:hover,
+.chapterCard .cardScalable > [class*="cardPadder"]:hover {
+    --nf-grow: 1.08;
+    box-shadow: var(--nf-shadow-disc-hover);
+    transform: translateY(var(--nf-rise)) scale(var(--nf-grow));
+    transition: opacity var(--nf-dur-2) var(--nf-ease-out), transform var(--nf-dur-3) var(--nf-ease), box-shadow var(--nf-dur-2) var(--nf-ease-out);
+}
+
+.cardOverlayContainer > .cardOverlayFab-primary:active,
+.listItemImageButton:active,
+.chapterCard .cardScalable > [class*="cardPadder"]:active {
+    --nf-grow: 0.96;
+    transition-duration: var(--nf-dur-1);
+}
+
+.card:is(:hover, :focus-within) .cardOverlayFab-primary,
+.listItem:is(:hover, :focus-within) .listItemImageButton {
+    --nf-rise: 0rem;
+}
+
+.cardOverlayContainer > .cardOverlayFab-primary,
+.listItemImage .listItemImageButton {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+}
+
+:is(.backdropCard, .overflowBackdropCard, .smallBackdropCard) .cardOverlayContainer > .cardOverlayFab-primary {
+    position: static;
+    margin: 0;
+}
+
+:is(.backdropCard, .overflowBackdropCard, .smallBackdropCard) .cardOverlayContainer > .cardOverlayFab-primary,
+.layout-mobile :is(.backdropCard, .overflowBackdropCard, .smallBackdropCard) :is(.cardScalable > button.cardOverlayButton-br[data-action="play"], .cardScalable > a > .cardOverlayButton-br > .cardOverlayButton),
+.layout-desktop #itemDetailPage .listItem-largeImage .listItemImageButton,
+.chapterCard .cardScalable > [class*="cardPadder"],
+#liveTvPage .vertical-wrap > .squareCard .cardOverlayContainer > .cardOverlayFab-primary {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+:is(.backdropCard, .overflowBackdropCard, .smallBackdropCard) .cardOverlayContainer > .cardOverlayFab-primary:hover:not(:active),
+.layout-desktop #itemDetailPage .listItem-largeImage .listItemImageButton:hover:not(:active),
+.chapterCard .cardScalable > [class*="cardPadder"]:hover:not(:active),
+#liveTvPage .vertical-wrap > .squareCard .cardOverlayContainer > .cardOverlayFab-primary:hover:not(:active) {
+    --nf-grow: 1.04;
+}
+
+.listItemImage {
+    position: relative;
+}
+
+.listItemImage:not(.listItemImage-large) .listItemImageButton {
+    width: 2rem;
+    height: 2rem;
+}
+
+@media (hover: hover) {
+    .listItemImageButton {
+        opacity: 0;
+    }
+
+    .listItem:is(:hover, :focus-within) .listItemImageButton {
+        opacity: 1;
+    }
+}
+
+/* ── Card text ───────────────────────────────────────────────────────────── */
+.cardFooter {
+    padding-top: 0;
+    text-align: left;
+}
+
+.cardText,
+.cardTextCentered,
+.cardTextCentered > .textActionButton {
+    text-align: left !important; /* core sets center with !important */
+}
+
+.cardText {
+    --kefin-card-title-color: var(--nf-text-mute);
+    padding: 0.1rem 0.1em 0;
+    color: var(--nf-text-mute);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    line-height: 1.35;
+}
+
+.cardText-first {
+    --kefin-card-title-color: var(--nf-text-2);
+    padding-top: 0.5rem;
+    color: var(--nf-text-2);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.cardText > :is(a, button, .textActionButton) {
+    color: inherit;
+    font: inherit;
+}
+
+/* ── Progress ────────────────────────────────────────────────────────────── */
+.itemProgressBar {
+    background: var(--nf-track);
+    height: 3px;
+    border-radius: 0;
+}
+
+.MuiLinearProgress-root .MuiLinearProgress-bar:not([class*="barColorSuccess"], [class*="barColorWarning"], [class*="barColorError"], .MuiLinearProgress-bar2, [class*="bar2Buffer"]) {
+    background-color: var(--nf-red) !important;
+    border-radius: 0;
+}
+
+.MuiLinearProgress-root.itemLinearProgress {
+    height: 3px;
+    border-radius: 0;
+    background-color: var(--nf-track) !important;
+}
+
+.starIcon {
+    color: var(--nf-star);
+}
+
+.innerCardFooter.fullInnerCardFooter {
+    background: none;
+}
+
+/* ── Watched badge ───────────────────────────────────────────────────────── */
+.cardIndicators:has(> .playedIndicator) {
+    top: 0;
+    right: 0;
+}
+
+.cardIndicators > .playedIndicator,
+body .sections.watchlist .movie-watched-badge {
+    align-items: flex-start;
+    justify-content: flex-end;
+    width: 2.1rem;
+    height: 2.1rem;
+    padding: 0.2rem;
+    border-radius: 0 var(--nf-radius) 0 0;
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+.cardIndicators > .playedIndicator > :is(svg, .indicatorIcon),
+body .sections.watchlist .movie-watched-badge > .material-icons {
+    width: 0.95rem;
+    height: 0.95rem;
+    font-size: 0.95rem;
+}
+
+.emby-scrollbuttons-button {
+    color: var(--nf-text);
+}
+
+/* ── Programme lists ─────────────────────────────────────────────────────── */
+.libraryPage:has(.itemsContainer .card[data-type="Program"]) .itemsViewSettingsContainer .btnFilter {
+    display: none;
+}
+
+/* ── Buttons in rows ─────────────────────────────────────────────────────── */
+.verticalSection .emby-button.raised,
+.verticalSection .emby-button.button-flat {
+    font-weight: 600;
+}
+
+.verticalSection .scrollSlider > a.emby-button.raised {
+    margin: 0 0.5rem 0 0;
+    padding: 0 0.875rem;
+}
+
+.verticalSection > h2.sectionTitle-cards.padded-left {
+    padding-top: 1em; /* as a .sectionTitleContainer, so the scroll arrows line up */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+ * 6. Library pages
+ * ═══════════════════════════════════════════════════════════════════════ */
+
+.alphaPickerButton {
+    color: var(--nf-text-mute);
+    font-weight: 600;
+}
+
+.alphaPickerButton:hover,
+.alphaPickerButton-selected {
+    color: var(--nf-text);
+    background: none;
+}
+
+.emby-tab-button {
+    color: var(--nf-text-dim);
+}
+
+.emby-tab-button-active {
+    color: var(--nf-text);
+    font-weight: 700;
+    box-shadow: inset 0 -2px 0 #fff;
+}
+
+.MuiTabs-indicator.MuiTabs-indicator {
+    background-color: #fff;
+}
+
+.emby-tab-button:hover,
+.emby-tab-button.show-focus:focus {
+    color: var(--nf-text);
+}
+
+/* ── List view ───────────────────────────────────────────────────────────── */
+
+.itemsContainer.vertical-list:has(> .MuiBox-root > .listItem) {
+    padding-top: 1rem;
+}
+
+.vertical-list > .MuiBox-root > .listItem {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas:
+        "image title buttons"
+        "image meta  buttons";
+    align-items: center;
+    column-gap: 1rem;
+    padding: 0.5rem;
+    border: 0;
+    border-radius: var(--nf-radius-lg);
+    transition: background-color var(--nf-dur-2) var(--nf-ease-out);
+}
+
+.vertical-list > .MuiBox-root > .listItem:is(:hover, :focus-within) {
+    background: var(--nf-fill-hover);
+}
+
+.vertical-list > .MuiBox-root > .listItem > .listItemImage {
+    display: block; /* core hides it under 40em */
+    grid-area: image;
+    width: 3rem;
+    height: auto;
+    aspect-ratio: 2 / 3;
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--nf-radius);
+    background: var(--nf-surface-2);
+}
+
+.vertical-list > .MuiBox-root > .listItem > .listItemBody {
+    grid-area: title;
+    align-self: end;
+    min-width: 0;
+    padding: 0;
+}
+
+.vertical-list > .MuiBox-root > .listItem .listItemBodyText {
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--nf-text);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.vertical-list > .MuiBox-root > .listItem > .listItemMediaInfo {
+    display: flex; /* core hides it under 50em */
+    grid-area: meta;
+    align-self: start;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25em 0.75em;
+    margin: 0.3rem 0 0;
+    color: var(--nf-text-dim);
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.vertical-list > .MuiBox-root > .listItem > .listItemMediaInfo > .mediaInfoItem {
+    margin: 0;
+}
+
+.vertical-list > .MuiBox-root > .listItem > .listItemMediaInfo > .mediaInfoText:not(.mediaInfoOfficialRating) {
+    padding: 0;
+    border: 0;
+    background: none;
+}
+
+.vertical-list > .MuiBox-root > .listItem > .listItemMediaInfo svg {
+    font-size: 1.15rem;
+}
+
+.vertical-list > .MuiBox-root > .listItem > .listViewUserDataButtons {
+    grid-area: buttons;
+}
+
+.vertical-list > .MuiBox-root > .listItem > .listViewUserDataButtons > :is(.listItemButton, .paper-icon-button-light) {
+    color: var(--nf-text-mute);
+}
+
+.vertical-list > .MuiBox-root > .listItem > .listViewUserDataButtons > :is(.listItemButton, .paper-icon-button-light):hover {
+    color: var(--nf-text);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+ * 7. Detail page
+ * ═══════════════════════════════════════════════════════════════════════ */
+
+:root {
+    --nf-hero-height: 100vh;
+    --nf-hero-logo: 24vh;
+    --nf-hero-logo-width: 36%;
+    --nf-hero-pad: 3.3vw;
+    --nf-hero-fs: clamp(15px, 8px + 0.55vw, 22px);
+    --nf-hero-veil: 0.98;
+    --nf-hero-blur: 22px;
+    --nf-appbar: 48px; /* MUI dense toolbar */
+}
+
+#itemDetailPage {
+    --nf-hero-band: calc(var(--nf-hero-fs) * (6.9 + var(--nf-band-subtitle, 0) + var(--nf-band-original, 0)) + var(--nf-hero-pad));
+}
+
+.layout-desktop #itemDetailPage:has(.nameContainer .subtitle) {
+    --nf-band-subtitle: 2.3;
+    --nf-hero-height: 65vh;
+    --nf-hero-logo: 19vh;
+}
+
+.layout-desktop #itemDetailPage:has(.nameContainer .originalTitle:not(.hide)) {
+    --nf-band-original: 1.8;
+}
+
+.itemName,
+.parentName {
+    color: var(--nf-text);
+    font-weight: 700;
+}
+
+.mediaInfoOfficialRating,
+.mediaInfoText {
+    border-color: var(--nf-outline);
+    border-radius: var(--nf-radius-xs);
+}
+
+.detailRibbon {
+    background: transparent;
+}
+
+/* ── Hero: backdrop ──────────────────────────────────────────────────────── */
+
+.layout-desktop body:has(#itemDetailPage:not(.hide) .detailImageContainer :is(.portraitCard, .backdropCard)):not(:has(#itemDetailPage:not(.hide) .detailImageContainer .cardImageIcon.person, #itemDetailPage:not(.hide) .programGuideSection:not(.hide))) .backgroundContainer.withBackdrop {
+    background-color: transparent;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .itemBackdrop {
+    height: var(--nf-hero-height);
+    margin-top: calc(-1 * var(--nf-appbar));
+    background-attachment: scroll;
+    background-position: center 20%;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .itemBackdrop::after,
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailPagePrimaryContainer > .detailImageContainer .cardScalable::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgb(0 0 0 / 0.6) 0%, transparent 20%),
+        linear-gradient(77deg, rgb(0 0 0 / 0.8) 0%, rgb(0 0 0 / 0.35) 40%, transparent 70%);
+    pointer-events: none;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailImageContainer {
+    display: none;
+}
+
+/* ── Hero: episode still ─────────────────────────────────────────────────── */
+.layout-desktop #itemDetailPage:has(.detailImageContainer .backdropCard):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailPagePrimaryContainer > .detailImageContainer {
+    --nf-still-w: min(32vw, 44rem);
+    display: block;
+    position: absolute;
+    right: var(--nf-gutter);
+    top: calc(var(--nf-hero-band) - var(--nf-hero-pad) - var(--nf-still-w) * 9 / 16);
+    width: var(--nf-still-w);
+    z-index: 3;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .backdropCard):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailPagePrimaryContainer > .detailImageContainer .card {
+    position: relative !important;
+    float: none;
+    left: 0 !important;
+    top: 0;
+    width: 100% !important;
+    max-width: none;
+    margin: 0;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .backdropCard):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailPagePrimaryContainer > .detailImageContainer .cardScalable {
+    border-radius: var(--nf-radius-lg);
+    box-shadow:
+        0 0 0 1px rgb(255 255 255 / 0.14),
+        0 1.2em 2.5em rgb(0 0 0 / 0.6);
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailLogo {
+    display: block;
+    left: var(--nf-gutter);
+    right: calc(100% - var(--nf-gutter) - var(--nf-hero-logo-width));
+    width: auto;
+    height: var(--nf-hero-logo);
+    top: calc(var(--nf-hero-height) - var(--nf-appbar) - var(--nf-hero-band) - var(--nf-hero-logo));
+    background-position: left bottom;
+    background-size: contain;
+    filter: drop-shadow(0 2px 12px rgb(0 0 0 / 0.5));
+    z-index: 3;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer > .itemName.parentNameLast {
+    display: none;
+}
+
+/* ── Hero: info block ────────────────────────────────────────────────────── */
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailPageWrapperContainer {
+    margin-top: calc(-1 * var(--nf-hero-band));
+    min-height: 0;
+    position: relative;
+    z-index: 2;
+    background: none; /* core: noBackdropTransparency */
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailPageWrapperContainer::before {
+    --nf-veil-rise: calc(var(--nf-hero-logo));
+    --nf-veil-ramp: calc(var(--nf-veil-rise) + var(--nf-hero-band) - var(--nf-hero-pad) + 0.5em);
+    content: "";
+    position: absolute;
+    top: calc(-1 * var(--nf-veil-rise));
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: rgb(var(--nf-bg-rgb) / var(--nf-hero-veil));
+    -webkit-backdrop-filter: blur(var(--nf-hero-blur)) saturate(1.15);
+    backdrop-filter: blur(var(--nf-hero-blur)) saturate(1.15);
+    --nf-veil-mask: linear-gradient(180deg,
+        transparent 0,
+        rgb(0 0 0 / 0.3) calc(var(--nf-veil-ramp) * 0.15),
+        rgb(0 0 0 / 0.52) calc(var(--nf-veil-ramp) * 0.3),
+        rgb(0 0 0 / 0.68) calc(var(--nf-veil-ramp) * 0.45),
+        rgb(0 0 0 / 0.8) calc(var(--nf-veil-ramp) * 0.6),
+        rgb(0 0 0 / 0.89) calc(var(--nf-veil-ramp) * 0.75),
+        rgb(0 0 0 / 0.96) calc(var(--nf-veil-ramp) * 0.88),
+        #000 var(--nf-veil-ramp));
+    -webkit-mask-image: var(--nf-veil-mask);
+    mask-image: var(--nf-veil-mask);
+    pointer-events: none;
+}
+
+/* ── Hero: collections ───────────────────────────────────────────────────── */
+.layout-desktop #itemDetailPage:has(.collectionItems:not(.hide)) {
+    --nf-hero-height: calc(var(--nf-hero-band) + 16vh);
+    --nf-hero-logo: calc(16vh - var(--nf-appbar) - 1.5rem);
+    --nf-content-top: 0.75em;
+    --nf-children-gap: 0;
+}
+
+.layout-desktop #itemDetailPage:has(.collectionItems:not(.hide)):has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailPageWrapperContainer::before {
+    -webkit-mask-image: var(--nf-veil-mask), linear-gradient(to top right, #000 50%, transparent);
+    mask-image: var(--nf-veil-mask), linear-gradient(to top right, #000 50%, transparent);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+}
+
+#itemDetailPage .collectionItems :is(.sectionTitleContainer, .itemsContainer) {
+    padding-inline: 0; /* the section is already on the gutter */
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailRibbon {
+    text-shadow: 0 1px 10px rgb(0 0 0 / 0.65);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: stretch;
+    box-sizing: border-box;
+    height: auto;
+    min-height: var(--nf-hero-band);
+    margin-top: 0;
+    padding: 0 var(--nf-gutter) var(--nf-hero-pad);
+    font-size: var(--nf-hero-fs);
+    text-align: left;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) :is(.itemMiscInfo-primary, .mainDetailButtons) {
+    justify-content: flex-start;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailRibbon > .infoWrapper {
+    flex: none;
+    max-width: 60%;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .nameContainer {
+    display: block;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .itemName {
+    font-size: 2.8em;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    white-space: normal;
+    text-shadow: 0 2px 16px rgb(0 0 0 / 0.5);
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .nameContainer > .itemName:not(.parentNameLast),
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .nameContainer > .parentName ~ .itemName {
+    font-size: 1.6em;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .nameContainer > .itemName.originalTitle {
+    font-size: 1em;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.3;
+    color: var(--nf-text-dim);
+    margin: 0.3em 0 0;
+    text-shadow: none;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .itemMiscInfo-primary {
+    color: var(--nf-text-2);
+    font-size: 1.05em;
+    font-weight: 500;
+    gap: 0.25em 0.75em;
+    margin: 0.6em 0 0 !important; /* core sets margin-bottom inline */
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .itemMiscInfo-primary > .mediaInfoItem {
+    margin-right: 0;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .itemMiscInfo-primary > .mediaInfoOfficialRating {
+    padding: 0.05em 0.45em;
+    font-size: 0.85em;
+    line-height: 1.5;
+}
+
+:root .anime-tag-badge.anime-tag-badge.colored {
+    height: 1.6em;
+    padding: 0 0.55em !important;
+    border: 0;
+    border-radius: var(--nf-radius-xs);
+    color: var(--nf-text-2);
+    font-weight: 600;
+    line-height: 1.6em;
+    text-shadow: none;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .itemMiscInfo .endsAt {
+    display: block;
+    color: var(--nf-text-dim);
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .mainDetailButtons {
+    gap: 0.65em;
+    margin: 1.3em 0 0;
+    font-size: 1em;
+}
+
+/* ── Hero: body ──────────────────────────────────────────────────────────── */
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailPagePrimaryContent {
+    padding: var(--nf-content-top, 3.5em) var(--nf-gutter) 0 !important;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailSection {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(20em, 1fr);
+    column-gap: 4vw;
+    row-gap: 1.75em;
+    align-items: start;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailSection > * {
+    grid-column: 1 / -1;
+    margin-top: 0;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailSection > .detailSectionContent {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailSection > .itemDetailsGroup {
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: 0;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailSection > .trackSelections {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    margin: 0;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailSection:has(> .trackSelections.hide) {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailSection > :is(.nextUpSection, #listChildrenCollapsible, .programGuideSection, .collectionItems) {
+    margin-top: var(--nf-children-gap, 1.5em);
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailPageSecondaryContainer {
+    padding-top: 1.5em;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer :is(.portraitCard, .backdropCard), .recordingFields .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer > .parentName {
+    display: none;
+}
+
+/* ── Episodes ────────────────────────────────────────────────────────────── */
+
+.layout-desktop #itemDetailPage .vertical-list:has(> .listItem-largeImage) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(24em, 100%), 1fr));
+    gap: 2.2em 1.4vw;
+    padding-right: 0;
+}
+
+.layout-desktop #itemDetailPage .listItem-largeImage {
+    display: block;
+    padding: 0.6em 0.6em 0.9em;
+    margin: -0.6em -0.6em -0.9em;
+    border-radius: var(--nf-radius-lg);
+    background: transparent;
+    transition: background-color var(--nf-dur-2) var(--nf-ease-out);
+}
+
+.layout-desktop #itemDetailPage .listItem-largeImage:hover,
+.layout-desktop #itemDetailPage .listItem-largeImage:focus-within {
+    background: var(--nf-fill-hover);
+}
+
+.layout-desktop #itemDetailPage .listItem-largeImage > .listItem-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+        "image    image"
+        "title    buttons"
+        "meta     meta"
+        "overview overview";
+    align-items: center;
+}
+
+.layout-desktop #itemDetailPage .listItem-largeImage .listItemImage-large {
+    grid-area: image;
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    margin: 0;
+    border-radius: var(--nf-radius);
+    background-size: cover;
+    overflow: hidden;
+}
+
+.layout-desktop #itemDetailPage .listItem-largeImage .listItemImage-large::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: inherit;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s var(--nf-ease);
+}
+
+.layout-desktop #itemDetailPage .listItem-largeImage:hover .listItemImage-large::before {
+    transform: scale(1.04);
+}
+
+.layout-desktop #itemDetailPage .listItem-largeImage .listItemBody {
+    display: contents;
+}
+
+.layout-desktop #itemDetailPage .listItem-largeImage .listItemBodyText:first-child {
+    grid-area: title;
+    min-width: 0;
+    padding-top: 0.7em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--nf-text);
+    font-size: 1.02em;
+    font-weight: 700;
+    margin-bottom: 0.2em;
+}
+
+.layout-desktop #itemDetailPage .listItem-largeImage .listItemMediaInfo {
+    grid-area: meta;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25em 0.75em;
+    white-space: nowrap;
+    color: var(--nf-text-dim);
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.layout-desktop #itemDetailPage .listItem-largeImage .listItemMediaInfo > .mediaInfoItem {
+    margin: 0;
+}
+
+.layout-desktop #itemDetailPage .listItem-largeImage .listItemMediaInfo .starIcon {
+    margin-right: 0.15em;
+    font-size: 1.25em;
+}
+
+.layout-desktop #itemDetailPage .listItem-largeImage .listItemMediaInfo > .anime-tag-badge {
+    font-size: 0.6875rem;
+}
+
+.layout-desktop #itemDetailPage .listItem-largeImage .listItem-overview {
+    grid-area: overview;
+    color: var(--nf-text-mute);
+    font-size: 0.88em;
+    line-height: 1.45;
+    margin-top: 0.5em;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: normal;
+}
+
+.layout-desktop #itemDetailPage .listItem-largeImage .listViewUserDataButtons {
+    grid-area: buttons;
+    padding: 0.7em 0 0 0.5em;
+    gap: 0;
+}
+
+.layout-desktop #itemDetailPage .listItem-largeImage .listItemButton {
+    color: var(--nf-text-mute);
+    font-size: 0.85em;
+    padding: 0.35em;
+}
+
+.layout-desktop #itemDetailPage .listItem-largeImage .listItemButton:hover {
+    color: var(--nf-text);
+}
+
+.layout-desktop #itemDetailPage .listItem-largeImage .listItem-bottomoverview {
+    display: none;
+}
+
+/* ── KefinTweaks breadcrumbs ─────────────────────────────────────────────── */
+
+.MuiAppBar-root .MuiToolbar-root:has(.kefinTweaks-breadcrumbs-wrapper) {
+    display: flex; /* KefinTweaks makes it a 3-column grid */
+}
+
+.kefinTweaks-breadcrumbs-wrapper--modern {
+    position: absolute;
+    top: 100%;
+    left: var(--nf-gutter);
+    margin: 0;
+    transition: opacity var(--nf-dur-2) var(--nf-ease-out);
+}
+
+.kefinTweaks-breadcrumbs-wrapper--modern .kefinTweaks-breadcrumbs {
+    padding-left: 0;
+}
+
+.MuiAppBar-colorDefault .kefinTweaks-breadcrumbs-wrapper--modern {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.kefinTweaks-breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.15rem 0.5rem;
+    font-size: 0.85rem;
+    text-shadow: 0 1px 6px rgb(0 0 0 / 0.7);
+}
+
+.kefinTweaks-breadcrumb-element {
+    color: var(--nf-text-dim);
+    font-weight: 500;
+    cursor: pointer;
+    transition: color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+.kefinTweaks-breadcrumb-element:hover {
+    color: var(--nf-text);
+}
+
+.kefinTweaks-breadcrumb-element:last-child {
+    color: var(--nf-text);
+    font-weight: 600;
+    cursor: default;
+}
+
+.kefinTweaks-breadcrumb-separator {
+    color: var(--nf-text-dim);
+    font-size: 0;
+}
+
+.kefinTweaks-breadcrumb-separator::before {
+    content: "chevron_right";
+    font-family: "Material Icons";
+    font-size: 1rem;
+    vertical-align: middle;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+
+.mainDetailButtons .detailButton {
+    border-radius: 50%;
+    width: 2.6em;
+    height: 2.6em;
+    margin: 0;
+    padding: 0 !important;
+    transition: border-color var(--nf-dur-1) var(--nf-ease-out), background-color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+.mainDetailButtons .detailButton-icon {
+    font-size: 1.35em !important;
+}
+
+.mainDetailButtons .detailButton.btnPlay {
+    flex-direction: row;
+    width: auto;
+    min-width: 7.5em;
+    margin-right: 0.25em;
+    padding: 0 1.7em 0 1.15em !important;
+    border: 0;
+    border-radius: var(--nf-radius);
+    background: #fff;
+    color: #000;
+    font-weight: 700;
+    text-shadow: none;
+}
+
+.mainDetailButtons .detailButton.btnPlay:hover {
+    background: var(--nf-fill-white-hover);
+    color: #000;
+}
+
+.mainDetailButtons .detailButton.btnPlay .detailButton-content {
+    flex-direction: row;
+    gap: 0.3em;
+}
+
+.mainDetailButtons .detailButton.btnPlay .detailButton-icon {
+    font-size: 1.7em !important;
+}
+
+.mainDetailButtons .detailButton.btnPlay::after {
+    content: attr(title);
+    font-size: 1.1em;
+    letter-spacing: 0.01em;
+}
+
+/* ── Technical panel ─────────────────────────────────────────────────────── */
+
+.trackSelections {
+    display: flex;
+    flex-direction: column;
+    max-width: none;
+    padding: 0.35em 1.1em;
+}
+
+.layout-mobile .trackSelections {
+    margin-bottom: 2em;
+}
+
+.trackSelections .selectContainer {
+    position: relative;
+    display: grid;
+    grid-template-columns: 7.5rem minmax(0, 1fr);
+    align-items: center;
+    max-width: none;
+    margin: 0 !important;
+    padding: 0.6em 0;
+    border-bottom: 1px solid rgb(255 255 255 / 0.06);
+}
+
+.trackSelections .selectContainer:last-child {
+    border-bottom: 0;
+}
+
+.trackSelections .selectContainer .selectLabel {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0;
+    color: var(--nf-text-mute);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.trackSelections .selectContainer .selectLabel::before {
+    font-family: "Material Icons";
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.trackSelections .selectVideoContainer .selectLabel::before { content: "movie"; }
+.trackSelections .selectAudioContainer .selectLabel::before { content: "volume_up"; }
+.trackSelections .selectSubtitlesContainer .selectLabel::before { content: "subtitles"; }
+.trackSelections .selectSourceContainer .selectLabel::before { content: "video_file"; }
+
+.trackSelections .detailTrackSelect,
+.trackSelections .detailTrackSelect.emby-select-withcolor {
+    width: 100%;
+    max-width: none;
+    padding: 0.35em 2em 0.35em 0.55em !important;
+    border: 0;
+    border-radius: var(--nf-radius);
+    background: transparent;
+    color: var(--nf-text-2);
+    font-size: 0.9em;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    transition: background-color var(--nf-dur-1) var(--nf-ease-out), color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+.trackSelections .detailTrackSelect:not(:disabled):hover,
+.trackSelections .detailTrackSelect:focus-visible {
+    background: var(--nf-fill-hover);
+    color: var(--nf-text);
+}
+
+.trackSelections .detailTrackSelect:disabled {
+    padding-right: 0.55em !important;
+    color: var(--nf-text-dim);
+    cursor: default;
+    opacity: 1;
+}
+
+.trackSelections .detailTrackSelect > option {
+    background: var(--nf-surface-2);
+    color: var(--nf-text);
+}
+
+.trackSelections .selectArrowContainer {
+    position: absolute;
+    right: 0.4em;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--nf-text-mute);
+    pointer-events: none;
+}
+
+.trackSelections .selectContainer:has(.detailTrackSelect:disabled) .selectArrowContainer {
+    display: none;
+}
+
+/* ── Synopsis, links and credits ─────────────────────────────────────────── */
+
+#itemDetailPage .detailSectionContent {
+    display: flex;
+    flex-direction: column;
+    max-width: 60rem;
+}
+
+#itemDetailPage .detailSectionContent > .itemExternalLinks {
+    order: -2;
+    margin: 0 0 1.5rem !important; /* core sets margin inline */
+}
+
+#itemDetailPage .detailSectionContent > .itemExternalLinks:not(:has(> a)) {
+    display: none;
+}
+
+#itemDetailPage .detailSectionContent > .tagline:not(.hide, :empty) {
+    display: block;
+    order: -1;
+    margin: 0 0 0.8rem;
+    color: var(--nf-text);
+    font: italic 500 1.25rem/1.5 var(--nf-font);
+    letter-spacing: -0.005em;
+}
+
+#itemDetailPage .detailSectionContent > .tagline:not(.hide, :empty)::before {
+    content: "\201C";
+    margin-right: 0.15em;
+}
+
+#itemDetailPage .detailSectionContent > .tagline:not(.hide, :empty)::after {
+    content: "\201D";
+    margin-left: 0.05em;
+}
+
+#itemDetailPage .overview-controls {
+    justify-content: flex-start;
+}
+
+#itemDetailPage .overview-controls .overview-expand {
+    margin: 0.5rem 0 0;
+    padding: 0;
+    background: none;
+    color: var(--nf-text-dim);
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+#itemDetailPage .overview-controls .overview-expand:hover {
+    color: var(--nf-text);
+}
+
+.detailSectionContent .overview {
+    max-width: none; /* core: 90% */
+    margin: 0;
+    color: var(--nf-text-2);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.detailSectionContent .overview > bdi > p { margin: 0; }
+
+.detailSectionContent .itemGenres {
+    display: none;
+}
+
+#itemDetailPage .detailSectionContent .itemTags {
+    display: none;
+}
+
+/* ── External links ──────────────────────────────────────────────────────── */
+.itemExternalLinks {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+    margin-top: 1.4em;
+    color: transparent;
+    font-size: 0 !important; /* core sets font-size inline */
+}
+
+.itemExternalLinks > a.button-link + a.button-link {
+    margin-left: 0.5rem;
+}
+
+.itemExternalLinks > a.button-link {
+    --nf-brand: var(--nf-text);
+    --nf-brand-ink: #000;
+    display: inline-flex;
+    align-items: center;
+    margin: 0;
+    padding: .2em .75em;
+    border: 1px solid var(--nf-outline);
+    border-radius: var(--nf-radius);
+    background: transparent;
+    color: var(--nf-text);
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: background-color var(--nf-dur-1) var(--nf-ease-out), color var(--nf-dur-1) var(--nf-ease-out), border-color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+.itemExternalLinks > a.button-link:hover,
+.itemExternalLinks > a.button-link:focus-visible {
+    background: var(--nf-brand);
+    border-color: var(--nf-brand);
+    color: var(--nf-brand-ink) !important;
+    text-decoration: none;
+}
+
+.itemExternalLinks > a[href*="imdb.com"] { --nf-brand: #f5c518; }
+.itemExternalLinks > a[href*="themoviedb.org"] { --nf-brand: #01b4e4; }
+.itemExternalLinks > a[href*="thetvdb.com"] { --nf-brand: #6cd591; }
+.itemExternalLinks > a[href*="anidb.net"] { --nf-brand: #2a5fa8; --nf-brand-ink: #fff; }
+.itemExternalLinks > a[href*="myanimelist.net"] { --nf-brand: #2e51a2; --nf-brand-ink: #fff; }
+.itemExternalLinks > a[href*="anilist.co"] { --nf-brand: #02a9ff; }
+.itemExternalLinks > a[href*="trakt.tv"] { --nf-brand: #ed1c24; --nf-brand-ink: #fff; }
+.itemExternalLinks > a[href*="letterboxd.com"] { --nf-brand: #00e054; }
+.itemExternalLinks > a[href*="musicbrainz.org"] { --nf-brand: #ba478f; --nf-brand-ink: #fff; }
+.itemExternalLinks > a[href*="theaudiodb.com"] { --nf-brand: #6399cc; }
+.itemExternalLinks > a[href*="tvmaze.com"] { --nf-brand: #3c948b; --nf-brand-ink: #fff; }
+.itemExternalLinks > a[href*="wikidata.org"] { --nf-brand: #990000; --nf-brand-ink: #fff; }
+.itemExternalLinks > a[title*="Radarr"] { --nf-brand: #ffc230; }
+.itemExternalLinks > a[title*="Sonarr"] { --nf-brand: #35c5f4; }
+
+.itemDetailsGroup {
+    max-width: 60rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.itemDetailsGroup > div:not(:empty) {
+    margin-bottom: .75em;
+}
+
+.itemDetailsGroup .detailsGroupItem {
+    display: block;
+    max-width: none; /* core: 44em */
+    margin: 0 !important;
+    font-size: 0.92em;
+}
+
+.itemDetailsGroup div:last-child:not(:empty) {
+    order: -1;
+}
+
+.layout-desktop .itemDetailsGroup > div:last-child:not(:empty) {
+    margin-bottom: 2em;
+}
+
+.itemDetailsGroup .detailsGroupItem .label {
+    display: inline;
+    color: var(--nf-text-mute);
+    margin: 0;
+}
+
+.itemDetailsGroup .detailsGroupItem .label::after {
+    content: ": ";
+}
+
+.itemDetailsGroup .detailsGroupItem > :not(.label) {
+    display: inline;
+    color: var(--nf-text-2);
+}
+
+.itemDetailsGroup .detailsGroupItem a {
+    display: inline;
+    color: var(--nf-text-2);
+    font-weight: 400;
+}
+
+.itemDetailsGroup .detailsGroupItem a:hover,
+.layout-desktop #itemDetailPage:has(.detailImageContainer .cardImageIcon.person) .detailSectionContent > p:not(.overview) a:hover {
+    color: var(--nf-text);
+    text-decoration: underline;
+}
+
+/* ── Genres ──────────────────────────────────────────────────────────────── */
+.itemDetailsGroup > :last-child .detailsGroupItem > .label {
+    display: none;
+}
+
+.itemDetailsGroup > :last-child .detailsGroupItem > :not(.label) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 0.35em;
+}
+
+.itemDetailsGroup > :last-child .detailsGroupItem > :not(.label) > span {
+    font-size: 0;
+}
+
+.itemDetailsGroup > :last-child .detailsGroupItem > :not(.label) > span > a {
+    font-size: 0.875rem;
+}
+
+.itemDetailsGroup > :last-child .detailsGroupItem > :not(.label) > span + span::before {
+    content: "•";
+    margin: 0 0.5em;
+    color: var(--nf-surface-4);
+    font-size: 0.875rem;
+}
+
+/* ── Scenes ──────────────────────────────────────────────────────────────── */
+
+.chapterCard .chapterCardImageContainer {
+    transition: filter var(--nf-dur-3) var(--nf-ease-out);
+}
+
+.chapterCard .innerCardFooter {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6em;
+    padding: 2.4em 0.75em 0.65em;
+    background: linear-gradient(0deg, rgb(0 0 0 / 0.85), rgb(0 0 0 / 0.45) 55%, transparent);
+    border-radius: 0 0 var(--nf-radius) var(--nf-radius);
+}
+
+.chapterCard .innerCardFooter .cardText {
+    min-width: 0;
+    padding: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--nf-text);
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+.chapterCard .innerCardFooter .cardText + .cardText {
+    flex: 0 0 auto;
+    padding: 0.15em 0.45em;
+    border-radius: var(--nf-radius-xs);
+    background: rgb(255 255 255 / 0.16);
+    color: var(--nf-text-2);
+    font-size: 0.75em;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.chapterCard .cardScalable {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
+
+.chapterCard .cardScalable > [class*="cardPadder"] {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    margin: auto;
+    padding: 0 !important;
+    opacity: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .chapterCard:hover .chapterCardImageContainer {
+        filter: brightness(1.15);
+    }
+
+    .chapterCard:hover .cardScalable > [class*="cardPadder"] {
+        --nf-rise: 0rem;
+        opacity: 1;
+    }
+}
+
+/* ── Cast and crew ───────────────────────────────────────────────────────── */
+
+:is(#castCollapsible, #guestCastCollapsible) .cardScalable {
+    margin-bottom: 1rem;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 0 0 transparent;
+    transition: box-shadow var(--nf-dur-3) var(--nf-ease);
+}
+
+:is(#castCollapsible, #guestCastCollapsible) :is(.cardPadder, .cardImageContainer, .blurhash-canvas, .cardContent) {
+    border-radius: 50%;
+}
+
+:is(#castCollapsible, #guestCastCollapsible) .cardImageContainer {
+    background-position: center 22%;
+    filter: grayscale(0.35) brightness(0.9);
+    transition: transform 0.5s var(--nf-ease), filter var(--nf-dur-3) var(--nf-ease-out);
+}
+
+:is(#castCollapsible, #guestCastCollapsible) .cardOverlayContainer {
+    display: none;
+}
+
+:is(#castCollapsible, #guestCastCollapsible) .card-hoverable:hover .cardBox {
+    transform: none;
+}
+
+:is(#castCollapsible, #guestCastCollapsible) .card:hover .cardScalable {
+    box-shadow:
+        0 0 0 3px var(--nf-bg),
+        0 0 0 5px #fff;
+}
+
+:is(#castCollapsible, #guestCastCollapsible) .card:hover .cardImageContainer {
+    transform: scale(1.12);
+    filter: none;
+}
+
+:is(#castCollapsible, #guestCastCollapsible) .cardText {
+    text-align: center !important;
+    padding-top: 0.25em;
+}
+
+:is(#castCollapsible, #guestCastCollapsible) .cardText-first {
+    transition: color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+:is(#castCollapsible, #guestCastCollapsible) .card:hover .cardText-first,
+:is(#castCollapsible, #guestCastCollapsible) .card:hover .cardText-first a {
+    color: var(--nf-text);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+ * 7b. Person pages
+ * ═══════════════════════════════════════════════════════════════════════ */
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .cardImageIcon.person) {
+    --nf-person-photo: clamp(12rem, 18vw, 22rem);
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .cardImageIcon.person) .itemBackdrop {
+    height: 2.5rem;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .cardImageIcon.person) .detailPagePrimaryContainer {
+    display: grid;
+    grid-template-columns: var(--nf-person-photo) minmax(0, 1fr);
+    column-gap: 4vw;
+    align-items: start;
+    padding: 0 var(--nf-gutter);
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .cardImageIcon.person) :is(.detailRibbon, .infoWrapper, .detailPagePrimaryContent, .detailSection, .detailSectionContent) {
+    display: contents;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .cardImageIcon.person) .detailPagePrimaryContainer :is(.nameContainer, .mainDetailButtons, .detailSectionContent > *, .detailSection > *) {
+    grid-column: 2;
+    min-width: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .cardImageIcon.person) .detailImageContainer {
+    display: block;
+    position: sticky;
+    top: calc(var(--nf-appbar) + 1.5rem);
+    grid-column: 1;
+    grid-row: 1 / span 30;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .cardImageIcon.person) .detailImageContainer .card {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .cardImageIcon.person) .detailImageContainer .cardScalable {
+    isolation: isolate;
+    border-radius: var(--nf-radius-lg);
+    box-shadow: 0 0 0 1px var(--nf-line), var(--nf-shadow-3);
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .cardImageIcon.person) .detailImageContainer :is(.cardImageContainer, .cardPadder, [class*="cardPadder"]) {
+    border-radius: var(--nf-radius-lg);
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .cardImageIcon.person) .detailImageContainer .cardImageContainer {
+    overflow: visible;
+    contain: none; /* core's contain: strict draws the glow on top */
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .cardImageIcon.person) .detailImageContainer .cardImageContainer::before {
+    content: "";
+    position: absolute;
+    inset: 4% -6% -6%;
+    z-index: -1;
+    border-radius: inherit;
+    background: inherit;
+    background-size: cover;
+    filter: blur(48px) saturate(1.3);
+    opacity: 0.45;
+    pointer-events: none;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .cardImageIcon.person) .nameContainer {
+    order: -6;
+    display: block;
+    margin: 0;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .cardImageIcon.person) .nameContainer .itemName {
+    margin: 0;
+    color: var(--nf-text);
+    font: 800 clamp(2.25rem, 1.4rem + 2.4vw, 3.75rem)/1.05 var(--nf-font);
+    letter-spacing: -0.03em;
+    white-space: normal;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .cardImageIcon.person) .detailSectionContent > p:not(.overview) {
+    order: -5;
+    margin: 0.35rem 0 0;
+    color: var(--nf-text-dim);
+    font-size: 0.95rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .cardImageIcon.person) .detailSectionContent > p:not(.overview) a {
+    color: var(--nf-text-2);
+    font-weight: 500;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .cardImageIcon.person) .mainDetailButtons {
+    order: -4;
+    justify-content: flex-start;
+    gap: 0.65em;
+    margin: 1.5rem 0 0;
+    font-size: 1rem;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .cardImageIcon.person) .mainDetailButtons .detailButton {
+    width: 2.6em;
+    height: 2.6em;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .cardImageIcon.person) .detailSectionContent > .itemExternalLinks {
+    order: -3;
+    margin: 1.5rem 0 0 !important; /* core sets margin inline */
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .cardImageIcon.person) .detailSectionContent > .overview {
+    order: -2;
+    max-width: 75ch;
+    margin: 1.5rem 0 0;
+    color: var(--nf-text-2);
+    font-size: 1rem;
+    line-height: 1.65;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .cardImageIcon.person) .detailSectionContent > .overview-controls {
+    order: -2;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .cardImageIcon.person) .detailSection > .detailVerticalSection {
+    margin-top: 2.5rem;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .cardImageIcon.person) .detailSection > .detailVerticalSection + .detailVerticalSection {
+    margin-top: 1rem;
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .cardImageIcon.person) .detailSection > .detailVerticalSection .itemsContainer {
+    padding-right: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+ * 7c. Live TV
+ * ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Guide: day picker ───────────────────────────────────────────────────── */
+
+.tvguide .guideHeaderDateSelection {
+    padding: 0.5rem var(--nf-gutter) 0.75rem;
+}
+
+.tvguide .guideDateTabsSlider {
+    display: flex;
+    gap: 0.375rem;
+    text-align: left;
+}
+
+#liveTvPage .guide-date-tab-button {
+    min-width: 3.25rem;
+    margin: 0;
+    padding: 0.4rem 0.6rem;
+    border-radius: var(--nf-radius-lg);
+    background: none;
+    color: var(--nf-text-dim);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+    transition: background-color var(--nf-dur-1) var(--nf-ease-out), color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+#liveTvPage .guide-date-tab-button .emby-button-foreground::first-line {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+#liveTvPage .guide-date-tab-button:is(:hover, :focus-visible) {
+    background: var(--nf-fill-hover);
+    color: var(--nf-text);
+}
+
+#liveTvPage .guide-date-tab-button.emby-tab-button-active {
+    background: #fff;
+    box-shadow: none;
+    color: #000;
+}
+
+/* ── Guide: time ruler ───────────────────────────────────────────────────── */
+
+.tvguide .guide-headerTimeslots {
+    padding: 0 var(--nf-gutter);
+}
+
+.tvguide .timeslotHeader {
+    padding-left: 0.6rem;
+    border-left: 1px solid var(--nf-line);
+    color: var(--nf-text-dim);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-indent: 0;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ── Guide: channel column ───────────────────────────────────────────────── */
+
+.tvguide :is(.channelsContainer, .guide-channelTimeslotHeader) {
+    width: 11rem;
+}
+
+.tvguide .guide-channelTimeslotHeader {
+    justify-content: flex-start;
+}
+
+.tvguide .guide-channelHeaderCell {
+    border: 0;
+    border-radius: var(--nf-radius);
+    background: none;
+    transition: background-color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+.tvguide .guide-channelHeaderCell:hover {
+    background: var(--nf-fill-hover);
+}
+
+.tvguide .guideChannelImage {
+    box-sizing: border-box;
+    top: 0;
+    bottom: 0;
+    left: auto;
+    right: 0.75rem;
+    width: 5.5rem;
+    height: 2.75rem;
+    margin: auto 0;
+    padding: 0.35rem 0.6rem;
+    border-radius: var(--nf-radius);
+    background-color: #3a3a3a;
+    background-origin: content-box;
+    background-position: center;
+    box-shadow: inset 0 0 0 1px var(--nf-line);
+}
+
+.tvguide .guideChannelNumber {
+    max-width: none;
+    padding-left: 0.5rem;
+    color: var(--nf-text-mute);
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ── Guide: programmes ───────────────────────────────────────────────────── */
+
+.tvguide .channelPrograms {
+    border: 0;
+}
+
+.tvguide .programCell {
+    border: 2px solid var(--nf-bg);
+    border-radius: calc(var(--nf-radius) + 2px);
+    transition: background-color var(--nf-dur-1) var(--nf-ease-out), color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+.tvguide .programCell:not(.programCell-active),
+.tvguide .programCell:not(.programCell-active):is(:focus, .programCell-sports, .programCell-movie, .programCell-kids, .programCell-news) {
+    background: var(--nf-surface) !important;
+    color: var(--nf-text-dim) !important;
+}
+
+.tvguide .programCell:not(.programCell-active):hover {
+    background: var(--nf-surface-3) !important;
+    color: var(--nf-text) !important;
+}
+
+.tvguide .programCell.programCell-active,
+.tvguide .programCell.programCell-active:focus {
+    background: linear-gradient(90deg, rgb(229 9 20 / 0.18), rgb(229 9 20 / 0) 18rem), #333 !important;
+    color: var(--nf-text) !important;
+}
+
+.tvguide .programCell.programCell-active:hover {
+    background: linear-gradient(90deg, rgb(229 9 20 / 0.22), rgb(229 9 20 / 0) 18rem), #3d3d3d !important;
+}
+
+.tvguide .programCell-active .guideProgramNameText::before,
+#itemDetailPage .programGuide > .verticalDetailSection:first-child .listItem:first-child .listItemBodyText:first-child::before, /* ponytail: assumes no gaps in the schedule */
+#liveTvPage .vertical-wrap > .squareCard .cardText-secondary:last-child:not(:empty)::before {
+    content: "";
+    display: inline-block;
+    flex: none;
+    width: 0.4rem;
+    height: 0.4rem;
+    margin-right: 0.4em;
+    border-radius: 50%;
+    background: var(--nf-red);
+    vertical-align: 0.12em;
+}
+
+.tvguide .guide-channelHeaderCell:focus {
+    background-color: var(--nf-fill-hover) !important;
+    color: inherit !important;
+}
+
+.tvguide .guideProgramName {
+    padding: 0 0.75rem;
+}
+
+.tvguide .guideProgramNameText {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.tvguide .programCell-active .guideProgramNameText {
+    color: var(--nf-text);
+    font-weight: 600;
+}
+
+.tvguide .guideProgramSecondaryInfo {
+    margin-top: 0.15rem;
+    color: var(--nf-text-mute);
+    font-size: 0.8rem;
+}
+
+.tvguide .programCell-active .guideProgramSecondaryInfo {
+    color: var(--nf-text-2);
+}
+
+.tvguide .guideProgramIndicator {
+    margin: 0 0.5em 0 0;
+    padding: 0.2em 0.45em;
+    border-radius: var(--nf-radius-xs);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.tvguide .guideProgramIndicator:is(.liveTvProgram, .newTvProgram) {
+    background: var(--nf-red);
+    color: #fff;
+}
+
+.tvguide .guideProgramIndicator:is(.premiereTvProgram, .repeatTvProgram) {
+    background: var(--nf-fill-tag);
+    color: var(--nf-text-2);
+}
+
+/* ── Channels ────────────────────────────────────────────────────────────── */
+
+#liveTvPage .vertical-wrap > .squareCard .cardPadder,
+#itemDetailPage:has(.programGuideSection:not(.hide)) .detailImageContainer .cardScalable {
+    background: radial-gradient(90% 110% at 50% 45%, #4a4a4a 0%, #333 55%, #262626 100%);
+    box-shadow: inset 0 0 0 1px var(--nf-line);
+}
+
+#liveTvPage .vertical-wrap > .squareCard .cardImageContainer img {
+    position: absolute;
+    inset: 0;
+    width: 62% !important;
+    height: 62% !important;
+    margin: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgb(0 0 0 / 0.35));
+}
+
+#liveTvPage .vertical-wrap > .squareCard .cardBox {
+    display: flex;
+    flex-direction: column;
+}
+
+#liveTvPage .vertical-wrap > .squareCard .cardText-first {
+    --kefin-card-title-color: var(--nf-text);
+    order: 1;
+    padding-top: 0.6rem;
+    color: var(--nf-text);
+    font-size: 1rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+#liveTvPage .vertical-wrap > .squareCard .cardText-secondary:empty {
+    display: none;
+}
+
+#liveTvPage .vertical-wrap > .squareCard .cardText-secondary:not(:last-child) {
+    --kefin-card-title-color: var(--nf-text-dim);
+    order: 2;
+    padding-top: 0.2rem;
+    color: var(--nf-text-dim);
+    font-size: 0.8125rem;
+}
+
+#liveTvPage .vertical-wrap > .squareCard .cardText-secondary:last-child:not(:empty) {
+    order: 3;
+    padding-top: 0.15rem;
+    color: var(--nf-text-mute);
+    font-size: 0.75rem;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ── Channel page ────────────────────────────────────────────────────────── */
+
+.layout-desktop #itemDetailPage:has(.programGuideSection:not(.hide)) {
+    --nf-ch-top: 3.5rem;
+    --nf-ch-logo: 10rem;
+}
+
+.layout-desktop #itemDetailPage:has(.programGuideSection:not(.hide)) .itemBackdrop {
+    display: none;
+}
+
+.layout-desktop #itemDetailPage:has(.programGuideSection:not(.hide)) .detailPageWrapperContainer {
+    overflow-x: clip;
+    background: none;
+}
+
+.layout-desktop #itemDetailPage:has(.programGuideSection:not(.hide)) .detailPagePrimaryContainer {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: var(--nf-ch-logo) minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    height: calc(100dvh - var(--nf-appbar));
+    min-height: 36rem;
+    column-gap: 2.5rem;
+    align-items: center;
+    padding: var(--nf-ch-top) var(--nf-gutter) 1.5rem;
+    isolation: isolate;
+}
+
+.layout-desktop #itemDetailPage:has(.programGuideSection:not(.hide)) .detailImageContainer {
+    grid-area: 1 / 1;
+    height: auto;
+}
+
+.layout-desktop #itemDetailPage:has(.programGuideSection:not(.hide)) .detailImageContainer .card {
+    position: relative !important;
+    left: 0 !important;
+    top: 0;
+    float: none;
+    width: 100% !important;
+    max-width: none;
+    margin: 0;
+    z-index: auto; /* core's z-index: 3 covers the name */
+}
+
+#itemDetailPage:has(.programGuideSection:not(.hide)) .detailImageContainer .cardPadder {
+    padding-bottom: 100%;
+}
+
+#itemDetailPage:has(.programGuideSection:not(.hide)) .detailImageContainer .cardScalable {
+    border-radius: var(--nf-radius-lg);
+    box-shadow: inset 0 0 0 1px var(--nf-line), var(--nf-shadow-3);
+}
+
+#itemDetailPage:has(.programGuideSection:not(.hide)) .detailImageContainer .cardContent {
+    box-sizing: border-box;
+    padding: 16% !important; /* core zeroes .cardContent padding with !important */
+    overflow: visible;
+    contain: none;
+    background-color: transparent;
+    background-origin: content-box;
+    background-size: contain;
+}
+
+.layout-desktop #itemDetailPage:has(.programGuideSection:not(.hide)) .detailImageContainer .cardContent::before {
+    content: "";
+    position: absolute;
+    top: calc(-1 * (var(--nf-appbar) + var(--nf-ch-top) + 6rem));
+    left: calc(-1 * var(--nf-hero-pad) - 6rem);
+    width: calc(100vw + 12rem);
+    height: calc(var(--nf-appbar) + var(--nf-ch-top) + var(--nf-ch-logo) + 14rem);
+    z-index: -1;
+    background: inherit;
+    background-origin: border-box;
+    background-size: 5rem 5rem;
+    background-repeat: repeat;
+    filter: blur(40px) saturate(2) brightness(1.15);
+    -webkit-mask-image: linear-gradient(to top, transparent 0, #000 70%);
+    mask-image: linear-gradient(to top, transparent 0, #000 70%);
+    pointer-events: none;
+}
+
+.layout-desktop #itemDetailPage:has(.programGuideSection:not(.hide)) .detailRibbon {
+    grid-area: 1 / 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    background: none;
+    text-shadow: 0 1px 10px rgb(0 0 0 / 0.45);
+}
+
+.layout-desktop #itemDetailPage:has(.programGuideSection:not(.hide)) .detailRibbon > .infoWrapper {
+    flex: none;
+    padding: 0;
+}
+
+.layout-desktop #itemDetailPage:has(.programGuideSection:not(.hide)) .itemName {
+    font-size: var(--nf-fs-h1);
+    letter-spacing: -0.02em;
+}
+
+.layout-desktop #itemDetailPage:has(.programGuideSection:not(.hide)) .mainDetailButtons {
+    justify-content: flex-start;
+    gap: 0.65em;
+    margin: 0;
+}
+
+.layout-desktop #itemDetailPage:has(.programGuideSection:not(.hide)) .detailPagePrimaryContent {
+    grid-area: 2 / 1 / 3 / -1;
+    align-self: stretch;
+    padding: 2.5rem 0 0 !important;
+}
+
+.layout-desktop #itemDetailPage:has(.programGuideSection:not(.hide)) :is(.detailPagePrimaryContent, .detailSection, .programGuideSection) {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.layout-desktop #itemDetailPage:has(.programGuideSection:not(.hide)) :is(.detailSection, .programGuideSection) {
+    flex: 1;
+    margin: 0;
+}
+
+.layout-desktop #itemDetailPage:has(.programGuideSection:not(.hide)) .programGuide {
+    flex: 1;
+    height: auto;
+    min-height: 0;
+}
+
+.layout-desktop #itemDetailPage:has(.programGuideSection:not(.hide)) .detailPageSecondaryContainer:not(:has(> :not(.hide))) {
+    display: none;
+}
+
+#itemDetailPage .programGuide {
+    --nf-days-inset: 0px;
+    anchor-name: --nf-days;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: min(46rem, 100% - 2.5rem);
+    grid-template-rows: minmax(0, 1fr);
+    gap: 1.5rem;
+    height: calc(100dvh - var(--nf-appbar) - 5.5rem);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scroll-marker-group: before;
+}
+
+.layout-desktop #itemDetailPage:has(.programGuideSection:not(.hide)) .programGuide {
+    --nf-days-inset: var(--nf-hero-pad);
+    --nf-days-fade: linear-gradient(to right, transparent, #000 var(--nf-hero-pad), #000 calc(100% - var(--nf-hero-pad)), transparent);
+    margin: 0 calc(-1 * var(--nf-hero-pad));
+    padding: 0 var(--nf-hero-pad);
+    scroll-padding: 0 var(--nf-hero-pad);
+    -webkit-mask-image: var(--nf-days-fade);
+    mask-image: var(--nf-days-fade);
+}
+
+#itemDetailPage .programGuide .verticalDetailSection {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    margin: 0;
+    scroll-snap-align: start;
+}
+
+#itemDetailPage .programGuide :is(.sectionTitle, .vertical-list) {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#itemDetailPage .programGuide .sectionTitle {
+    flex: none;
+    margin: 0 0 0.85rem;
+}
+
+#itemDetailPage .programGuide .vertical-list {
+    display: block;
+    flex: 0 1 auto;
+    min-height: 0;
+    margin: 0; /* core centres it, which shrinks it */
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    scroll-padding: 0.5rem 0;
+}
+
+#itemDetailPage .programGuide .listItem {
+    scroll-snap-align: start;
+    padding: 0.2rem 0.5rem 0.2rem 1rem;
+    border-bottom: 0;
+    transition: background-color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+#itemDetailPage .programGuide .listItem:hover {
+    background: var(--nf-fill-hover);
+}
+
+#itemDetailPage .programGuide .listItemBody {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0;
+}
+
+#itemDetailPage .programGuide .listItemBodyText {
+    margin: 0;
+}
+
+#itemDetailPage .programGuide .listItemBodyText:first-child {
+    flex: none;
+    width: 3.75rem;
+    color: var(--nf-text-dim);
+    text-align: right;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+#itemDetailPage .programGuide .listItemBodyText.secondary {
+    min-width: 0;
+    overflow: hidden;
+    color: var(--nf-text);
+    font-size: 0.95rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ── Channel page: day pager ─────────────────────────────────────────────── */
+#itemDetailPage .programGuide::scroll-marker-group { /* own rules: unsupported browsers drop a whole list */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.4rem;
+    height: 2.25rem;
+    margin-bottom: 0.75rem;
+    padding-right: 5.75rem;
+}
+
+#itemDetailPage .programGuide .verticalDetailSection::scroll-marker {
+    content: "";
+    display: block;
+    flex: none;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.28);
+    cursor: pointer;
+    transition: width var(--nf-dur-2) var(--nf-ease-out), background-color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+#itemDetailPage .programGuide .verticalDetailSection::scroll-marker:hover {
+    background: rgb(255 255 255 / 0.6);
+}
+
+#itemDetailPage .programGuide .verticalDetailSection::scroll-marker:target-current {
+    width: 1.35rem;
+    background: #fff;
+}
+
+#itemDetailPage .programGuide::scroll-button(*) {
+    position: absolute;
+    position-anchor: --nf-days;
+    bottom: calc(anchor(top) + 0.75rem);
+    box-sizing: border-box;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 1px solid var(--nf-line);
+    background: rgb(24 24 24 / 0.6);
+    -webkit-backdrop-filter: blur(14px) saturate(1.3);
+    backdrop-filter: blur(14px) saturate(1.3);
+    box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 0.3);
+    color: var(--nf-text);
+    font: 1.35rem/1 "Material Icons";
+    cursor: pointer;
+    transition: background-color var(--nf-dur-1) var(--nf-ease-out), color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+#itemDetailPage .programGuide::scroll-button(*):hover:not(:disabled) {
+    background: rgb(70 70 70 / 0.75);
+}
+
+#itemDetailPage .programGuide::scroll-button(*):active:not(:disabled) {
+    background: rgb(90 90 90 / 0.8);
+}
+
+#itemDetailPage .programGuide::scroll-button(*):focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: -2px;
+}
+
+#itemDetailPage .programGuide::scroll-button(*):disabled {
+    color: rgb(255 255 255 / 0.25);
+    cursor: default;
+}
+
+#itemDetailPage .programGuide::scroll-button(left) {
+    content: "chevron_left" / "Previous day";
+    right: calc(anchor(right) + var(--nf-days-inset) + 2.25rem);
+    border-right: 0;
+    border-radius: 999px 0 0 999px;
+    padding-left: 0.15rem;
+}
+
+#itemDetailPage .programGuide::scroll-button(right) {
+    content: "chevron_right" / "Next day";
+    right: calc(anchor(right) + var(--nf-days-inset));
+    border-radius: 0 999px 999px 0;
+    padding-right: 0.15rem;
+}
+
+#itemDetailPage .programGuide .listItemButton {
+    color: var(--nf-text-mute);
+}
+
+#itemDetailPage .programGuide .listItemButton:hover {
+    color: var(--nf-text);
+}
+
+#itemDetailPage .programGuide > .verticalDetailSection:first-child .listItem:first-child .listItemBodyText:first-child {
+    color: var(--nf-text);
+}
+
+/* ── Programme page ──────────────────────────────────────────────────────── */
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) {
+    --nf-prog-hero: 66vh;
+    --nf-prog-poster: 100%;
+    --nf-prog-poster-y: 15%;
+    --nf-hero-height: var(--nf-prog-hero);
+}
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailPagePrimaryContainer > .detailImageContainer {
+    display: block;
+    position: absolute;
+    top: calc(var(--nf-hero-band) - var(--nf-hero-height));
+    left: 0;
+    right: 0;
+    width: auto;
+    height: var(--nf-hero-height);
+    overflow: hidden;
+    z-index: -2;
+}
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailPagePrimaryContainer > .detailImageContainer .card {
+    position: relative !important;
+    left: 0 !important;
+    top: 0;
+    float: none;
+    width: 100% !important;
+    max-width: none;
+    margin: 0;
+}
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailPagePrimaryContainer > .detailImageContainer :is(.card, .cardBox, .cardScalable) {
+    height: 100%;
+}
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailPagePrimaryContainer > .detailImageContainer .cardScalable {
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+}
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailPagePrimaryContainer > .detailImageContainer .cardPadder {
+    display: none;
+}
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailPagePrimaryContainer > .detailImageContainer .cardContent {
+    border-radius: 0;
+    background-color: transparent;
+    background-position: center 20%;
+    contain: none;
+}
+
+@supports (anchor-name: --a) {
+    .layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailRibbon {
+        anchor-name: --nf-hero-ribbon;
+    }
+
+    .layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailPagePrimaryContainer > .detailImageContainer {
+        position-anchor: --nf-hero-ribbon;
+        bottom: anchor(bottom);
+        height: auto;
+    }
+}
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))):has(.detailImageContainer .portraitCard) .detailPagePrimaryContainer > .detailImageContainer .cardContent {
+    background-size: 0 0;
+}
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))):has(.detailImageContainer .portraitCard) .detailPagePrimaryContainer > .detailImageContainer .cardContent::before {
+    content: "";
+    position: absolute;
+    inset: -10%;
+    background: inherit;
+    background-size: cover;
+    background-position: center;
+    filter: blur(60px) saturate(1.3) brightness(0.7);
+}
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))):has(.detailImageContainer .portraitCard) .detailPagePrimaryContainer > .detailImageContainer .cardContent::after {
+    --nf-poster-fade: linear-gradient(to right, transparent, rgb(0 0 0 / 0.6) 15%, #000 35%), linear-gradient(to bottom, transparent, #000 22%);
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: max(var(--nf-prog-poster), var(--nf-prog-hero) * 2 / 3);
+    background: inherit;
+    background-size: cover;
+    background-position: center var(--nf-prog-poster-y);
+    -webkit-mask-image: var(--nf-poster-fade);
+    mask-image: var(--nf-poster-fade);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+}
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))):has(.detailImageContainer .squareCard) .detailPagePrimaryContainer > .detailImageContainer .cardScalable {
+    background: radial-gradient(70% 90% at 72% 30%, #2a2a2a 0%, #1a1a1a 45%, var(--nf-bg) 80%);
+}
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))):has(.detailImageContainer .squareCard) .detailPagePrimaryContainer > .detailImageContainer .cardContent::after {
+    content: "live_tv";
+    position: absolute;
+    top: 42%;
+    right: calc(var(--nf-hero-pad) + 6vw);
+    translate: 0 -50%;
+    color: rgb(255 255 255 / 0.06);
+    font: min(34vh, 24vw)/1 "Material Icons";
+}
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailPagePrimaryContent {
+    padding-top: 0 !important;
+}
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .nameContainer > .itemName {
+    overflow: visible;
+}
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .nameContainer > .itemName.subtitle {
+    margin-top: 0.25em;
+    color: var(--nf-text-2);
+    font-size: 1.2em;
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailRibbon > .infoWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 0.6em;
+}
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .infoWrapper > .nameContainer {
+    flex-basis: 100%;
+    margin-top: 0.35em;
+}
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .infoWrapper > .itemMiscInfo-secondary {
+    display: contents;
+}
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .itemMiscInfo-secondary > .mediaInfoItem {
+    order: 1;
+    margin: 0.45em 0.9em 0 0;
+}
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .itemMiscInfo-secondary > .mediaInfoItem:has(+ a.mediaInfoItem) {
+    order: -2;
+    margin: 0;
+    padding: 0.2em 0.5em;
+    border-radius: var(--nf-radius-xs);
+    background: var(--nf-red);
+    color: #fff;
+    font-size: 0.8em;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    text-shadow: none;
+}
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .itemMiscInfo-secondary > a.mediaInfoItem {
+    order: -1;
+    margin: 0;
+    padding: 0;
+    color: var(--nf-text);
+    font-size: 0.95em;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .itemMiscInfo-secondary > a.mediaInfoItem:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .itemDetailsGroup > :last-child .detailsGroupItem > :not(.label) {
+    gap: 0.4rem;
+}
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .itemDetailsGroup > :last-child .detailsGroupItem > :not(.label) > span + span::before {
+    content: none;
+}
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .itemDetailsGroup > :last-child .detailsGroupItem > :not(.label) > span > a {
+    display: inline-flex;
+    align-items: center;
+    height: 1.6rem;
+    padding: 0 0.6em;
+    border-radius: var(--nf-radius-xs);
+    background: var(--nf-fill-tag);
+    color: var(--nf-text-2);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color var(--nf-dur-1) var(--nf-ease-out), color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+.layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .itemDetailsGroup > :last-child .detailsGroupItem > :not(.label) > span > a:hover {
+    background: rgb(255 255 255 / 0.2);
+    color: var(--nf-text);
+    text-decoration: none;
+}
+
+/* ── Programme page: record buttons ──────────────────────────────────────── */
+@supports (anchor-name: --a) {
+    .layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .mainDetailButtons {
+        anchor-name: --nf-hero-buttons;
+        align-self: flex-start;
+        min-height: 2.6em;
+    }
+
+    .layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .mainDetailButtons:has(> .detailButton:not(.hide)) {
+        padding-right: 0.65em;
+    }
+
+    .layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .mainDetailButtons.hide {
+        display: flex !important;
+    }
+
+    .layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) :is(.detailPagePrimaryContent, .detailSection) {
+        position: static;
+    }
+
+    .layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailSection > .recordingFields {
+        position: absolute;
+        position-anchor: --nf-hero-buttons;
+        top: anchor(top);
+        left: anchor(right);
+        height: 2.6em;
+        margin: 0 !important; /* core sets a margin inline */
+        font-size: var(--nf-hero-fs);
+    }
+
+    .layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailSection > .recordingFields > .recordingFields {
+        height: 100%;
+        gap: 0.65em;
+    }
+
+    .layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailSection > .recordingFields :is(.recordingFields-buttons, .recordingFields-buttons > div) {
+        height: 100%;
+    }
+
+    .layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailSection > .recordingFields .recordingButton {
+        gap: 0.4em;
+        height: 100%;
+        min-width: 0;
+        padding: 0 1.4em 0 1.1em;
+        font-size: 1.1em;
+        font-weight: 700;
+        text-shadow: none;
+    }
+
+    .layout-desktop #itemDetailPage:has(.recordingFields:not(.hide) .recordingButton):not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .detailSection > .recordingFields .recordingIcon {
+        font-size: 1.15em;
+        font-weight: 400; /* the icon font has no bold */
+    }
+}
+
+#itemDetailPage .recordingFields > .recordingFields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+}
+
+#itemDetailPage .recordingFields-buttons {
+    margin: 0;
+}
+
+#itemDetailPage .recordingFields-buttons:has(.singleRecordingButton) {
+    order: -1;
+}
+
+#itemDetailPage .recordingButton {
+    margin: 0;
+}
+
+#itemDetailPage .recordingButton .recordingIcon {
+    color: var(--nf-red);
+}
+
+.layout-mobile #itemDetailPage .recordingFields-buttons:not(.hide) {
+    flex: 1 1 0;
+}
+
+.layout-mobile #itemDetailPage .recordingFields-buttons > div,
+.layout-mobile #itemDetailPage .recordingButton {
+    width: 100%;
+}
+
+.layout-mobile #itemDetailPage .recordingButton {
+    justify-content: center;
+}
+
+.material-icons.play_arrow::before { /* restated: the glyph chunk can be mis-decoded */
+    content: "\e037";
+}
+
+.material-icons.fiber_manual_record::before {
+    content: "\e061";
+}
+
+.material-icons.fiber_smart_record::before {
+    content: "\e062";
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+ * 7d. Search
+ * ═══════════════════════════════════════════════════════════════════════ */
+
+#searchPage .searchFields {
+    align-items: flex-start;
+    padding-top: 1.5rem;
+}
+
+#searchPage .searchFieldsInner {
+    position: relative;
+    width: 100%;
+    max-width: 36rem;
+    margin: 0;
+}
+
+#searchPage .searchfields-icon {
+    position: absolute;
+    left: 0.8rem;
+    top: 50%;
+    z-index: 1;
+    margin: 0;
+    transform: translateY(-50%);
+    color: var(--nf-text);
+    font-size: 1.5rem;
+    pointer-events: none;
+}
+
+#searchPage .searchFields .inputContainer {
+    margin: 0;
+}
+
+#searchPage .searchFields .inputLabel {
+    display: none;
+}
+
+#searchPage .searchfields-txtSearch {
+    height: 3rem;
+    padding: 0 1rem 0 3rem;
+    border-color: #fff;
+    background: rgb(0 0 0 / 0.75);
+    font-size: 1rem;
+}
+
+#searchPage .searchfields-txtSearch::placeholder {
+    color: var(--nf-text-mute);
+}
+
+#searchPage .searchSuggestions:not([style*="none"]) {
+    display: flex !important;
+}
+
+#searchPage .searchSuggestions {
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.4rem 0.6em;
+    margin: 1.25rem 0 0;
+    padding: 0 var(--nf-gutter);
+    font-size: clamp(0.95rem, 0.8rem + 0.35vw, 1.2rem);
+}
+
+#searchPage .searchSuggestionsList {
+    display: contents;
+}
+
+#searchPage .searchSuggestions .sectionTitle {
+    margin: 0;
+    padding: 0;
+    color: var(--nf-text-mute);
+    font-size: 1em;
+    font-weight: 400;
+}
+
+#searchPage .searchSuggestions .sectionTitle::after {
+    content: ":";
+}
+
+#searchPage .searchSuggestionsList > div + div::before {
+    content: "|";
+    margin-right: 0.6em;
+    color: var(--nf-text-mute);
+}
+
+#searchPage .searchSuggestionsList a {
+    margin: 0;
+    padding: 0 !important;
+    color: var(--nf-text);
+    font-size: 1em;
+    font-weight: 400;
+}
+
+#searchPage .searchSuggestionsList a:hover {
+    text-decoration: underline;
+}
+
+#searchPage .searchResults {
+    padding-top: 1.75rem;
+}
+
+#searchPage .noItemsMessage {
+    margin: 0;
+    padding: 2rem var(--nf-gutter);
+    color: var(--nf-text-dim);
+    font-size: clamp(0.95rem, 0.8rem + 0.35vw, 1.2rem);
+    text-align: left;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+ * 7e. Settings
+ * ═══════════════════════════════════════════════════════════════════════ */
+
+.userPreferencesPage > :first-child {
+    margin-top: 2.5rem;
+}
+
+#myPreferencesMenuPage .verticalSection:first-child > .headerUsername {
+    margin: 0 0 1.25rem;
+    padding: 0;
+}
+
+#myPreferencesMenuPage .verticalSection:not(:first-child) > .sectionTitle {
+    margin: 0 0 0.75rem;
+    padding: 0;
+}
+
+#myPreferencesMenuPage a.listItem-border {
+    display: block;
+    margin: 0;
+    border: 1px solid var(--nf-line);
+    border-top: 0;
+    background: var(--nf-fill-panel);
+    transition: background-color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+#myPreferencesMenuPage a.listItem-border:nth-child(1 of a.listItem-border:not(.hide)) {
+    border-top: 1px solid var(--nf-line);
+    border-radius: var(--nf-radius-lg) var(--nf-radius-lg) 0 0;
+}
+
+#myPreferencesMenuPage a.listItem-border:nth-last-child(1 of a.listItem-border:not(.hide)) {
+    border-radius: 0 0 var(--nf-radius-lg) var(--nf-radius-lg);
+}
+
+#myPreferencesMenuPage a.listItem-border:nth-child(1 of a.listItem-border:not(.hide)):nth-last-child(1 of a.listItem-border:not(.hide)) {
+    border-radius: var(--nf-radius-lg);
+}
+
+#myPreferencesMenuPage a.listItem-border:hover {
+    background: var(--nf-fill-hover);
+}
+
+#myPreferencesMenuPage a.listItem-border .listItem {
+    gap: 1rem;
+    padding: 0.9rem 1rem 0.9rem 1.25rem;
+}
+
+#myPreferencesMenuPage a.listItem-border .listItemIcon {
+    margin: 0;
+    color: var(--nf-text-mute);
+    font-size: 1.375rem;
+    transition: color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+#myPreferencesMenuPage a.listItem-border .listItemBody {
+    padding: 0;
+}
+
+#myPreferencesMenuPage a.listItem-border .listItemBodyText {
+    color: var(--nf-text-2);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+#myPreferencesMenuPage a.listItem-border .listItem::after {
+    content: "chevron_right";
+    margin-left: auto;
+    color: var(--nf-text-mute);
+    font: 400 1.5rem/1 "Material Icons";
+    transition: color var(--nf-dur-1) var(--nf-ease-out), transform var(--nf-dur-2) var(--nf-ease);
+}
+
+#myPreferencesMenuPage a.listItem-border:hover :is(.listItemIcon, .listItemBodyText) {
+    color: var(--nf-text);
+}
+
+.userPreferencesPage form :is(.verticalSection > .sectionTitle, .MuiStack-root > h2.MuiTypography-h2) {
+    margin: 0 0 1.25rem;
+    letter-spacing: -0.01em;
+}
+
+.userPreferencesPage form .MuiStack-root > h2.MuiTypography-h2 {
+    margin-bottom: 0;
+}
+
+.userPreferencesPage form > .verticalSection ~ .verticalSection,
+.userPreferencesPage form > .MuiStack-root > .MuiStack-root ~ .MuiStack-root,
+.dashboardDocument .mainAnimatedPage .MuiStack-root > .MuiTypography-h2:not(:first-child, h1 + *),
+.dashboardDocument .mainAnimatedPage .MuiStack-root > .MuiStack-root:not(:first-child, h1 + *):has(> .MuiTypography-h2:first-child) {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--nf-line);
+}
+
+.subtitleappearance-preview {
+    border-radius: var(--nf-radius-lg);
+    background: radial-gradient(120% 140% at 30% 20%, #4a4a4a, #1c1c1c 60%, #0a0a0a) !important;
+}
+
+#userProfilePage .imagePlaceHolder #image {
+    border-radius: var(--nf-radius-lg) !important; /* core sets 100% inline */
+}
+
+#userProfilePage .username {
+    margin: 0;
+    color: var(--nf-text);
+    font-weight: 700;
+}
+
+/* ── Settings: layout ────────────────────────────────────────────────────── */
+.userPreferencesPage :is(.readOnlyContent, form) {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+@media (min-width: 50em) {
+    .userPreferencesPage :is(.readOnlyContent, form) {
+        max-width: 42rem;
+    }
+}
+
+#myPreferencesMenuPage a.listItem-border:focus-visible {
+    position: relative;
+    z-index: 1;
+    outline: var(--nf-focus);
+    outline-offset: -2px;
+    background: var(--nf-fill-hover);
+}
+
+:is(.formDialogContent, .userPreferencesPage, .dashboardDocument .mainAnimatedPage) :is(.emby-select-withcolor, .emby-input) {
+    height: 3rem;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+:is(.formDialogContent, .userPreferencesPage, .dashboardDocument .mainAnimatedPage) .checkboxFieldDescription {
+    margin-top: 0.15rem;
+    padding-left: 2.4rem;
+}
+
+@media (min-width: 50em) {
+    .userPreferencesPage form > .verticalSection:has(> .selectContainer #selectHomeSection1) {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 1.5rem;
+    }
+
+    .userPreferencesPage form > .verticalSection:has(> .selectContainer #selectHomeSection1) > :not(.selectContainer) {
+        grid-column: 1 / -1;
+    }
+}
+
+/* ── Sticky Save ─────────────────────────────────────────────────────────── */
+:is(.userPreferencesPage form, .dashboardDocument .mainAnimatedPage form:last-child) > .btnSave,
+:is(.userPreferencesPage form, .dashboardDocument .mainAnimatedPage form:last-child) .MuiButton-root[type="submit"] {
+    position: sticky;
+    bottom: 1.25rem;
+    z-index: 2;
+    margin-top: 2rem;
+    box-shadow:
+        0 1.25rem 0 1.25rem var(--nf-bg),
+        0 -1rem 1.5rem 1rem color-mix(in srgb, var(--nf-bg) 85%, transparent);
+}
+
+/* ── MUI fields ──────────────────────────────────────────────────────────── */
+.MuiFormControl-root > .MuiInputLabel-root.MuiInputLabel-root:has(+ .MuiFilledInput-root) {
+    position: static;
+    max-width: none;
+    margin-bottom: 0.45rem;
+    transform: none;
+    color: var(--nf-text-2);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.MuiFilledInput-root::before,
+.MuiFilledInput-root::after {
+    display: none;
+}
+
+.MuiFilledInput-root.MuiInputBase-multiline {
+    padding: 0;
+}
+
+.MuiFilledInput-root .MuiFilledInput-input {
+    padding: 0.7rem 0.9rem;
+    color: var(--nf-text);
+}
+
+.MuiFilledInput-root .MuiSelect-select.MuiSelect-select {
+    padding-right: 2.5rem;
+}
+
+.MuiFilledInput-root .MuiSelect-icon {
+    right: 0.6rem;
+    color: var(--nf-text-dim);
+}
+
+.MuiFormControl-root .MuiFormHelperText-root {
+    margin: 0.45rem 0 0;
+    color: var(--nf-text-mute);
+    font-size: 0.8125rem;
+    line-height: 1.4;
+}
+
+.MuiFormHelperText-root .MuiLink-root {
+    color: var(--nf-text-2);
+    text-decoration-color: rgb(255 255 255 / 0.4);
+}
+
+.MuiFormHelperText-root .MuiLink-root:hover {
+    color: var(--nf-text);
+    text-decoration-color: currentColor;
+}
+
+.MuiCheckbox-root.MuiCheckbox-root,
+.MuiRadio-root.MuiRadio-root {
+    color: var(--nf-field-line-hover);
+}
+
+.MuiCheckbox-root.MuiCheckbox-root.Mui-checked,
+.MuiRadio-root.MuiRadio-root.Mui-checked {
+    color: #fff;
+}
+
+.MuiCheckbox-root.MuiCheckbox-root:hover {
+    background-color: var(--nf-fill-hover);
+}
+
+.MuiFormControlLabel-root .MuiFormControlLabel-label {
+    color: var(--nf-text-2);
+    font-size: 0.875rem;
+}
+
+.MuiSwitch-root .MuiSwitch-switchBase {
+    color: var(--nf-text-dim);
+}
+
+.MuiSwitch-root .MuiSwitch-track {
+    background-color: var(--nf-surface-4);
+    opacity: 1;
+}
+
+.MuiSwitch-root .MuiSwitch-switchBase.Mui-checked {
+    color: var(--nf-bg);
+}
+
+.MuiSwitch-root .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track {
+    background-color: #fff;
+    opacity: 1;
+}
+
+.MuiTab-root.MuiTab-root {
+    color: var(--nf-text-dim);
+    text-transform: none;
+}
+
+.MuiTab-root.MuiTab-root:hover,
+.MuiTab-root.MuiTab-root.Mui-selected {
+    color: var(--nf-text);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+ * 7f. Dashboard
+ * ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Drawer ──────────────────────────────────────────────────────────────── */
+.MuiDrawer-paper {
+    border-right: 1px solid var(--nf-line);
+    background: var(--nf-bg);
+}
+
+.MuiDrawer-paper .MuiListSubheader-root {
+    position: static;
+    padding: 1.5rem 1.25rem 0.5rem;
+    background: none;
+    line-height: 1;
+}
+
+.MuiDrawer-paper .MuiListItemButton-root {
+    min-height: 0;
+    margin: 0.0625rem 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--nf-radius);
+    color: var(--nf-text-dim);
+    transition: background-color var(--nf-dur-1) var(--nf-ease-out), color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+.MuiDrawer-paper .MuiListItemButton-root:hover {
+    background: var(--nf-fill-hover);
+    color: var(--nf-text);
+}
+
+.MuiDrawer-paper .MuiListItemButton-root.Mui-selected {
+    background: var(--nf-surface-2);
+    color: var(--nf-text);
+}
+
+.MuiDrawer-paper .MuiListItemButton-root.Mui-selected .MuiListItemText-primary {
+    font-weight: 600;
+}
+
+.MuiDrawer-paper .MuiListItemIcon-root {
+    min-width: 2rem;
+    color: var(--nf-text-mute);
+    transition: color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+.MuiDrawer-paper :is(.MuiListItemIcon-root > svg, .MuiListItemButton-root > svg) {
+    font-size: 1.25rem;
+}
+
+.MuiDrawer-paper .MuiListItemButton-root > svg {
+    color: var(--nf-text-mute);
+}
+
+.MuiDrawer-paper .MuiListItemButton-root:is(:hover, .Mui-selected) .MuiListItemIcon-root {
+    color: var(--nf-text);
+}
+
+.MuiDrawer-paper .MuiListItemText-root {
+    margin: 0;
+}
+
+.MuiDrawer-paper .MuiListItemText-primary {
+    font-size: 0.875rem;
+    line-height: 1.3;
+}
+
+.MuiDrawer-paper > .MuiList-root:first-child {
+    padding-top: 0.75rem;
+}
+
+.MuiDrawer-paper > .MuiList-root:first-child .MuiListItemIcon-root {
+    min-width: 0;
+    margin-right: 0.75rem;
+}
+
+.MuiDrawer-paper > .MuiList-root:first-child .MuiListItemText-primary {
+    color: var(--nf-text);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.MuiDrawer-paper > .MuiList-root:first-child .MuiListItemText-secondary {
+    color: var(--nf-text-mute);
+    font-size: 0.75rem;
+}
+
+/* ── Page ────────────────────────────────────────────────────────────────── */
+.dashboardDocument .mainAnimatedPage > .content-primary {
+    padding: 1rem clamp(1rem, 2.5vw, 3rem) 4rem;
+}
+
+.dashboardDocument a.MuiButton-root:has(> .MuiTypography-h3) {
+    min-width: 0;
+    margin: 0 0 0.75rem;
+    padding: 0;
+    background: none;
+    color: var(--nf-text-2);
+}
+
+.dashboardDocument a.MuiButton-root:has(> .MuiTypography-h3) .MuiTouchRipple-root {
+    display: none;
+}
+
+.dashboardDocument a.MuiButton-root > .MuiTypography-h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+    line-height: 1.35;
+    transition: color var(--nf-dur-2) var(--nf-ease-out);
+}
+
+.dashboardDocument a.MuiButton-root:has(> .MuiTypography-h3) .MuiButton-endIcon {
+    margin-left: 0.2rem;
+    color: var(--nf-text-mute);
+    transition: transform var(--nf-dur-2) var(--nf-ease), color var(--nf-dur-2) var(--nf-ease-out);
+}
+
+.dashboardDocument a.MuiButton-root:has(> .MuiTypography-h3) .MuiButton-endIcon > svg {
+    font-size: 1.5rem;
+}
+
+.dashboardDocument a.MuiButton-root:has(> .MuiTypography-h3):is(:hover, :focus-visible) {
+    background: none;
+    color: var(--nf-text);
+}
+
+/* ── Panels ──────────────────────────────────────────────────────────────── */
+.dashboardDocument .mainAnimatedPage .MuiCard-root {
+    overflow: hidden;
+}
+
+.dashboardDocument .mainAnimatedPage .MuiList-root:not(.MuiPaper-root *) {
+    padding: 0;
+    overflow: hidden;
+}
+
+.dashboardDocument .mainAnimatedPage .MuiList-root:not(.MuiPaper-root *) > li + li {
+    border-top: 1px solid var(--nf-line);
+}
+
+.dashboardDocument .mainAnimatedPage .MuiListItemButton-root:hover {
+    background: var(--nf-fill-hover);
+}
+
+.dashboardDocument .mainAnimatedPage .MuiListItemIcon-root {
+    color: var(--nf-text-mute);
+}
+
+.dashboardDocument .mainAnimatedPage .MuiListItemAvatar-root {
+    min-width: 3rem;
+}
+
+.dashboardDocument .mainAnimatedPage .MuiListItemAvatar-root > .MuiAvatar-root {
+    width: 2.25rem;
+    height: 2.25rem;
+}
+
+.dashboardDocument .mainAnimatedPage .MuiListItemAvatar-root > .MuiAvatar-root > svg {
+    font-size: 1.15rem;
+}
+
+.dashboardDocument .mainAnimatedPage:not(#dashboardPage) .MuiListItemAvatar-root > .MuiAvatar-root {
+    background: var(--nf-surface-3);
+    color: var(--nf-text-dim);
+}
+
+.dashboardDocument .mainAnimatedPage:not(#dashboardPage) .MuiListItemAvatar-root > .MuiAvatar-root > svg {
+    color: inherit !important; /* sx sets #fff */
+}
+
+#scheduledTasksPage .MuiListItemText-root > :not(h3) {
+    margin-top: 0.15rem;
+    color: var(--nf-text-mute);
+    font-size: 0.8125rem;
+}
+
+.dashboardDocument .mainAnimatedPage .MuiListItemText-root > h3.MuiTypography-h3 {
+    color: var(--nf-text-2);
+    font-size: 0.9375rem;
+    font-weight: 600;
+}
+
+.dashboardDocument .mainAnimatedPage .MuiListItemSecondaryAction-root .MuiIconButton-root {
+    color: var(--nf-text-dim);
+}
+
+.dashboardDocument .mainAnimatedPage .MuiListItemSecondaryAction-root .MuiIconButton-root:hover {
+    background: var(--nf-fill-hover);
+    color: var(--nf-text);
+}
+
+.dashboardDocument .mainAnimatedPage h3.MuiTypography-h3:not(.MuiListItemText-root > *) {
+    color: var(--nf-text);
+    font-size: 1.0625rem;
+    font-weight: 700;
+}
+
+.dashboardDocument #dashboardPage .MuiListItemText-root {
+    margin: 0;
+}
+
+.dashboardDocument #dashboardPage .MuiListItemText-root > .MuiTypography-body1 {
+    color: var(--nf-text-2);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1.35;
+}
+
+.dashboardDocument #dashboardPage .MuiListItemText-root > .MuiStack-root > .MuiTypography-root {
+    color: var(--nf-text-mute);
+    font-size: 0.8125rem;
+    line-height: 1.45;
+}
+
+.dashboardDocument #dashboardPage .MuiListItemText-primary {
+    color: var(--nf-text-mute);
+    font-size: 0.75rem;
+}
+
+.dashboardDocument #dashboardPage .MuiListItemText-secondary > .MuiTypography-root:first-child {
+    color: var(--nf-text-2);
+    font-size: 0.9375rem;
+    padding-bottom: 0.4rem;
+}
+
+.dashboardDocument #dashboardPage .MuiListItemText-secondary .MuiTypography-body2 {
+    margin-top: 0.35rem;
+    color: var(--nf-text-mute);
+    font-size: 0.75rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.MuiLinearProgress-root:has(> [class*="barColorSuccess"], > [class*="barColorWarning"], > [class*="barColorError"]) {
+    height: 3px;
+    border-radius: 0;
+}
+
+.MuiLinearProgress-bar[class*="barColorSuccess"] {
+    background-color: var(--nf-text-dim);
+}
+
+.dashboardDocument #dashboardPage .MuiPaper-root > .MuiStack-root > .MuiStack-root:first-child > .MuiTypography-root {
+    color: var(--nf-text-mute);
+    font-weight: 500;
+}
+
+.dashboardDocument #dashboardPage .MuiPaper-root > .MuiStack-root > .MuiStack-root + .MuiStack-root > .MuiTypography-root {
+    color: var(--nf-text);
+}
+
+.dashboardDocument #dashboardPage .MuiCard-root .MuiTypography-h5 {
+    color: var(--nf-text);
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+}
+
+.dashboardDocument #dashboardPage .MuiCard-root .MuiTypography-body2 {
+    color: var(--nf-text-mute);
+    font-size: 0.8125rem;
+}
+
+.dashboardDocument #dashboardPage .MuiCard-root > .MuiStack-root > svg {
+    color: var(--nf-text-mute);
+}
+
+.dashboardDocument .mainAnimatedPage .MuiCard-root .MuiIconButton-root {
+    color: var(--nf-text-dim);
+}
+
+.dashboardDocument .mainAnimatedPage .MuiCard-root .MuiIconButton-root:hover {
+    background: var(--nf-fill-hover);
+    color: var(--nf-text);
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+:is(.dashboardDocument .mainAnimatedPage, .MuiDialog-root) .MuiButton-root:not(.MuiButton-text, .MuiButton-sizeSmall) {
+    min-height: 2.5rem;
+    padding-inline: 1.25rem;
+    font-weight: 700;
+    box-shadow: none;
+}
+
+.MuiButton-root.MuiButton-outlined:not(.MuiButton-outlinedError) {
+    border-color: var(--nf-outline);
+    color: var(--nf-text);
+}
+
+.MuiButton-root.MuiButton-outlined:not(.MuiButton-outlinedError):hover {
+    border-color: #fff;
+    background: var(--nf-fill-hover);
+}
+
+.MuiButton-root.MuiButton-textPrimary:not(.MuiAppBar-root *) {
+    color: var(--nf-text);
+}
+
+.MuiButton-root.MuiButton-textPrimary:not(.MuiAppBar-root *):hover {
+    background: var(--nf-fill-hover);
+}
+
+/* ── Alerts ──────────────────────────────────────────────────────────────── */
+.MuiAlert-root.MuiAlert-standard {
+    color: var(--nf-text-2);
+}
+
+.MuiAlert-standardSuccess .MuiAlert-icon { color: var(--nf-success); }
+.MuiAlert-standardWarning .MuiAlert-icon { color: var(--nf-warning); }
+.MuiAlert-standardError .MuiAlert-icon { color: var(--nf-error); }
+.MuiAlert-standardInfo .MuiAlert-icon { color: var(--nf-text-dim); }
+
+/* ── MUI dialogs ─────────────────────────────────────────────────────────── */
+.MuiDialog-paper.MuiPaper-root {
+    border: 1px solid var(--nf-line);
+    border-radius: var(--nf-radius-lg);
+    background: var(--nf-surface);
+    box-shadow: var(--nf-shadow-3);
+}
+
+.MuiDialog-paper .MuiDialogContentText-root {
+    color: var(--nf-text-dim);
+}
+
+.MuiDialog-paper .MuiDialogActions-root {
+    gap: 0.5rem;
+    padding: 0 1.5rem 1.5rem;
+}
+
+/* ── Tables ──────────────────────────────────────────────────────────────── */
+.dashboardDocument .MuiPaper-root:has(> .MuiTableContainer-root) :is(.MuiTableRow-root, .MuiTableCell-root),
+.dashboardDocument .MuiPaper-root:has(> .MuiTableContainer-root) > .MuiBox-root {
+    background-color: transparent !important; /* MRT's rows are !important */
+}
+
+.dashboardDocument .MuiPaper-root:has(> .MuiTableContainer-root) .MuiTableCell-head {
+    background-color: color-mix(in srgb, #fff 4%, var(--nf-bg)) !important;
+    color: var(--nf-text-mute);
+    font-weight: 600;
+}
+
+.dashboardDocument .MuiPaper-root:has(> .MuiTableContainer-root) .MuiTableCell-head :is(.MuiTableSortLabel-icon, .MuiIconButton-root) {
+    color: var(--nf-text-mute);
+}
+
+.dashboardDocument .MuiPaper-root:has(> .MuiTableContainer-root) .MuiTableCell-body {
+    color: var(--nf-text-2);
+}
+
+.dashboardDocument .MuiTableBody-root > .MuiTableRow-root:hover > .MuiTableCell-root {
+    background-color: var(--nf-fill-hover) !important;
+}
+
+.dashboardDocument .MuiPaper-root:has(> .MuiTableContainer-root) :is(.MuiTablePagination-root, .MuiTablePagination-root .MuiIconButton-root, .MuiToolbar-root .MuiIconButton-root) {
+    color: var(--nf-text-dim);
+}
+
+.dashboardDocument .MuiToggleButtonGroup-root.MuiToggleButtonGroup-root {
+    gap: 0.5rem;
+}
+
+.dashboardDocument .MuiChip-root.MuiChip-clickable .MuiChip-label {
+    padding: 0 0.875rem;
+}
+
+/* ── Legacy pages ────────────────────────────────────────────────────────── */
+.dashboardDocument .content-primary > .verticalSection:first-child > .sectionTitleContainer > .sectionTitle {
+    margin: 0;
+}
+
+.dashboardDocument .sectionTitleContainer > div > .sectionTitleButton.fab {
+    margin-left: 0.75rem;
+}
+
+.dashboardDocument input:is([type="checkbox"], [type="radio"]) {
+    accent-color: #fff;
+}
+
+.dashboardDocument .mainAnimatedPage .checkboxList.paperList {
+    padding: 0.5rem 1rem;
+}
+
+/* ── Users ───────────────────────────────────────────────────────────────── */
+#userProfilesPage .visualCardBox {
+    background: none;
+    box-shadow: none;
+}
+
+#userProfilesPage .cardScalable {
+    border-radius: var(--nf-radius-lg);
+    overflow: hidden;
+}
+
+#userProfilesPage .cardFooter {
+    padding: 0.55rem 0 0;
+    background: none;
+}
+
+#userProfilesPage .cardText {
+    padding: 0;
+    color: var(--nf-text-2);
+    font-size: 0.9375rem;
+    font-weight: 600;
+}
+
+#userProfilesPage .cardText-secondary {
+    margin-top: 0.15rem;
+    color: var(--nf-text-mute);
+    font-size: 0.8125rem;
+    font-weight: 400;
+}
+
+#userProfilesPage .btnUserMenu {
+    color: var(--nf-text-dim);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+ * 7g. Mobile layout
+ * ═══════════════════════════════════════════════════════════════════════ */
+
+.layout-mobile {
+    --nf-m-top: calc(var(--nf-appbar) + env(safe-area-inset-top));
+    --nf-m-hero: 50vh;
+    --nf-m-logo: 20vh;
+    --nf-fs-h2: clamp(1.25rem, 1rem + 0.75vw, 1.6rem);
+}
+
+.layout-mobile .MuiAppBar-root.MuiAppBar-positionFixed {
+    padding-top: env(safe-area-inset-top);
+}
+
+.layout-mobile .MuiAppBar-root.MuiAppBar-positionFixed + div[aria-hidden="true"] {
+    min-height: var(--nf-m-top);
+}
+
+/* ── Detail pages: hero ──────────────────────────────────────────────────── */
+
+.layout-mobile #itemDetailPage .itemBackdrop {
+    height: var(--nf-m-hero);
+    margin-top: calc(-1 * var(--nf-m-top)) !important; /* core: -48px !important */
+    background-position: center 20%;
+}
+
+.layout-mobile #itemDetailPage .itemBackdrop:not([style*="url("], [data-src], .lazy, .lazy-hidden) {
+    height: var(--nf-m-top);
+}
+
+.layout-mobile #itemDetailPage:has(.programGuideSection:not(.hide)) .itemBackdrop[style*="url("] {
+    height: calc(var(--nf-m-top) + 12rem);
+    overflow: hidden;
+    isolation: isolate;
+    background-size: 0 0;
+}
+
+.layout-mobile #itemDetailPage:has(.programGuideSection:not(.hide)) .itemBackdrop::before {
+    background: linear-gradient(0deg, var(--nf-bg) 0, rgb(var(--nf-bg-rgb) / 0.5) 15%, transparent 40%);
+}
+
+.layout-mobile #itemDetailPage:has(.programGuideSection:not(.hide)):has(.itemBackdrop[style*="url("]) .detailPageWrapperContainer {
+    position: relative;
+    margin-top: -10rem;
+    background: none;
+}
+
+.layout-mobile #itemDetailPage:has(.programGuideSection:not(.hide)) .itemBackdrop::after {
+    content: "";
+    position: absolute;
+    inset: -3rem;
+    z-index: -1;
+    background: inherit;
+    background-size: 5rem 5rem;
+    background-repeat: repeat;
+    filter: blur(40px) saturate(2) brightness(1.15);
+}
+
+.layout-mobile #itemDetailPage .itemBackdrop::before {
+    background:
+        linear-gradient(180deg, rgb(0 0 0 / 0.55), transparent 25%),
+        linear-gradient(0deg,
+            var(--nf-bg) 0,
+            var(--nf-bg) 4%,
+            rgb(var(--nf-bg-rgb) / 0.88) 22%,
+            rgb(var(--nf-bg-rgb) / 0.66) 34%,
+            rgb(var(--nf-bg-rgb) / 0.38) 48%,
+            rgb(var(--nf-bg-rgb) / 0.14) 70%,
+            transparent 90%);
+}
+
+.layout-mobile #itemDetailPage .detailLogo:not(.hide) {
+    display: block;
+    left: 0;
+    right: 0;
+    top: calc(var(--nf-m-hero) - var(--nf-m-top) - var(--nf-m-logo) - 0.5rem);
+    width: min(80%, 28rem);
+    height: var(--nf-m-logo);
+    margin: 0 auto;
+    background-position: center bottom;
+    background-size: contain;
+    filter: drop-shadow(0 2px 12px rgb(0 0 0 / 0.5));
+    z-index: 2;
+}
+
+.layout-mobile #itemDetailPage .detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer > :is(.parentName, .itemName.parentNameLast) {
+    display: none;
+}
+
+.layout-mobile #itemDetailPage:not(:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide))) .infoWrapper > .detailImageContainer {
+    display: none;
+}
+
+.layout-mobile #itemDetailPage:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide)) .infoWrapper > .detailImageContainer {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0 1.25rem;
+}
+
+.layout-mobile #itemDetailPage:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide)) .infoWrapper > .detailImageContainer .card,
+.layout-mobile #itemDetailPage:has(.infoWrapper > .detailImageContainer .backdropCard):has(.nameContainer > .parentName):not(:has(.recordingFields:not(.hide) .recordingButton)) .infoWrapper > .detailImageContainer .card {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    width: min(45%, 13rem);
+    max-width: none;
+    margin: 0;
+    filter: none;
+}
+
+.layout-mobile #itemDetailPage:has(.detailImageContainer .cardImageIcon.person, .programGuideSection:not(.hide)) .infoWrapper > .detailImageContainer .cardScalable,
+.layout-mobile #itemDetailPage:has(.infoWrapper > .detailImageContainer .backdropCard):has(.nameContainer > .parentName):not(:has(.recordingFields:not(.hide) .recordingButton)) .infoWrapper > .detailImageContainer .cardScalable {
+    overflow: hidden;
+    border-radius: var(--nf-radius-lg);
+    box-shadow: 0 0 0 1px var(--nf-line), var(--nf-shadow-3);
+}
+
+.layout-mobile #itemDetailPage .detailRibbon {
+    padding: 0 var(--nf-gutter);
+    text-align: center;
+}
+
+.layout-mobile #itemDetailPage .infoWrapper {
+    padding-left: 0;
+}
+
+.layout-mobile #itemDetailPage :is(.nameContainer, .itemMiscInfo, .mainDetailButtons) {
+    justify-content: center;
+    text-align: center;
+}
+
+.layout-mobile #itemDetailPage .itemName {
+    font-size: 1.75rem;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+}
+
+.layout-mobile #itemDetailPage .nameContainer > .itemName.originalTitle {
+    margin: 0.3em 0 0;
+    color: var(--nf-text-dim);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.layout-mobile #itemDetailPage .itemMiscInfo-primary {
+    flex-wrap: wrap;
+    gap: 0.25em 0.75em;
+    margin: 0.6rem 0 0 !important; /* core sets margin-bottom inline */
+    color: var(--nf-text-2);
+}
+
+.layout-mobile #itemDetailPage .itemMiscInfo-primary > .mediaInfoItem {
+    margin: 0;
+}
+
+.layout-mobile #itemDetailPage .mainDetailButtons {
+    flex-wrap: wrap;
+    gap: 0.65em;
+    margin: 1.25rem 0 0;
+    padding: 0;
+}
+
+@media (orientation: portrait) and (max-width: 40em) {
+    .layout-mobile #itemDetailPage .mainDetailButtons .detailButton.btnPlay {
+        flex: 1 0 100%;
+        justify-content: center;
+        margin: 0 0 0.35em;
+    }
+}
+
+/* ── Detail pages: episodes ──────────────────────────────────────────────── */
+
+.layout-mobile #itemDetailPage:has(.infoWrapper > .detailImageContainer .backdropCard):has(.nameContainer > .parentName):not(:has(.recordingFields:not(.hide) .recordingButton)) {
+    --nf-m-still: min(78vw, 26rem);
+}
+
+.layout-mobile #itemDetailPage:has(.infoWrapper > .detailImageContainer .backdropCard):has(.nameContainer > .parentName):not(:has(.recordingFields:not(.hide) .recordingButton)) .detailLogo {
+    display: none;
+}
+
+.layout-mobile #itemDetailPage:has(.infoWrapper > .detailImageContainer .backdropCard):has(.nameContainer > .parentName):not(:has(.recordingFields:not(.hide) .recordingButton)) .itemBackdrop {
+    height: calc(var(--nf-m-top) + 2rem + var(--nf-m-still) * 9 / 16);
+}
+
+.layout-mobile #itemDetailPage:has(.infoWrapper > .detailImageContainer .backdropCard):has(.nameContainer > .parentName):not(:has(.recordingFields:not(.hide) .recordingButton)) .itemBackdrop::before {
+    background:
+        linear-gradient(180deg, rgb(0 0 0 / 0.6), transparent 25%),
+        linear-gradient(0deg,
+            var(--nf-bg) 0,
+            var(--nf-bg) 4%,
+            rgb(var(--nf-bg-rgb) / 0.92) 22%,
+            rgb(var(--nf-bg-rgb) / 0.83) 45%,
+            rgb(var(--nf-bg-rgb) / 0.69) 75%,
+            rgb(var(--nf-bg-rgb) / 0.62) 100%);
+}
+
+.layout-mobile #itemDetailPage:has(.infoWrapper > .detailImageContainer .backdropCard):has(.nameContainer > .parentName):not(:has(.recordingFields:not(.hide) .recordingButton)) .infoWrapper > .detailImageContainer {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    margin: calc(-0.5rem - var(--nf-m-still) * 9 / 16) 0 1.25rem;
+}
+
+.layout-mobile #itemDetailPage:has(.infoWrapper > .detailImageContainer .backdropCard):has(.nameContainer > .parentName):not(:has(.recordingFields:not(.hide) .recordingButton)) .infoWrapper > .detailImageContainer .card {
+    z-index: auto; /* core's 3 puts the still's shadow over the title */
+    width: var(--nf-m-still);
+}
+
+.layout-mobile #itemDetailPage:has(.infoWrapper > .detailImageContainer .backdropCard):has(.nameContainer > .parentName):not(:has(.recordingFields:not(.hide) .recordingButton)) .nameContainer {
+    position: relative; /* above the still's shadow */
+}
+
+.layout-mobile #itemDetailPage:has(.infoWrapper > .detailImageContainer .backdropCard):has(.nameContainer > .parentName):not(:has(.recordingFields:not(.hide) .recordingButton)) .nameContainer > .parentName {
+    display: block;
+    margin: 0;
+    font-size: 1.75rem;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+}
+
+.layout-mobile #itemDetailPage:has(.infoWrapper > .detailImageContainer .backdropCard):has(.nameContainer > .parentName):not(:has(.recordingFields:not(.hide) .recordingButton)) .nameContainer > .parentName ~ .itemName:not(.originalTitle) {
+    margin: 0.35em 0 0;
+    color: var(--nf-text-2);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.3;
+}
+
+/* ── Detail pages: below the hero ────────────────────────────────────────── */
+
+.layout-mobile #itemDetailPage .detailPagePrimaryContent {
+    padding: 1.75rem var(--nf-gutter) 0 !important; /* core: 5% !important */
+}
+
+.layout-mobile #itemDetailPage :is(.detailSectionContent > .tagline, .detailSectionContent .overview, .itemDetailsGroup) {
+    max-width: none;
+}
+
+/* ── Detail pages: episode list ──────────────────────────────────────────── */
+
+.layout-mobile #itemDetailPage .listItem-largeImage {
+    display: block;
+    margin: 0 0 1.5rem;
+    padding: 0;
+    background: none;
+}
+
+.layout-mobile #itemDetailPage .listItem-largeImage > .listItem-content {
+    align-items: center;
+}
+
+.layout-mobile #itemDetailPage .listItem-largeImage .listItemImage-large {
+    flex: none;
+    width: min(40%, 11rem);
+    height: auto;
+    aspect-ratio: 16 / 9;
+    margin: 0;
+    border-radius: var(--nf-radius);
+    background-size: cover;
+    overflow: hidden;
+}
+
+.layout-mobile #itemDetailPage .listItem-largeImage .listItemImageButton {
+    width: 2rem;
+    height: 2rem;
+}
+
+.layout-mobile #itemDetailPage .listItem-largeImage .listItemBody {
+    min-width: 0;
+    padding: 0 0.25rem 0 0.85rem;
+}
+
+.layout-mobile #itemDetailPage .listItem-largeImage .listItemBodyText:first-child {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    color: var(--nf-text);
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.layout-mobile #itemDetailPage .listItem-largeImage .listItemMediaInfo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25em 0.75em;
+    margin-top: 0.3em;
+    color: var(--nf-text-dim);
+    font-size: 0.8rem;
+}
+
+.layout-mobile #itemDetailPage .listItem-largeImage .listItemMediaInfo > .mediaInfoItem {
+    margin: 0;
+}
+
+.layout-mobile #itemDetailPage .listItem-largeImage .listItemMediaInfo > :is(.starRatingContainer, .endsAt) {
+    display: none;
+}
+
+.layout-mobile #itemDetailPage .listItem-largeImage .listViewUserDataButtons {
+    gap: 0;
+}
+
+.layout-mobile #itemDetailPage .listItem-largeImage .listItemButton {
+    padding: 0.35em;
+    color: var(--nf-text-mute);
+    font-size: 0.85em;
+}
+
+.layout-mobile #itemDetailPage .listItem-largeImage :is(.listItem-bottomoverview, .listItem-overview) {
+    margin: 0.5rem 0 0;
+    padding: 0;
+    color: var(--nf-text-mute);
+    font-size: 0.85rem;
+    line-height: 1.45;
+}
+
+/* ── Cards ───────────────────────────────────────────────────────────────── */
+.layout-mobile .card:is(.portraitCard, .overflowPortraitCard, .squareCard, .overflowSquareCard) :is(.cardScalable > button.cardOverlayButton-br[data-action="play"], .cardScalable > a > .cardOverlayButton-br) {
+    display: none;
+}
+
+.layout-mobile :is(.backdropCard, .overflowBackdropCard, .smallBackdropCard) :is(.cardScalable > button.cardOverlayButton-br[data-action="play"], .cardScalable > a > .cardOverlayButton-br > .cardOverlayButton) {
+    --nf-rise: 0rem;
+}
+
+.layout-mobile :is(.backdropCard, .overflowBackdropCard, .smallBackdropCard) :is(.cardScalable > button.cardOverlayButton-br[data-action="play"], .cardScalable > a > .cardOverlayButton-br) {
+    top: auto;
+    right: auto;
+    bottom: 0.6rem;
+    left: 0.6rem;
+    margin: 0;
+}
+
+.layout-mobile :is(.backdropCard, .overflowBackdropCard, .smallBackdropCard) .cardScalable > a > .cardOverlayButton-br {
+    padding: 0;
+}
+
+/* ── Navigation drawer ───────────────────────────────────────────────────── */
+.MuiDrawer-modal > .MuiBackdrop-root {
+    background: rgb(0 0 0 / 0.7);
+}
+
+.MuiDrawer-paper:has(> .MuiBox-root) {
+    width: min(80vw, 18rem);
+    padding-top: env(safe-area-inset-top);
+    border-right: 0;
+    outline: 0; /* MUI focuses the sheet on open */
+    box-shadow: var(--nf-shadow-3);
+}
+
+.MuiDrawer-paper > .MuiBox-root > .MuiList-root:first-child > li:first-child > a {
+    min-height: var(--nf-appbar);
+    margin-bottom: 0.5rem;
+    background: none;
+}
+
+.MuiDrawer-paper > .MuiBox-root > .MuiList-root:first-child > li:first-child > a > * {
+    display: none;
+}
+
+.MuiDrawer-paper > .MuiBox-root .MuiListItemButton-root {
+    margin: 0;
+    padding: 0.8rem 1.25rem;
+    border-radius: 0;
+}
+
+.MuiDrawer-paper > .MuiBox-root .MuiListItemButton-root.Mui-selected {
+    background: none;
+    box-shadow: inset 3px 0 0 var(--nf-text);
+}
+
+.MuiDrawer-paper > .MuiBox-root .MuiListItemIcon-root {
+    min-width: 2.5rem;
+}
+
+.MuiDrawer-paper > .MuiBox-root .MuiListItemText-primary {
+    font-size: 1rem;
+}
+
+.MuiDrawer-paper > .MuiBox-root > .MuiDivider-root {
+    margin: 0.5rem 1.25rem;
+    border-color: var(--nf-line);
+}
+
+/* ── Rows, guide ─────────────────────────────────────────────────────────── */
+
+.layout-mobile a.clearLink > .sectionTitle + svg {
+    padding-top: 0.5em;
+}
+
+.layout-mobile .tvguide :is(.channelsContainer, .guide-channelTimeslotHeader) {
+    width: 6.5rem;
+}
+
+.layout-mobile .tvguide .guideChannelImage {
+    right: 0.5rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+ * 7h. Sign-in
+ * ═══════════════════════════════════════════════════════════════════════ */
+
+#loginPage {
+    display: flex;
+    background: radial-gradient(70rem 40rem at 50% -10%, rgb(229 9 20 / 0.16), transparent 70%), #000;
+}
+
+#loginPage > div {
+    box-sizing: border-box;
+    width: min(100% - 2rem, 28.125rem);
+    margin: auto;
+    padding: 3rem 4.25rem 2.5rem !important; /* core: .padded-bottom-page */
+    border-radius: var(--nf-radius);
+    background: rgb(var(--nf-bg-rgb) / 0.75);
+    box-shadow: var(--nf-shadow-3);
+}
+
+#loginPage :is(.manualLoginForm, .readOnlyContent) {
+    max-width: none;
+    margin: 0 !important; /* core sets the bottom margin inline */
+}
+
+#loginPage .manualLoginForm > div:first-child {
+    justify-content: flex-start;
+    padding: 0;
+}
+
+#loginPage .manualLoginForm h1 {
+    margin: 0 0 1.75rem;
+    color: var(--nf-text);
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+#loginPage .inputContainer {
+    margin-bottom: 1rem;
+}
+
+#loginPage .emby-input {
+    height: 3.25rem;
+    padding: 0 1rem;
+    font-size: 1rem;
+}
+
+#loginPage .checkboxContainer {
+    margin: 0.25rem 0 1.5rem;
+}
+
+#loginPage .emby-button.block {
+    height: 2.75rem;
+    margin: 0 0 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+#loginPage .readOnlyContent > :is(.btnForgotPassword, .btnSelectServer) {
+    height: auto;
+    margin: 1rem auto 0;
+    padding: 0;
+    background: none;
+    color: var(--nf-text);
+    font-weight: 500;
+}
+
+#loginPage .readOnlyContent > :is(.btnForgotPassword, .btnSelectServer):hover {
+    text-decoration: underline;
+}
+
+#loginPage .loginDisclaimerContainer {
+    margin-top: 1.5rem;
+    color: var(--nf-text-mute);
+    font-size: 0.85rem;
+}
+
+#loginPage .loginDisclaimerContainer:has(.loginDisclaimer:empty) {
+    display: none;
+}
+
+@media (max-width: 40em) {
+    #loginPage {
+        background: #000;
+    }
+
+    #loginPage > div {
+        width: 100%;
+        padding: calc(var(--nf-appbar) + 1rem) 1.5rem 2rem !important;
+        background: none;
+        box-shadow: none;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+ * 8. Media Bar
+ * ═══════════════════════════════════════════════════════════════════════ */
+
+:root {
+    --slideshow-font: var(--nf-font);
+    --slideshow-bottom-fade: linear-gradient(to top, #fff0 5%, rgb(0 0 0 / 0.1) 35%, #000000 80%);
+    --slideshow-gutter: 3.3%;
+}
+
+body #slides-container .gradient-overlay {
+    background:
+        linear-gradient(77deg, rgb(0 0 0 / 0.65) 0%, rgb(0 0 0 / 0.25) 45%, transparent 75%),
+        linear-gradient(0deg, var(--nf-bg) 0%, transparent 35%);
+}
+
+body #slides-container .spec-line {
+    font-family: var(--nf-font);
+    letter-spacing: 0.02em;
+    text-transform: none;
+    font-weight: 500;
+    color: var(--nf-text-2);
+}
+
+body #slides-container .spec-rail {
+    background: rgb(255 255 255 / 0.18);
+}
+
+body #slides-container .spec-progress {
+    background: var(--nf-red);
+}
+
+body #slides-container .slide-content {
+    text-shadow: 0 1px 10px rgb(0 0 0 / 0.65);
+}
+
+body #slides-container .misc-info {
+    gap: 0.25em 0.75em;
+    color: var(--nf-text-2);
+    font-size: 1.05rem;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+}
+
+body #slides-container .misc-info > .separator-icon {
+    display: none;
+}
+
+body #slides-container .misc-info > .age-rating {
+    padding: 0.05em 0.45em;
+    border: 1px solid var(--nf-outline);
+    border-radius: var(--nf-radius-xs);
+    background: none;
+    color: var(--nf-text-2);
+    font-size: 0.85em;
+    font-weight: 600;
+    line-height: 1.5;
+    text-shadow: none;
+}
+
+body #slides-container .genre {
+    gap: 0.5em;
+    color: var(--nf-text-dim);
+    font-size: 0.95rem;
+}
+
+body #slides-container .genre > .separator-icon {
+    font-size: 4px;
+    color: var(--nf-text-mute);
+}
+
+body #slides-container .plot {
+    max-width: 38em;
+    color: var(--nf-text-2);
+    font-size: 1.1rem; /* as .detailSectionContent .overview */
+    line-height: 1.6;
+}
+
+body #slides-container .button-container {
+    gap: 0.65rem;
+}
+
+body #slides-container :is(.detail-button, .favorite-button, .watchlist-button) {
+    text-shadow: none;
+}
+
+body #slides-container button {
+    background: var(--nf-text-2);
+    border: 1px solid var(--nf-text-2);
+    color: var(--nf-bg);
+    font-family: var(--nf-font);
+    font-weight: 700;
+}
+
+body #slides-container .play-button {
+    order: -1;
+    border-color: #fff;
+    border-radius: var(--nf-radius);
+    background: #fff;
+    color: #000;
+    text-shadow: none;
+    padding-inline: 1em 1.35em !important;
+}
+
+body #slides-container button:hover {
+    background: var(--nf-fill-white-hover);
+}
+
+body #slides-container .favorite-button.favorited {
+    color: var(--nf-red) !important;
+    border-color: var(--nf-red) !important;
+}
+
+body #slides-container .watchlist-button[data-active="true"] {
+    color: var(--nf-success) !important;
+    border-color: var(--nf-success) !important;
+}
+
+body #slides-container .dots-container {
+    display: none !important;
+}
+
+body #slides-container :is(.arrow, .ss-chrome) {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    text-shadow: none;
+}
+
+body #slides-container .arrow {
+    box-sizing: border-box;
+    width: 2rem;
+    height: 2rem;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    transition: opacity var(--nf-dur-2) var(--nf-ease-out), visibility var(--nf-dur-2) var(--nf-ease-out), background-color var(--nf-dur-1) var(--nf-ease-out), border-color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+body #slides-container :is(.arrow, .ss-chrome) i {
+    font-size: 1.2rem;
+}
+
+body #slides-container .ss-chrome {
+    color: var(--nf-text);
+    filter: drop-shadow(0 1px 3px rgb(0 0 0 / 0.6));
+    transition: opacity var(--nf-dur-2) var(--nf-ease-out), visibility var(--nf-dur-2) var(--nf-ease-out);
+}
+
+body #slides-container:is(:hover, :focus-within, .is-paused, .settings-open) .ss-chrome {
+    opacity: 0.55;
+}
+
+body #slides-container .ss-chrome:is(:hover, :focus-visible) {
+    opacity: 1;
+}
+
+@media (min-width: 768px) {
+    body #slides-container:not([class*="layout-"]) :is(.arrow, .ss-chrome) {
+        top: auto;
+        left: auto;
+        bottom: calc(var(--slideshow-height) - var(--slideshow-content-top) + var(--slideshow-dots-reserve) + 25px - 1.125rem); /* centred on the 50px button row */
+        transform: none;
+    }
+
+    body #slides-container:not([class*="layout-"]) .arrow {
+        bottom: calc(var(--slideshow-height) - var(--slideshow-content-top) + var(--slideshow-dots-reserve) + 25px - 1rem);
+    }
+
+    body #slides-container:not([class*="layout-"]) .right-arrow {
+        right: var(--slideshow-gutter);
+    }
+
+    body #slides-container:not([class*="layout-"]) .left-arrow {
+        right: calc(var(--slideshow-gutter) + 3rem);
+    }
+
+    body #slides-container:not([class*="layout-"]) .pause-button {
+        right: calc(var(--slideshow-gutter) + 6.25rem);
+    }
+
+    body #slides-container:not([class*="layout-"]) .volume-toggle {
+        right: calc(var(--slideshow-gutter) + 8.75rem);
+    }
+
+    body #slides-container:not([class*="layout-"]) .ss-settings-toggle {
+        right: calc(var(--slideshow-gutter) + 11.25rem);
+    }
+}
+
+@media (max-width: 767px) and (orientation: portrait) {
+    body #slides-container:not([class*="layout-"]) .ss-chrome {
+        right: var(--slideshow-gutter);
+        height: 1.75rem;
+    }
+
+    body #slides-container:not([class*="layout-"]) .ss-settings-toggle {
+        top: calc(var(--nf-m-top, var(--nf-appbar)) + 0.5rem);
+    }
+
+    body #slides-container:not([class*="layout-"]) .pause-button {
+        top: calc(var(--nf-m-top, var(--nf-appbar)) + 2.25rem);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+ * 9. KefinTweaks
+ * ═══════════════════════════════════════════════════════════════════════ */
+
+.progress-bar-fill,
+.progress-chunk.watched,
+.pagination-btn.active,
+.mdl-radio__focus-circle {
+    background: var(--nf-red);
+    border-color: var(--nf-red);
+}
+
+.view-episode-btn:hover {
+    color: var(--nf-red);
+}
+
+.import-export-tab.active {
+    border-bottom-color: var(--nf-red);
+}
+
+.watchlist-button[data-active="true"],
+.watchlist-icon[data-active="true"] {
+    color: var(--nf-success) !important;
+}
+
+header .kefin-custom-menu-top-divider {
+    display: none;
+}
+
+/* ── Watchlist page ──────────────────────────────────────────────────────── */
+
+body .sections.watchlist .watchlist-tabs {
+    justify-content: flex-start;
+    gap: 1.75rem;
+    padding: 0 var(--nf-gutter);
+    border-bottom: 1px solid var(--nf-line);
+}
+
+body .sections.watchlist .watchlist-tabs button {
+    padding: 0.75rem 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    color: var(--nf-text-dim);
+    font: 500 1rem/1.2 var(--nf-font);
+    transition: color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+body .sections.watchlist .watchlist-tabs button:hover {
+    background: none;
+    color: var(--nf-text);
+}
+
+body .sections.watchlist .watchlist-tabs button.active {
+    background: none;
+    box-shadow: inset 0 -2px 0 #fff;
+    color: var(--nf-text);
+    font-weight: 700;
+}
+
+body .sections.watchlist .tab-header h2 {
+    line-height: 1.15;
+}
+
+body .sections.watchlist .tab-header {
+    max-width: none;
+    margin: 0;
+    padding: 1.75rem var(--nf-gutter) 1.25rem;
+    border-bottom: 0;
+    flex-direction: row;
+    align-items: center;
+}
+
+body .sections.watchlist :is(.watchlist-header-stats, .progress-header-stats, .movie-history-stats) {
+    padding: 0.3rem 0.6rem;
+    border: 0;
+    border-radius: var(--nf-radius-xs);
+    background: var(--nf-fill-tag);
+    color: var(--nf-text-2);
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+body .sections.watchlist :is(.progress-header-stats-container, .movie-history-stats-container) {
+    align-items: center;
+    gap: 0.5rem;
+}
+
+body .sections.watchlist :is(.progress-header-stats-container, .movie-history-stats-container) > * {
+    margin: 0;
+}
+
+body .sections.watchlist :is(.progress-header-stats, .movie-history-stats) {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    height: 2rem;
+}
+
+body .sections.watchlist .sort-button,
+body .sections.watchlist .show-all-btn {
+    height: 2rem;
+    padding: 0 0.85rem;
+    border: 0;
+    border-radius: var(--nf-radius);
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: background-color var(--nf-dur-1) var(--nf-ease-out), box-shadow var(--nf-dur-1) var(--nf-ease-out);
+}
+
+body .sections.watchlist .search-container {
+    margin: 0 var(--nf-gutter) 1.5rem !important;
+    padding: 0;
+    justify-self: start;
+}
+
+body .sections.watchlist .search-input-wrapper {
+    max-width: 21rem;
+    margin: 0;
+}
+
+body .sections.watchlist .search-input-wrapper .search-icon {
+    left: 0.6rem;
+    transform: translateY(-50%);
+    color: var(--nf-text-dim);
+}
+
+body .sections.watchlist .search-input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 2.25rem;
+    padding: 0 2.25rem;
+    border: 1px solid rgb(255 255 255 / 0.5);
+    border-radius: var(--nf-radius);
+    background: rgb(0 0 0 / 0.6);
+    color: var(--nf-text);
+    font-size: 0.875rem;
+    transition: border-color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+body .sections.watchlist .search-input:focus {
+    border-color: #fff;
+    background: rgb(0 0 0 / 0.75);
+    box-shadow: none;
+}
+
+body .sections.watchlist .paginated-container {
+    max-width: none;
+    margin: 0;
+    padding: 0 var(--nf-gutter);
+}
+
+/* ── Watchlist: Series Progress ──────────────────────────────────────────── */
+body .sections.watchlist .progress-series {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(36rem, 100%), 1fr));
+    gap: 1rem;
+    padding: 0;
+}
+
+body .sections.watchlist .progress-card {
+    margin: 0;
+    transition: background-color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+body .sections.watchlist .progress-card:hover,
+body .sections.watchlist .progress-card-completed:hover {
+    background: var(--nf-fill-hover);
+}
+
+body .sections.watchlist .progress-card-content {
+    gap: 1.25rem;
+    padding: 1rem;
+}
+
+body .sections.watchlist .progress-poster {
+    width: 7.5rem;
+    height: 11.25rem;
+    border-radius: var(--nf-radius);
+}
+
+body .sections.watchlist .progress-title {
+    font: 700 1.25rem/1.25 var(--nf-font);
+    letter-spacing: -0.01em;
+}
+
+body .sections.watchlist .progress-title .title-link:hover {
+    color: var(--nf-text);
+}
+
+body .sections.watchlist .completion-badge {
+    padding: 0.3em 0.55em;
+    border-radius: var(--nf-radius-xs);
+    background: var(--nf-fill-tag);
+    color: var(--nf-text-2);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+body .sections.watchlist .progress-percentage {
+    color: var(--nf-text);
+    font: 700 1.25rem/1 var(--nf-font);
+    font-variant-numeric: tabular-nums;
+}
+
+body .sections.watchlist .progress-series .progress-bar {
+    height: 6px;
+    padding: 0;
+    border-radius: 3px;
+    background: rgb(128 128 128 / 0.35);
+}
+
+body .sections.watchlist .progress-bar-completed .progress-chunk.watched,
+body .sections.watchlist .progress-bar-completed .progress-bar-fill {
+    background: var(--nf-red);
+}
+
+body .sections.watchlist .progress-stats {
+    color: var(--nf-text-dim);
+    font-size: 0.875rem;
+}
+
+body .sections.watchlist .progress-stats strong {
+    color: var(--nf-text);
+}
+
+body .sections.watchlist .progress-last-watched {
+    color: var(--nf-text-mute);
+    font-size: 0.8125rem;
+}
+
+body .sections.watchlist .progress-last-watched strong {
+    color: var(--nf-text-2);
+}
+
+body .sections.watchlist .action-link {
+    color: var(--nf-text-dim);
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+body .sections.watchlist .action-link:hover {
+    color: var(--nf-text);
+}
+
+/* ── Watchlist: Movie History ────────────────────────────────────────────── */
+body .sections.watchlist .movie-history-grid {
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 1.75rem 0.75rem;
+}
+
+body .sections.watchlist .movie-card {
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    transition: transform var(--nf-dur-3) var(--nf-ease);
+}
+
+body .sections.watchlist .movie-card:hover {
+    z-index: 2;
+    border: 0;
+    background: none;
+    box-shadow: none;
+    transform: scale(1.04);
+}
+
+body .sections.watchlist .movie-poster {
+    border-radius: var(--nf-radius);
+    transition: box-shadow var(--nf-dur-3) var(--nf-ease);
+}
+
+body .sections.watchlist .movie-card:hover .movie-poster {
+    box-shadow: 0 0 0 1px var(--nf-line), var(--nf-shadow-1);
+    transform: none;
+}
+
+body .sections.watchlist .movie-poster-overlay {
+    justify-content: flex-end;
+    padding: 0.6rem 0.3rem;
+    background: transparent;
+}
+
+body .sections.watchlist .movie-card:is(:hover, :focus-within) .movie-poster-overlay {
+    background: var(--nf-scrim-card);
+}
+
+body .sections.watchlist .movie-watched-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    gap: 0;
+    background: var(--nf-red);
+    color: #fff;
+    font-size: 0;
+}
+
+body .sections.watchlist .movie-watched-badge > .material-icons::before {
+    content: "\e5ca"; /* check, not check_circle */
+}
+
+body .sections.watchlist .movie-poster-overlay .cardOverlayButton {
+    position: static;
+    width: 2rem;
+    height: 2rem;
+    border: 0;
+    background: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    color: var(--nf-text);
+    transition: opacity var(--nf-dur-2) var(--nf-ease-out), background-color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+body .sections.watchlist .movie-poster-overlay .cardOverlayButton:hover {
+    border: 0;
+    background: var(--nf-fill-hover);
+    color: var(--nf-text);
+    transform: none;
+}
+
+body .sections.watchlist .movie-poster-overlay .cardOverlayButton.favorited {
+    border: 0;
+    background: transparent;
+    color: var(--nf-red);
+    filter: drop-shadow(0 1px 3px rgb(0 0 0 / 0.6));
+}
+
+.layout-desktop body .sections.watchlist .movie-card:not(:hover, :focus-within) .cardOverlayButton:not(.favorited) {
+    opacity: 0;
+}
+
+body .sections.watchlist .movie-poster-overlay .cardOverlayButton .material-icons {
+    font-size: 1.1rem;
+}
+
+body .sections.watchlist .movie-details {
+    padding: 0.5rem 0.1em 0;
+}
+
+body .sections.watchlist .movie-title {
+    margin: 0;
+    color: var(--nf-text-2);
+    font: 500 0.875rem/1.35 var(--nf-font);
+    -webkit-line-clamp: 1;
+}
+
+body .sections.watchlist .movie-meta {
+    gap: 0.6em;
+    margin: 0.1rem 0 0;
+    color: var(--nf-text-mute);
+    font-size: 0.8125rem;
+}
+
+body .sections.watchlist .movie-meta .material-icons {
+    display: none;
+}
+
+body .sections.watchlist .movie-meta > * {
+    color: inherit;
+    font-size: inherit;
+    font-weight: 400;
+}
+
+body .sections.watchlist .movie-watched-date {
+    margin-top: 0.1rem;
+    color: var(--nf-text-mute);
+    font-size: 0.75rem;
+    font-style: normal;
+}
+
+/* ── Watchlist: Statistics ───────────────────────────────────────────────── */
+body .sections.watchlist .progress-stats-container {
+    max-width: none;
+    margin: 1.5rem 0 !important;
+    padding: 0 var(--nf-gutter);
+}
+
+body .sections.watchlist .progress-stats-grid {
+    gap: 0.75rem;
+}
+
+body .sections.watchlist :is(.stat-card, .top-shows-container, .stats-chart-card, .stats-list-card) {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+}
+
+body .sections.watchlist .stat-card {
+    gap: 1rem;
+    padding: 1.25rem;
+    transition: background-color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+body .sections.watchlist .stat-card:hover {
+    border-color: var(--nf-line);
+    background: var(--nf-fill-hover);
+    transform: none;
+}
+
+body .sections.watchlist .stat-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    background: var(--nf-fill-tag);
+}
+
+body .sections.watchlist .stat-icon .material-icons {
+    color: var(--nf-text-2);
+    font-size: 1.35rem;
+}
+
+body .sections.watchlist .stat-value {
+    margin-bottom: 0.3rem;
+    font: 800 2rem/1 var(--nf-font);
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+}
+
+body .sections.watchlist .stat-label {
+    color: var(--nf-text-mute);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+}
+
+body .sections.watchlist .top-shows-container {
+    padding: 1.25rem 1.5rem;
+}
+
+body .sections.watchlist :is(.top-shows-header, .stats-list-header) {
+    color: var(--nf-text);
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+body .sections.watchlist :is(.top-shows-header, .stats-list-header) .material-icons {
+    color: var(--nf-text-dim);
+}
+
+body .sections.watchlist .top-shows-list {
+    gap: 0;
+}
+
+body .sections.watchlist .top-show-item,
+body .sections.watchlist .top-show-item:is(.rank-1, .rank-2, .rank-3) {
+    padding: 0.75rem 0.5rem;
+    border: 0;
+    border-bottom: 1px solid var(--nf-line);
+    border-radius: 0;
+    background: none;
+}
+
+body .sections.watchlist .top-show-item:last-child {
+    border-bottom: 0;
+}
+
+body .sections.watchlist .top-show-item:hover {
+    border-color: var(--nf-line);
+    background: var(--nf-fill-hover);
+}
+
+body .sections.watchlist .show-rank,
+body .sections.watchlist .top-show-item:is(.rank-1, .rank-2, .rank-3) .show-rank {
+    min-width: 2.75rem;
+    margin-right: 0.75rem;
+    color: var(--nf-text-mute);
+    font: 800 1.75rem/1 var(--nf-font);
+    letter-spacing: -0.04em;
+    text-align: left;
+    font-variant-numeric: tabular-nums;
+}
+
+body .sections.watchlist .top-show-item:is(.rank-1, .rank-2, .rank-3) .show-rank {
+    color: var(--nf-text);
+}
+
+body .sections.watchlist .top-show-name {
+    color: var(--nf-text);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+body .sections.watchlist .top-show-episodes {
+    padding: 0;
+    background: none;
+    color: var(--nf-text-mute);
+    font-size: 0.8125rem;
+}
+
+body .sections.watchlist .stats-chart-title {
+    color: var(--nf-text);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+body .sections.watchlist .stats-chart-subtitle {
+    color: var(--nf-text-mute);
+    font-size: 0.8125rem;
+}
+
+body .sections.watchlist .stats-range-chip {
+    height: auto;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.75rem;
+}
+
+body .sections.watchlist .stats-chart-canvas-wrap canvas {
+    filter: hue-rotate(148deg) saturate(2.6) brightness(0.88);
+}
+
+body .sections.watchlist .stats-list-item {
+    border-color: var(--nf-line);
+}
+
+body .sections.watchlist .stats-list-item-title {
+    color: var(--nf-text);
+    font-size: 0.875rem;
+}
+
+body .sections.watchlist .stats-list-item-meta {
+    color: var(--nf-text-mute);
+    font-size: 0.75rem;
+}
+
+body .sections.watchlist .stats-media-icon {
+    color: var(--nf-text-dim);
+}
+
+/* ── Watchlist: narrow screens ───────────────────────────────────────────── */
+body .sections.watchlist .watchlist-tabs {
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+body .sections.watchlist .watchlist-tabs button {
+    flex: none;
+    white-space: nowrap;
+}
+
+@media (max-width: 48em) {
+    body .sections.watchlist .watchlist-tabs {
+        gap: 1.25rem;
+    }
+
+    body .sections.watchlist .tab-header {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 1rem 0.5rem;
+        padding-top: 1.25rem;
+    }
+
+    body .sections.watchlist .tab-header > :not(h2) {
+        display: contents;
+    }
+
+    body .sections.watchlist .tab-header > h2 {
+        flex: 1 0 calc(100% - 3.5rem); /* leaves the refresh button beside it */
+        order: -2;
+        margin: 0;
+    }
+
+    body .sections.watchlist .tab-header > :not(h2) > :last-child {
+        order: -1;
+        margin: 0;
+    }
+
+    body .sections.watchlist :is(.watchlist-header-stats, .progress-header-stats, .movie-history-stats) {
+        white-space: nowrap;
+    }
+
+    body .sections.watchlist .progress-poster {
+        width: 100%;
+        max-width: none;
+        height: auto;
+        aspect-ratio: 300 / 55; /* the plugin switches to banners */
+        overflow: hidden;
+    }
+
+    body .sections.watchlist .progress-poster img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    body .sections.watchlist .progress-stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    body .sections.watchlist .stat-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 1rem;
+    }
+
+    body .sections.watchlist .stat-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+    }
+
+    body .sections.watchlist .stats-list-card {
+        min-height: 0;
+    }
+
+    body .sections.watchlist .top-show-item {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+    }
+
+    body .sections.watchlist .top-show-item > .show-rank {
+        grid-row: span 2;
+    }
+
+    body .sections.watchlist .top-show-item > :is(.top-show-name, .top-show-episodes) {
+        justify-self: start;
+        max-width: 100%;
+        margin: 0;
+    }
+}
+
+/* ── Menus ───────────────────────────────────────────────────────────────── */
+.kefinTweaks-popover {
+    min-width: 12rem;
+    max-width: none;
+    font-size: 0.875rem;
+}
+
+html body .kefinTweaks-popover.kefinTweaks-popover.kefinTweaks-popover.kefinTweaks-popover { /* beats KefinTweaks' 4-class !important */
+    padding: 0.375rem 0 !important;
+}
+
+html body .kefinTweaks-breadcrumbs-wrapper--modern .kefinTweaks-popover.kefinTweaks-popover:not(.kefinTweaks-popover--above) {
+    margin-top: 1.25rem !important;
+}
+
+.kefinTweaks-popover .kefinTweaks-popover-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0.55rem 1rem !important;
+    border: 0;
+    border-radius: 0 !important;
+    background: none !important;
+    color: var(--nf-text-2);
+    font-size: inherit;
+    font-weight: 400;
+    line-height: 1.3;
+    transition: background-color var(--nf-dur-1) var(--nf-ease-out), color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+.kefinTweaks-popover .kefinTweaks-popover-item:hover {
+    background: var(--nf-fill-hover) !important;
+    color: var(--nf-text);
+}
+
+.kefinTweaks-popover .section-controls-more-item-icon {
+    color: var(--nf-text-mute);
+    font-size: 1.25rem;
+    opacity: 1;
+}
+
+.kefinTweaks-popover .kefinTweaks-popover-item.selected {
+    color: var(--nf-text);
+    font-weight: 600;
+}
+
+.kefinTweaks-popover .kefinTweaks-popover-item.selected::before {
+    content: none;
+}
+
+.kefinTweaks-popover .kefinTweaks-popover-item.selected::after {
+    content: "check";
+    margin-left: auto;
+    font: 400 1.25rem/1 "Material Icons";
+}
+
+/* ── Collection sort ─────────────────────────────────────────────────────── */
+#itemDetailPage .collectionItems .sectionTitle:has(> .kt-collections-sort-btn) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+#itemDetailPage .collectionItems .kt-collections-sort-btn {
+    width: 2rem;
+    height: 2rem;
+    margin: 0;
+    padding: 0;
+    color: var(--nf-text-dim);
+}
+
+#itemDetailPage .collectionItems .kt-collections-sort-btn .material-icons {
+    font-size: 1.25rem;
+}
+
+.formDialog:has(.menuSortBy):not(:has(.formDialogHeaderTitle)) {
+    min-width: 17rem;
+}
+
+.formDialog:has(.menuSortBy):not(:has(.formDialogHeaderTitle)) .formDialogHeader {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    z-index: 1;
+    padding: 0 !important; /* KefinTweaks sets padding and border inline */
+    border: 0 !important;
+    background: none;
+}
+
+.formDialog:has(.menuSortBy):not(:has(.formDialogHeaderTitle)) .formDialogHeader + div {
+    padding: 1.4rem 1.5rem 1.25rem;
+}
+
+.formDialog:has(.menuSortBy):not(:has(.formDialogHeaderTitle)) .formDialogHeader + div > h2 {
+    margin: 1.25rem 0 0.5rem;
+}
+
+.formDialog:has(.menuSortBy):not(:has(.formDialogHeaderTitle)) .formDialogHeader + div > h2:first-child {
+    margin-top: 0;
+}
+
+.formDialog:has(.menuSortBy):not(:has(.formDialogHeaderTitle)) .radio-label-block {
+    margin: 0;
+    padding: 0.3rem 0;
+    color: var(--nf-text-2);
+}
+
+/* ── Enhanced search ─────────────────────────────────────────────────────── */
+body.smart-search-mode #searchPage .searchFields {
+    padding-top: 0;
+}
+
+#searchPage .input-wrapper .searchfields-icon {
+    right: auto;
+}
+
+#searchPage .smart-search-buttons {
+    justify-content: flex-start;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+#searchPage #smart-search-results {
+    margin-top: 0;
+    padding-left: 0;
+    padding-top: 1.75rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+ * 10. Leftover Jellyfin blue, player
+ * ═══════════════════════════════════════════════════════════════════════ */
+
+.listItemIcon:not(.listItemIcon-transparent) {
+    background-color: var(--nf-surface-3);
+    color: var(--nf-text);
+}
+
+.mdl-spinner__layer-1,
+.mdl-spinner__layer-2,
+.mdl-spinner__layer-3,
+.mdl-spinner__layer-4 {
+    border-color: var(--nf-red);
+}
+
+.playbackProgress > div,
+.sliderMarker.watched,
+.mdl-slider-background-lower {
+    background-color: var(--nf-red);
+}
+
+progress::-webkit-progress-value {
+    background-color: var(--nf-red);
+}
+
+progress::-moz-progress-bar {
+    background-color: var(--nf-red);
+}
+
+progress[aria-valuenow]::before {
+    background-color: var(--nf-red);
+}
+
+.button-accent-flat {
+    color: var(--nf-red) !important;
+}
+
+/* ── Player ──────────────────────────────────────────────────────────────── */
+.mdl-slider {
+    color: var(--nf-red);
+}
+
+.mdl-slider::-webkit-slider-thumb {
+    background: var(--nf-red);
+}
+
+.mdl-slider::-moz-range-thumb {
+    background: var(--nf-red);
+}
+
+body:has(#videoOsdPage:not(.hide), .videoPlayerContainer-onTop)::before {
+    display: none;
+}
+
+.skinHeader-withBackground.osdHeader {
+    background: linear-gradient(180deg, rgb(0 0 0 / 0.7), transparent);
+}
+
+.layout-mobile body:has(#videoOsdPage:not(.hide)) .MuiAppBar-root.MuiAppBar-positionFixed + div[aria-hidden="true"] {
+    min-height: 0;
+}
+
+.osdHeader .videoOsd-appBar {
+    flex-wrap: nowrap;
+    padding: calc(0.75rem + env(safe-area-inset-top)) 1.25rem 0;
+}
+
+.osdHeader .videoOsd-appBar > .MuiBox-root {
+    flex: none;
+}
+
+.osdHeader .videoOsd-appBar .MuiIconButton-root:first-child .MuiSvgIcon-root {
+    font-size: 2.25rem;
+}
+
+.osdHeader .videoOsd-appBar > .MuiTypography-root {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: 0.5rem;
+    color: var(--nf-text-2);
+    font: 500 1.125rem/1.3 var(--nf-font);
+}
+
+.videoOsdBottom {
+    padding-top: 10rem;
+    padding-bottom: max(env(safe-area-inset-bottom), 1.25rem);
+    background: linear-gradient(0deg, rgb(0 0 0 / 0.85), rgb(0 0 0 / 0.45) 45%, transparent);
+}
+
+.videoOsdBottom .osdControls {
+    padding: 0 2rem;
+}
+
+.videoOsdBottom .osdTextContainer {
+    color: var(--nf-text-2);
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.videoOsdBottom :is(.osdPositionText, .osdDurationText) {
+    min-width: 8ch; /* fixed, so the bar doesn't move as they tick */
+    color: var(--nf-text);
+    font-weight: 700;
+}
+
+.videoOsdBottom .osdPositionText, .videoOsdBottom .osdDurationText {
+    justify-content: center;
+    padding: 0;
+}
+
+.videoOsdBottom .osdTitle {
+    color: var(--nf-text);
+    font: 700 1.25rem/1.3 var(--nf-font);
+}
+
+.videoOsdBottom .mdl-slider-background-flex {
+    height: 4px;
+    margin-top: -2px;
+    border-radius: 2px;
+    background: rgb(255 255 255 / 0.25);
+    transition: height var(--nf-dur-1) var(--nf-ease-out), margin var(--nf-dur-1) var(--nf-ease-out);
+}
+
+.videoOsdBottom .mdl-slider-background-upper {
+    background: rgb(255 255 255 / 0.3);
+}
+
+.videoOsdBottom .sliderContainer:hover .mdl-slider-background-flex {
+    height: 6px;
+    margin-top: -3px;
+}
+
+.videoOsdBottom .sliderMarker,
+.videoOsdBottom .sliderMarker.watched {
+    z-index: 1;
+    height: 4px;
+    background: rgb(0 0 0 / 0.6);
+    pointer-events: none;
+    transform: translateY(calc(0.625em - 2px)); /* centred on the track */
+    transition: height var(--nf-dur-1) var(--nf-ease-out), transform var(--nf-dur-1) var(--nf-ease-out);
+}
+
+.videoOsdBottom .sliderContainer:hover .sliderMarker {
+    height: 6px;
+    transform: translateY(calc(0.625em - 3px));
+}
+
+.videoOsdBottom .sliderBubble {
+    overflow: hidden;
+    border-radius: var(--nf-radius);
+    background: var(--nf-surface-2);
+    box-shadow: var(--nf-shadow-1);
+    font-variant-numeric: tabular-nums;
+}
+
+.videoOsdBottom .sliderBubble:has(.chapterThumbContainer) {
+    overflow: visible;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    transform: translate3d(-50%, calc(-100% - 0.25rem), 0);
+    transition: left 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.videoOsdBottom .chapterThumbContainer {
+    overflow: visible !important; /* core sets hidden inline, which clips the frame's shadow */
+    background: none;
+    box-shadow: none;
+}
+
+.videoOsdBottom .chapterThumbWrapper {
+    border-radius: var(--nf-radius);
+    box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 0.6);
+}
+
+.videoOsdBottom .chapterThumbTextContainer {
+    position: static;
+    padding: 0.5rem 0 0;
+    text-align: center;
+}
+
+.videoOsdBottom .chapterThumbText {
+    margin: 0;
+    padding: 0;
+    color: var(--nf-text);
+    text-shadow: 0 1px 4px rgb(0 0 0 / 0.9);
+}
+
+.videoOsdBottom .chapterThumbText:empty {
+    display: none;
+}
+
+.videoOsdBottom .chapterThumbText-dim {
+    color: var(--nf-text-2);
+    font: 500 0.8125rem/1.3 var(--nf-font);
+    opacity: 1;
+}
+
+.videoOsdBottom h2.chapterThumbText {
+    font: 700 1rem/1.3 var(--nf-font);
+    font-variant-numeric: tabular-nums;
+}
+
+.videoOsdBottom .buttons {
+    padding-top: 0.5rem;
+}
+
+.videoOsdBottom .buttons .paper-icon-button-light {
+    margin: 0 0.15rem;
+    padding: 0.4rem;
+    color: var(--nf-text);
+    transition: transform var(--nf-dur-1) var(--nf-ease-out);
+}
+
+.videoOsdBottom .buttons .paper-icon-button-light:is(:hover, :active):not(:disabled) {
+    background: none;
+    color: var(--nf-text);
+    transform: scale(1.2);
+}
+
+.videoOsdBottom .buttons .paper-icon-button-light > .material-icons {
+    font-size: 1.875rem;
+}
+
+.videoOsdBottom .osdTimeText {
+    margin-left: 1.25rem;
+    color: var(--nf-text-dim);
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.videoOsdBottom .osdVolumeSliderContainer {
+    flex-grow: 0;
+    width: 7rem;
+}
+
+@media (max-width: 40em) {
+    .osdHeader .videoOsd-appBar {
+        padding-inline: 0.5rem;
+    }
+
+    .videoOsdBottom .osdControls {
+        padding: 0 1rem;
+    }
+
+    .videoOsdBottom .osdPositionText {
+        padding-right: 0.5rem;
+    }
+
+    .videoOsdBottom .osdDurationText {
+        padding-left: 0.5rem;
+    }
+
+    .videoOsdBottom .sliderBubble:has(.chapterThumbContainer) {
+        left: 50% !important; /* centred over the bar, so it never leaves the screen */
+        transition: none;
+    }
+
+    .videoOsdBottom .chapterThumbWrapper {
+        zoom: 0.75;
+    }
+
+    .videoOsdBottom .buttons {
+        flex-wrap: nowrap;
+    }
+
+    .videoOsdBottom .buttons .paper-icon-button-light {
+        margin: 0;
+        padding: 0.3rem;
+    }
+
+    .videoOsdBottom .buttons .paper-icon-button-light > .material-icons {
+        font-size: 1.6rem;
+    }
+}
+
+.videoOsdBottom .osdVolumeSliderContainer .sliderBubbleText {
+    padding: 0.2rem 0.45rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+body:has(#videoOsdPage:not(.hide)) .actionSheet.actionsheet-not-fullscreen {
+    top: auto !important; /* core centres it on the button, inline */
+    bottom: calc(max(env(safe-area-inset-bottom), 1.25rem) + 3.25rem) !important;
+    max-height: calc(100dvh - 10rem);
+}
+
+.iconOsd {
+    top: 4.5rem;
+    right: 2rem;
+    width: 5.5rem;
+    padding: 1rem;
+}
+
+.iconOsd .iconOsdIcon {
+    margin: 0 auto;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.iconOsd .iconOsdProgressOuter {
+    height: 4px;
+    margin: 0.85rem 0 0;
+    border-radius: 2px;
+    background: rgb(255 255 255 / 0.25);
+}
+
+.iconOsd .iconOsdProgressInner {
+    border-radius: 2px;
+    background: var(--nf-red);
+}
+
+.upNextContainer.upNextDialog {
+    z-index: 2; /* over the controls' gradient */
+    width: auto;
+    max-width: min(26rem, calc(100vw - 4rem));
+    margin: 0 2rem calc(max(env(safe-area-inset-bottom), 1.25rem) + 6.5rem) 0; /* clear of the controls */
+    padding: 1.1rem 1.25rem 1.25rem;
+}
+
+@keyframes nf-upnext-in {
+    from { transform: translateX(calc(100% + 2rem)); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .upNextContainer.upNextDialog {
+        transition: opacity 0.3s ease-out, transform var(--nf-dur-3) var(--nf-ease);
+        animation: nf-upnext-in var(--nf-dur-3) var(--nf-ease-out);
+    }
+
+    .upNextContainer.upNextDialog-hidden {
+        transform: translateX(calc(100% + 2rem));
+    }
+}
+
+.upNextDialog .upNextDialog-nextVideoText {
+    margin: 0 0 0.5rem;
+}
+
+.upNextDialog .upNextDialog-countdownText {
+    color: var(--nf-text);
+}
+
+.upNextDialog .upNextDialog-title {
+    width: auto;
+    margin: 0;
+    color: var(--nf-text);
+    font: 700 1.125rem/1.3 var(--nf-font);
+}
+
+.upNextDialog .upNextDialog-mediainfo {
+    margin: 0.35rem 0 0;
+    color: var(--nf-text-dim);
+    font-size: 0.8125rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.upNextDialog .upNextDialog-buttons {
+    gap: 0.5rem;
+    width: auto;
+    margin-top: 1rem;
+    justify-content: flex-start;
+}
+
+.upNextDialog .upNextDialog-button {
+    margin: 0;
+    padding: 0.55rem 1.1rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+.playerStats {
+    z-index: 10; /* the OSD header covers its close button */
+    top: 4.5rem;
+    left: 2rem;
+}
+
+.playerStats .playerStats-content {
+    font-size: 0.8125rem;
+}
+
+.playerStats .playerStats-closeButton {
+    top: 0.5rem;
+    right: 0.5rem;
+    color: var(--nf-text-mute);
+}
+
+.playerStats .playerStats-stats {
+    padding: 1rem 3.25rem 1.1rem 1.25rem;
+}
+
+.playerStats .playerStats-stat {
+    display: grid;
+    grid-template-columns: 12rem minmax(0, 1fr);
+    column-gap: 1rem;
+    margin: 0;
+    padding: 0.2rem 0;
+}
+
+.playerStats .playerStats-stat-header {
+    margin: 1rem 0 0.2rem;
+}
+
+.playerStats .playerStats-stat-header:first-child {
+    margin-top: 0;
+}
+
+.playerStats .playerStats-stat-header > .playerStats-stat-label {
+    grid-column: 1 / -1;
+}
+
+.playerStats .playerStats-stat-header > .playerStats-stat-value {
+    display: none;
+}
+
+.playerStats .playerStats-stat-label {
+    margin: 0;
+    color: var(--nf-text-dim);
+    font-weight: 400;
+}
+
+.playerStats .playerStats-stat-value {
+    color: var(--nf-text);
+    font-variant-numeric: tabular-nums;
+}
+
+.skip-button {
+    gap: 0.4rem;
+    margin-right: 2rem;
+    padding: 0.7rem 1.4rem;
+    border-radius: var(--nf-radius);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    font: 600 1rem/1.2 var(--nf-font);
+    transition: border-color var(--nf-dur-1) var(--nf-ease-out), background-color var(--nf-dur-1) var(--nf-ease-out), opacity 0.2s ease-out;
+}

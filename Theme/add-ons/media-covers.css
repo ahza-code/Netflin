@@ -1,0 +1,73 @@
+/*! Netflin add-on: media covers (load after Netflin.css) */
+
+.card:is([data-type="CollectionFolder"], [data-type="UserView"]) .cardScalable {
+    container-type: inline-size;
+}
+
+.card:is([data-type="CollectionFolder"], [data-type="UserView"]) .cardImageContainer::before,
+.card:is([data-type="CollectionFolder"], [data-type="UserView"]) .cardImageContainer::after {
+    position: absolute;
+    left: 6%;
+    font-family: var(--nf-font-brand);
+    font-weight: 400;
+    line-height: 1;
+    pointer-events: none;
+}
+
+.card:is([data-type="CollectionFolder"], [data-type="UserView"]) .cardImageContainer::before {
+    content: "";
+    bottom: 10.2%;
+    width: 20%;
+    height: max(2px, 0.7cqw);
+    background: linear-gradient(90deg, var(--nf-red), transparent);
+}
+
+.card:is([data-type="CollectionFolder"], [data-type="UserView"]) .cardImageContainer::after {
+    content: attr(aria-label);
+    bottom: 12.4%;
+    max-width: 88%;
+    overflow: hidden;
+    color: #fff;
+    font-size: 13cqw;
+    letter-spacing: 0.01em;
+    text-overflow: ellipsis;
+    text-shadow: 0 2px 12px rgb(0 0 0 / 0.6);
+    white-space: nowrap;
+}
+
+.card:is([data-type="CollectionFolder"], [data-type="UserView"]) :is(.cardFooter, .cardText) {
+    display: none;
+}
+
+.card:is([data-type="CollectionFolder"], [data-type="UserView"]) .cardOverlayContainer {
+    background: none;
+}
+
+.card:is([data-type="CollectionFolder"], [data-type="UserView"]) .cardImageContainer {
+    background-position: center;
+    background-size: cover;
+}
+
+.card:is([data-type="CollectionFolder"], [data-type="UserView"]):is([data-collectiontype="movies"], [data-collectiontype="tvshows"], [data-collectiontype="boxsets"], [data-collectiontype="livetv"]) .cardImageIcon {
+    display: none;
+}
+
+.card:is([data-type="CollectionFolder"], [data-type="UserView"])[data-collectiontype="movies"] .cardImageContainer {
+    background-image: url("../assets/media-covers/movies.webp") !important; /* core sets the image inline */
+}
+
+.card:is([data-type="CollectionFolder"], [data-type="UserView"])[data-collectiontype="tvshows"] .cardImageContainer {
+    background-image: url("../assets/media-covers/shows.webp") !important;
+}
+
+.card:is([data-type="CollectionFolder"], [data-type="UserView"])[data-collectiontype="tvshows"]:is([data-path*="anime" i], :has(.cardImageContainer[aria-label="anime" i])) .cardImageContainer {
+    background-image: url("../assets/media-covers/anime.webp") !important;
+}
+
+.card:is([data-type="CollectionFolder"], [data-type="UserView"])[data-collectiontype="boxsets"] .cardImageContainer {
+    background-image: url("../assets/media-covers/collections.webp") !important;
+}
+
+.card:is([data-type="CollectionFolder"], [data-type="UserView"])[data-collectiontype="livetv"] .cardImageContainer {
+    background-image: url("../assets/media-covers/live-tv.webp") !important;
+}
