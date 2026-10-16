@@ -173,7 +173,7 @@ body::before {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: calc(env(safe-area-inset-bottom) + 5em);
+    height: calc(env(safe-area-inset-bottom) + var(--nf-page-pad, 5em));
     background: linear-gradient(to top, var(--nf-bg) 0%, transparent 100%);
     z-index: 100;
     pointer-events: none;
@@ -257,7 +257,7 @@ body::before {
     color: var(--nf-text-dim);
 }
 
-.MuiAppBar-root .MuiStack-root > .MuiButton-root .MuiButton-startIcon {
+.MuiAppBar-root :is(.MuiStack-root, .dashboard-appBar) > .MuiButton-root .MuiButton-startIcon {
     display: none;
 }
 
@@ -271,12 +271,12 @@ body::before {
 }
 
 /* ── Brand ───────────────────────────────────────────────────────────────── */
-.MuiAppBar-root .MuiStack-root > .MuiButton-root:has(.MuiButton-startIcon > img) {
+.MuiAppBar-root :is(.MuiStack-root, .dashboard-appBar) > .MuiButton-root:has(.MuiButton-startIcon > img) {
     font-size: 0 !important;
     margin-right: 2.5rem;
 }
 
-.MuiAppBar-root .MuiStack-root > .MuiButton-root:has(.MuiButton-startIcon > img)::before,
+.MuiAppBar-root :is(.MuiStack-root, .dashboard-appBar) > .MuiButton-root:has(.MuiButton-startIcon > img)::before,
 .MuiDrawer-paper > .MuiBox-root > .MuiList-root:first-child > li:first-child > a::before {
     content: "JELLYFIN";
     color: var(--nf-red);
@@ -812,7 +812,8 @@ body .sections.watchlist :is(.stat-card, .top-shows-container, .stats-chart-card
 }
 
 .formDialogFooter:not(.formDialogFooter-clear) > .formDialogFooterItem,
-.formDialogFooter:not(.formDialogFooter-clear) > .raised {
+.formDialogFooter:not(.formDialogFooter-clear) > .raised,
+#editItemMetadataPage .metadataFormFields > div > .formDialogFooterItem {
     flex: 0 0 auto;
     width: auto; /* .emby-button.block is 100% */
     min-width: 7rem;
@@ -3865,15 +3866,33 @@ body .sections.watchlist .movie-watched-badge > .material-icons {
     }
 }
 
+/* ── Page bottom ─────────────────────────────────────────────────────────── */
+body.dashboardDocument {
+    --nf-page-pad: clamp(1rem, 2.5vw, 3rem);
+}
+
+body:has(.userPreferencesPage:not(.hide)) {
+    --nf-page-pad: 3.3vw;
+}
+
+:is(.userPreferencesPage:has(> .padded-bottom-page), .dashboardDocument .mainAnimatedPage:has(> .content-primary), #editItemMetadataPage) {
+    padding-bottom: 0 !important; /* core: 5em !important on .page and again on its container */
+}
+
+:is(.userPreferencesPage > .padded-bottom-page, .dashboardDocument .mainAnimatedPage > .content-primary, #editItemMetadataPage .editPageInnerContent) {
+    padding-bottom: var(--nf-page-pad) !important;
+}
+
 /* ── Sticky Save ─────────────────────────────────────────────────────────── */
 :is(.userPreferencesPage form, .dashboardDocument .mainAnimatedPage form:last-child) > .btnSave,
-:is(.userPreferencesPage form, .dashboardDocument .mainAnimatedPage form:last-child) .MuiButton-root[type="submit"] {
+:is(.userPreferencesPage form, .dashboardDocument .mainAnimatedPage form:last-child) .MuiButton-root[type="submit"],
+#editItemMetadataPage .metadataFormFields > div:has(> .formDialogFooterItem) {
     position: sticky;
-    bottom: 1.25rem;
+    bottom: var(--nf-page-pad);
     z-index: 2;
     margin-top: 2rem;
     box-shadow:
-        0 1.25rem 0 1.25rem var(--nf-bg),
+        0 var(--nf-page-pad) 0 var(--nf-page-pad) var(--nf-bg),
         0 -1rem 1.5rem 1rem color-mix(in srgb, var(--nf-bg) 85%, transparent);
 }
 
@@ -4065,7 +4084,7 @@ body .sections.watchlist .movie-watched-badge > .material-icons {
 
 /* ── Page ────────────────────────────────────────────────────────────────── */
 .dashboardDocument .mainAnimatedPage > .content-primary {
-    padding: 1rem clamp(1rem, 2.5vw, 3rem) 4rem;
+    padding: 1rem var(--nf-page-pad);
 }
 
 .dashboardDocument a.MuiButton-root:has(> .MuiTypography-h3) {
@@ -4357,6 +4376,122 @@ body .sections.watchlist .movie-watched-badge > .material-icons {
 
 .dashboardDocument .mainAnimatedPage .checkboxList.paperList {
     padding: 0.5rem 1rem;
+}
+
+/* ── Metadata manager ────────────────────────────────────────────────────── */
+#editItemMetadataPage .editPageSidebar {
+    overflow-x: hidden;
+    padding: 0.5rem 0 var(--nf-page-pad);
+    border-right: 1px solid var(--nf-line);
+    background: var(--nf-bg);
+}
+
+#editItemMetadataPage .jstree-anchor {
+    color: var(--nf-text-dim);
+    font-size: 0.875rem;
+    transition: color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+#editItemMetadataPage .jstree-anchor:is(.jstree-hovered, .jstree-clicked) {
+    color: var(--nf-text);
+}
+
+#editItemMetadataPage .jstree-anchor.jstree-clicked {
+    font-weight: 600;
+}
+
+#editItemMetadataPage .jstree-wholerow {
+    transition: background-color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+#editItemMetadataPage .jstree-wholerow-hovered {
+    background: var(--nf-fill-hover) !important; /* core: blue !important */
+}
+
+#editItemMetadataPage .jstree-wholerow-clicked {
+    background: var(--nf-surface-3) !important; /* core: blue !important */
+}
+
+#editItemMetadataPage .metadataSidebarIcon {
+    margin-top: -2px;
+    color: var(--nf-text-mute);
+    font-size: 1.25rem;
+    vertical-align: middle;
+    transition: color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+#editItemMetadataPage .jstree-anchor:is(.jstree-hovered, .jstree-clicked) .metadataSidebarIcon {
+    color: var(--nf-text);
+}
+
+@media (min-width: 50em) {
+    #editItemMetadataPage .editPageInnerContent {
+        width: calc(70% - 1px); /* core leaves a 1.5% gap after the sidebar; 1px is its border */
+    }
+}
+
+@media (min-width: 112.5em) {
+    #editItemMetadataPage .editPageInnerContent {
+        width: calc(75% - 1px);
+    }
+}
+
+#editItemMetadataPage .btnHeaderSave {
+    display: none;
+}
+
+@keyframes nf-fade-in {
+    from { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    #editItemMetadataPage .editPageInnerContent > * {
+        animation: nf-fade-in var(--nf-dur-3) var(--nf-ease-out) var(--nf-dur-1) backwards;
+    }
+}
+
+#editItemMetadataPage .editPageInnerContent > .formDialogHeader {
+    padding-inline: var(--nf-page-pad);
+    position: sticky;
+    top: var(--nf-m-top, var(--nf-appbar));
+    z-index: 2;
+    background: var(--nf-bg);
+}
+
+#editItemMetadataPage .formDialogContent {
+    overflow: visible; /* core: .smoothScrollY, which traps the sticky footer */
+}
+
+#editItemMetadataPage .formDialogHeaderTitle.formDialogHeaderTitle {
+    margin: 0; /* core: [dir=ltr] margin-left */
+}
+
+#editItemMetadataPage .formDialogHeader .btnBack {
+    margin-left: -1rem;
+}
+
+#editItemMetadataPage .formDialogHeader .btnMore {
+    margin-right: -1rem;
+}
+
+#editItemMetadataPage form.editMetadataForm {
+    max-width: 60rem; /* core: max-width 100% */
+    margin: 0;
+    padding: 0 var(--nf-page-pad);
+}
+
+#editItemMetadataPage .metadataFormFields > div:has(> .formDialogFooterItem) {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    background: var(--nf-bg);
+}
+
+@media (max-width: 40em) {
+    #editItemMetadataPage .metadataFormFields > div > .formDialogFooterItem {
+        flex: 1 1 0;
+        min-width: 0;
+    }
 }
 
 /* ── Users ───────────────────────────────────────────────────────────────── */

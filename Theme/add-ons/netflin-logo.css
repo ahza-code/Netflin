@@ -5,7 +5,7 @@
     --nf-wordmark-ratio: 3.4140;
 }
 
-.MuiAppBar-root .MuiStack-root > .MuiButton-root:has(.MuiButton-startIcon > img)::before,
+.MuiAppBar-root :is(.MuiStack-root, .dashboard-appBar) > .MuiButton-root:has(.MuiButton-startIcon > img)::before,
 .MuiDrawer-paper > .MuiBox-root > .MuiList-root:first-child > li:first-child > a::before {
     content: "";
     height: 1.59rem;
