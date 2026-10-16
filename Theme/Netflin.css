@@ -1468,6 +1468,15 @@ body .sections.watchlist .movie-watched-badge > .material-icons {
     color: var(--nf-text);
 }
 
+.centerMessage {
+    width: 40%;
+    box-sizing: border-box;
+}
+
+.layout-mobile .centerMessage {
+    width: min(30rem, 100%);
+}
+
 /* ── List view ───────────────────────────────────────────────────────────── */
 
 .itemsContainer.vertical-list:has(> .MuiBox-root > .listItem) {
