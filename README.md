@@ -1,5 +1,8 @@
 # Netflin Theme
 
+[![Jellyfin 12.0+](https://img.shields.io/badge/Jellyfin-12.0%2B-00a4dc?logo=jellyfin&logoColor=white)](https://jellyfin.org)
+[![jsDelivr hits](https://img.shields.io/jsdelivr/gh/hm/ahza-code/Netflin?style=flat&logo=jsdelivr&logoColor=%23f65e34&label=jsDelivr%20Hits&labelColor=white&color=%23f65e34)](https://www.jsdelivr.com/package/gh/ahza-code/Netflin)
+
 Netflin is a CSS theme for Jellyfin's web client that gives it Netflix's look: title-art heroes, rows of cards, detail pages, menus and player controls, on desktop and on phones.
 
 ![Netflin home page](Previews/desktop/01-home.webp)
