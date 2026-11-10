@@ -72,6 +72,11 @@
     --nf-focus-offset: 2px;
 
     --nf-icon-play: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7.67 4.5 20.67 12 7.67 19.5Z' fill='%23000' stroke='%23000' stroke-width='2.2' stroke-linejoin='round'/%3E%3C/svg%3E");
+    --nf-avatar-1: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%233a78ee'/%3E%3Cstop offset='1' stop-color='%23225ad0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23g)'/%3E%3Cg fill='%23fff'%3E%3Crect x='30' y='34' width='11' height='20' rx='5.5'/%3E%3Crect x='59' y='34' width='11' height='20' rx='5.5'/%3E%3Cpath d='M25 64 C36 80 64 80 75 64' fill='none' stroke='%23fff' stroke-width='8.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3C/svg%3E");
+    --nf-avatar-2: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23f6bb22'/%3E%3Cstop offset='1' stop-color='%23e8960f'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23g)'/%3E%3Cg fill='%23fff'%3E%3Crect x='30' y='34' width='11' height='20' rx='5.5'/%3E%3Crect x='59' y='34' width='11' height='20' rx='5.5'/%3E%3Cpath d='M30 61 H70 C70 76 61 83 50 83 C39 83 30 76 30 61 Z'/%3E%3C/g%3E%3C/svg%3E");
+    --nf-avatar-3: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ee463d'/%3E%3Cstop offset='1' stop-color='%23c42320'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23g)'/%3E%3Cg fill='%23fff'%3E%3Cpath d='M27 45 C31 39 39 39 43 45' fill='none' stroke='%23fff' stroke-width='8.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='59' y='34' width='11' height='20' rx='5.5'/%3E%3Cpath d='M27 65 C38 79 60 79 73 63' fill='none' stroke='%23fff' stroke-width='8.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3C/svg%3E");
+    --nf-avatar-4: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2333b26f'/%3E%3Cstop offset='1' stop-color='%231f8a54'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23g)'/%3E%3Cg fill='%23fff'%3E%3Cpath d='M27 46 C31 39 39 39 43 46' fill='none' stroke='%23fff' stroke-width='8.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M57 46 C61 39 69 39 73 46' fill='none' stroke='%23fff' stroke-width='8.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M29 64 C39 77 61 77 71 64' fill='none' stroke='%23fff' stroke-width='8.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3C/svg%3E");
+    --nf-avatar-5: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%239960ef'/%3E%3Cstop offset='1' stop-color='%236c3ad6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23g)'/%3E%3Cg fill='%23fff'%3E%3Crect x='30' y='36' width='11' height='20' rx='5.5'/%3E%3Crect x='59' y='36' width='11' height='20' rx='5.5'/%3E%3Crect x='41' y='63' width='18' height='18' rx='9'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 /* ── Jellyfin palette ────────────────────────────────────────────────────── */
@@ -306,6 +311,44 @@ body::before {
 
 .MuiAppBar-root .MuiIconButton-root:has(> .MuiAvatar-root) {
     padding: 0.4rem;
+}
+
+/* ── Default avatars ─────────────────────────────────────────────────────── */
+:is([data-userid^="0"], [data-userid^="5"], [data-userid^="a"], [data-userid^="f"]),
+body:has(#app-user-menu :is([href*="userId=0"], [href*="userId=5"], [href*="userId=a"], [href*="userId=f"])) {
+    --nf-avatar: var(--nf-avatar-1);
+}
+
+:is([data-userid^="1"], [data-userid^="6"], [data-userid^="b"]),
+body:has(#app-user-menu :is([href*="userId=1"], [href*="userId=6"], [href*="userId=b"])) {
+    --nf-avatar: var(--nf-avatar-2);
+}
+
+:is([data-userid^="2"], [data-userid^="7"], [data-userid^="c"]),
+body:has(#app-user-menu :is([href*="userId=2"], [href*="userId=7"], [href*="userId=c"])) {
+    --nf-avatar: var(--nf-avatar-3);
+}
+
+:is([data-userid^="3"], [data-userid^="8"], [data-userid^="d"]),
+body:has(#app-user-menu :is([href*="userId=3"], [href*="userId=8"], [href*="userId=d"])) {
+    --nf-avatar: var(--nf-avatar-4);
+}
+
+:is([data-userid^="4"], [data-userid^="9"], [data-userid^="e"]),
+body:has(#app-user-menu :is([href*="userId=4"], [href*="userId=9"], [href*="userId=e"])) {
+    --nf-avatar: var(--nf-avatar-5);
+}
+
+[data-userid] .defaultCardBackground,
+.MuiAppBar-root .MuiAvatar-root:not(:has(img)),
+#userProfilePage #image[style*="assets/img/avatar.png"] {
+    background: var(--nf-avatar, var(--nf-avatar-1)) center / cover !important; /* core sets the image inline */
+    color: transparent;
+}
+
+[data-userid] .defaultCardBackground .cardImageIcon,
+.MuiAppBar-root .MuiAvatar-root:not(:has(img)) > svg {
+    display: none;
 }
 
 /* ── User menu ───────────────────────────────────────────────────────────── */
@@ -4938,7 +4981,9 @@ body:has(.userPreferencesPage:not(.hide)) {
  * ═══════════════════════════════════════════════════════════════════════ */
 
 #loginPage {
+    top: calc(-1 * var(--nf-m-top, var(--nf-appbar)));
     display: flex;
+    padding-block: calc(var(--nf-m-top, var(--nf-appbar)) + 1rem) !important; /* core: .padded-bottom-page */
     background: radial-gradient(70rem 40rem at 50% -10%, rgb(229 9 20 / 0.16), transparent 70%), #000;
 }
 
@@ -4984,8 +5029,12 @@ body:has(.userPreferencesPage:not(.hide)) {
 }
 
 #loginPage .emby-button.block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 2.75rem;
     margin: 0 0 0.75rem;
+    padding-block: 0;
     font-size: 1rem;
     font-weight: 600;
 }
@@ -5013,6 +5062,84 @@ body:has(.userPreferencesPage:not(.hide)) {
     display: none;
 }
 
+/* ── User picker ── */
+
+#loginPage > div:has(.visualLoginForm:not(.hide)) {
+    width: 100%;
+    padding: 0 3.3vw !important;
+    background: none;
+    box-shadow: none;
+}
+
+#loginPage .visualLoginForm h1 {
+    margin: 0 0 2rem 0 !important; /* core sets margin-top inline */
+    color: var(--nf-text);
+    font-size: clamp(1.75rem, 3.5vw, 3.5rem);
+    font-weight: 500;
+}
+
+#loginPage .visualLoginForm .itemsContainer {
+    --nf-login-max: 5;
+    --nf-login-rows: 1;
+    --nf-login-size: 8vw;
+    --nf-login-gap: max(2vw, 0.75rem);
+    --nf-login-card: clamp(4rem, min(var(--nf-login-size), 93.4vw / var(--nf-login-max) - var(--nf-login-gap), (100dvh - 26rem) / var(--nf-login-rows) - 2.5rem), 10rem);
+    display: block;
+    max-width: calc(var(--nf-login-max) * (var(--nf-login-card) + var(--nf-login-gap)));
+    margin: 0 auto -1.25rem;
+    text-align: center;
+    text-wrap: balance;
+}
+
+.layout-mobile #loginPage .visualLoginForm .itemsContainer {
+    --nf-login-size: 30vw;
+}
+
+#loginPage .visualLoginForm .card {
+    display: inline-block;
+    vertical-align: top;
+    width: var(--nf-login-card);
+    margin: 0 calc(var(--nf-login-gap) / 2) 1.25rem;
+}
+
+#loginPage .visualLoginForm .card:nth-child(n + 6) {
+    display: none;
+}
+
+#loginPage .visualLoginForm .cardBox {
+    margin: 0 !important; /* core: .cardBox-bottompadded */
+}
+
+#loginPage .visualLoginForm .cardScalable {
+    border-radius: var(--nf-radius);
+    outline: 0.2em solid transparent;
+    transition: outline-color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+#loginPage .visualLoginForm .cardFooter {
+    padding: 0.6em 0 0;
+}
+
+#loginPage .visualLoginForm .cardText {
+    text-align: center !important;
+    color: var(--nf-text-mute);
+    font-size: clamp(0.75rem, var(--nf-login-card) * 0.15, 1.3rem);
+    transition: color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+#loginPage .visualLoginForm .card:is(:hover, :focus-visible) .cardScalable {
+    outline-color: var(--nf-text);
+}
+
+#loginPage .visualLoginForm .card:is(:hover, :focus-visible) .cardText {
+    color: var(--nf-text);
+}
+
+#loginPage > div:has(.visualLoginForm:not(.hide)) .readOnlyContent {
+    width: min(100%, 20rem);
+    margin: 2.5rem auto 0 !important;
+}
+
 @media (max-width: 40em) {
     #loginPage {
         background: #000;
@@ -5020,9 +5147,14 @@ body:has(.userPreferencesPage:not(.hide)) {
 
     #loginPage > div {
         width: 100%;
-        padding: calc(var(--nf-appbar) + 1rem) 1.5rem 2rem !important;
+        padding: 1rem 1.5rem 2rem !important;
         background: none;
         box-shadow: none;
+    }
+
+    #loginPage .visualLoginForm .itemsContainer {
+        --nf-login-max: 3;
+        --nf-login-rows: 2;
     }
 }
 
