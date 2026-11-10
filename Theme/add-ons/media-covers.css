@@ -48,7 +48,7 @@
     background-size: cover;
 }
 
-.card:is([data-type="CollectionFolder"], [data-type="UserView"]):is([data-collectiontype="movies"], [data-collectiontype="tvshows"], [data-collectiontype="boxsets"], [data-collectiontype="livetv"]) .cardImageIcon {
+.card:is([data-type="CollectionFolder"], [data-type="UserView"]):is([data-collectiontype="movies"], [data-collectiontype="tvshows"], [data-collectiontype="boxsets"], [data-collectiontype="livetv"], [data-collectiontype="books"], [data-collectiontype="music"], [data-collectiontype="musicvideos"]) .cardImageIcon {
     display: none;
 }
 
@@ -70,4 +70,24 @@
 
 .card:is([data-type="CollectionFolder"], [data-type="UserView"])[data-collectiontype="livetv"] .cardImageContainer {
     background-image: url("../assets/media-covers/live-tv.webp") !important;
+}
+
+.card:is([data-type="CollectionFolder"], [data-type="UserView"])[data-collectiontype="books"] .cardImageContainer {
+    background-image: url("../assets/media-covers/books.webp") !important;
+}
+
+.card:is([data-type="CollectionFolder"], [data-type="UserView"])[data-collectiontype="books"]:is([data-path*="manga" i], :has(.cardImageContainer[aria-label="manga" i])) .cardImageContainer {
+    background-image: url("../assets/media-covers/manga.webp") !important;
+}
+
+.card:is([data-type="CollectionFolder"], [data-type="UserView"])[data-collectiontype="books"]:is([data-path*="comics" i], :has(.cardImageContainer[aria-label="comics" i])) .cardImageContainer {
+    background-image: url("../assets/media-covers/comics.webp") !important;
+}
+
+.card:is([data-type="CollectionFolder"], [data-type="UserView"])[data-collectiontype="music"] .cardImageContainer {
+    background-image: url("../assets/media-covers/music.webp") !important;
+}
+
+.card:is([data-type="CollectionFolder"], [data-type="UserView"])[data-collectiontype="musicvideos"] .cardImageContainer {
+    background-image: url("../assets/media-covers/music-videos.webp") !important;
 }
