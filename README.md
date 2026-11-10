@@ -63,8 +63,8 @@ Netflin works without any plugins, but it looks its best with these two, since I
 | <img src="Previews/desktop/11-search.webp"><br>**Search** | <img src="Previews/desktop/12-search-results.webp"><br>**Search results** |
 | <img src="Previews/desktop/13-watchlist.webp"><br>**Watchlist (KefinTweaks)** | <img src="Previews/desktop/14-live-tv-guide.webp"><br>**Live TV guide** |
 | <img src="Previews/desktop/15-channel.webp"><br>**Channel** | <img src="Previews/desktop/16-programme.webp"><br>**Programme** |
-| <img src="Previews/desktop/17-sign-in.webp"><br>**Sign in** | <img src="Previews/desktop/18-dashboard.webp"><br>**Dashboard** |
-| <img src="Previews/desktop/19-elements-loading.webp"><br>**Loading** | |
+| <img src="Previews/desktop/17-sign-in.webp"><br>**Sign in** | <img src="Previews/desktop/18-user-picker.webp"><br>**User Picker** |
+| <img src="Previews/desktop/19-dashboard.webp"><br>**Dashboard** | <img src="Previews/desktop/20-elements-loading.webp"><br>**Loading** |
 
 </details>
 
@@ -75,7 +75,7 @@ Netflin works without any plugins, but it looks its best with these two, since I
 |:---:|:---:|:---:|
 | <img src="Previews/mobile/01-home.webp"><br>**Home** | <img src="Previews/mobile/02-menu.webp"><br>**Menu** | <img src="Previews/mobile/03-library.webp"><br>**Library** |
 | <img src="Previews/mobile/04-movie.webp"><br>**Movie** | <img src="Previews/mobile/05-series.webp"><br>**Series** | <img src="Previews/mobile/06-season.webp"><br>**Season** |
-| <img src="Previews/mobile/07-episode.webp"><br>**Episode** | | |
+| <img src="Previews/mobile/07-episode.webp"><br>**Episode** | <img src="Previews/mobile/08-user-picker.webp"><br>**User Picker** | |
 
 </details>
 
