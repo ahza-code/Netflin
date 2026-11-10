@@ -2567,6 +2567,10 @@ body .sections.watchlist .movie-watched-badge > .material-icons {
     border-radius: 50%;
 }
 
+:is(#castCollapsible, #guestCastCollapsible) .cardPadder {
+    padding-bottom: 100%; /* core: 150% portrait */
+}
+
 :is(#castCollapsible, #guestCastCollapsible) .cardImageContainer {
     background-position: center 22%;
     filter: grayscale(0.35) brightness(0.9);
@@ -2593,6 +2597,7 @@ body .sections.watchlist .movie-watched-badge > .material-icons {
 }
 
 :is(#castCollapsible, #guestCastCollapsible) .cardText {
+    margin-inline: auto;
     text-align: center !important;
     padding-top: 0.25em;
 }
