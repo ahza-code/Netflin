@@ -825,9 +825,11 @@ body .sections.watchlist :is(.stat-card, .top-shows-container, .stats-chart-card
 }
 
 .formDialog .dialogContentInner {
-    padding-top: 1.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding: 0 1.5rem 1.5rem;
+}
+
+.dialog-small:has(.formDialogFooter) .dialog-content-centered {
+    padding-bottom: 6.5rem;
 }
 
 .formDialog .dialog-content-centered {
@@ -840,10 +842,6 @@ body .sections.watchlist :is(.stat-card, .top-shows-container, .stats-chart-card
         width: min(47rem, 60%);
         height: auto;
         max-height: 80%;
-    }
-
-    .dialog-small:has(.dialog-content-centered) .dialog-content-centered {
-        padding-bottom: 1.5rem;
     }
 }
 
