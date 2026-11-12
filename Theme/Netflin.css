@@ -465,6 +465,7 @@ body .sections.watchlist :is(.sort-button, .show-all-btn):hover {
 }
 
 :is(.formDialogContent, .dashboardDocument .mainAnimatedPage) .fab,
+.availableImagesPaging .paper-icon-button-light,
 .mainDetailButtons .detailButton,
 body #slides-container :is(.detail-button, .favorite-button, .watchlist-button, .arrow),
 .MuiAppBar-root > .MuiToolbar-root:nth-child(2) > .MuiStack-root > .MuiButtonGroup-text ~ .MuiButtonGroup-text > .MuiButton-root,
@@ -475,6 +476,7 @@ body #slides-container :is(.detail-button, .favorite-button, .watchlist-button, 
 }
 
 :is(.formDialogContent, .dashboardDocument .mainAnimatedPage) .fab:hover,
+.availableImagesPaging .paper-icon-button-light:not(:disabled):hover,
 .mainDetailButtons .detailButton:hover,
 body #slides-container :is(.detail-button, .favorite-button, .watchlist-button, .arrow):hover,
 .MuiAppBar-root > .MuiToolbar-root:nth-child(2) > .MuiStack-root > .MuiButtonGroup-text ~ .MuiButtonGroup-text > .MuiButton-root:not(:disabled):hover,
@@ -574,6 +576,7 @@ body .sections.watchlist .stats-range-chip.is-active {
 
 /* ── Panels ──────────────────────────────────────────────────────────────── */
 .formDialogContent .paperList,
+.formDialogContent .imageEditorCard > .cardBox.visualCardBox,
 .formDialog .mediaInfoStream,
 .trackSelections,
 #itemDetailPage .programGuide .vertical-list,
@@ -805,6 +808,9 @@ body .sections.watchlist :is(.stat-card, .top-shows-container, .stats-chart-card
     gap: 0.25rem;
     padding: 1rem 1rem 1rem 1.5rem;
     border-bottom: 1px solid var(--nf-line);
+    position: sticky;
+    top: 0;
+    z-index: 2; /* core: checkbox labels and button icons are 1 */
 }
 
 .formDialogHeader:not(.formDialogHeader-clear):has(> .btnCancel:first-child:not(.hide)) {
@@ -824,11 +830,11 @@ body .sections.watchlist :is(.stat-card, .top-shows-container, .stats-chart-card
     color: var(--nf-text);
 }
 
-.formDialog .dialogContentInner {
+.formDialog .dialogContentInner, .formDialogContent .dialogContentInner {
     padding: 0 1.5rem 1.5rem;
 }
 
-.dialog-small:has(.formDialogFooter) .dialog-content-centered {
+.dialog:has(.formDialogFooter:not(.hide)) .dialogContentInner {
     padding-bottom: 6.5rem;
 }
 
@@ -838,7 +844,8 @@ body .sections.watchlist :is(.stat-card, .top-shows-container, .stats-chart-card
 }
 
 @media (min-width: 80em) and (min-height: 45em) {
-    .dialog-small:has(.dialog-content-centered) {
+    .dialog-small:has(.dialog-content-centered),
+    .dialog-small:has(.uploadItemImageForm) {
         width: min(47rem, 60%);
         height: auto;
         max-height: 80%;
@@ -854,7 +861,8 @@ body .sections.watchlist :is(.stat-card, .top-shows-container, .stats-chart-card
 
 .formDialogFooter:not(.formDialogFooter-clear) > .formDialogFooterItem,
 .formDialogFooter:not(.formDialogFooter-clear) > .raised,
-#editItemMetadataPage .metadataFormFields > div > .formDialogFooterItem {
+#editItemMetadataPage .metadataFormFields > div > .formDialogFooterItem,
+.uploadItemImageForm .button-submit {
     flex: 0 0 auto;
     width: auto; /* .emby-button.block is 100% */
     min-width: 7rem;
@@ -867,7 +875,8 @@ body .sections.watchlist :is(.stat-card, .top-shows-container, .stats-chart-card
     font-weight: 700;
 }
 
-:is(.formDialogContent, .dashboardDocument .mainAnimatedPage) .fab {
+:is(.formDialogContent, .dashboardDocument .mainAnimatedPage) .fab,
+.availableImagesPaging .paper-icon-button-light {
     width: 2rem;
     height: 2rem;
     margin: 0 0 0 0.5rem;
@@ -876,7 +885,8 @@ body .sections.watchlist :is(.stat-card, .top-shows-container, .stats-chart-card
     transition: border-color var(--nf-dur-1) var(--nf-ease-out), background-color var(--nf-dur-1) var(--nf-ease-out);
 }
 
-:is(.formDialogContent, .dashboardDocument .mainAnimatedPage) .fab .material-icons {
+:is(.formDialogContent, .dashboardDocument .mainAnimatedPage) .fab .material-icons,
+.availableImagesPaging .paper-icon-button-light .material-icons {
     font-size: 1.1rem;
 }
 
@@ -917,18 +927,116 @@ body .sections.watchlist :is(.stat-card, .top-shows-container, .stats-chart-card
     color: var(--nf-text-mute);
 }
 
-.formDialogContent .paperList .listItem .paper-icon-button-light:hover {
+.formDialogContent .paperList .listItem .paper-icon-button-light:hover,
+.imageEditorCard .cardFooter .btnDeleteImage:hover {
     color: var(--nf-error);
 }
 
-.imageEditorCard .visualCardBox {
-    background: none;
-    box-shadow: none;
+.formDialogContent :is(#images, #backdrops, .availableImagesList) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(10rem, 40%), 1fr));
+    gap: 1rem;
+    margin: 1rem 0 1.5rem;
+}
+
+.formDialogContent :is(#images, #backdrops) {
+    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+}
+
+.imageEditorCard.imageEditorCard {
+    width: auto;
+    margin: 0;
+}
+
+.formDialogContent .imageEditorCard > .cardBox.visualCardBox {
+    margin: 0; /* core: [dir] .itemsContainer > .card > .cardBox */
+    overflow: hidden;
+}
+
+.imageEditorCard .cardScalable {
+    background: var(--nf-surface-2);
+}
+
+.imageEditorCard .cardImageContainer {
+    box-sizing: border-box;
+    padding: 0.75rem;
+    background-origin: content-box;
 }
 
 .imageEditorCard .cardFooter {
-    padding: 0.4rem 0 0;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 0.625rem 0.5rem 0.625rem 0.875rem;
     background: none;
+}
+
+.imageEditorCard .cardFooter > .cardText {
+    margin: 0;
+    padding: 0;
+}
+
+.imageEditorCard .cardFooter > .cardText:last-child {
+    display: flex;
+    grid-row: 1 / span 3;
+    grid-column: 2;
+}
+
+.imageEditorCard .cardFooter > .cardText:first-child {
+    color: var(--nf-text-2);
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.imageEditorCard .cardFooter > .cardText-secondary {
+    color: var(--nf-text-mute);
+    font-size: 0.75rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.dialogContentInner > .flex:has(> .availableImagesPaging) {
+    justify-content: flex-start;
+    align-items: last baseline;
+    gap: 1rem 1.5rem;
+}
+
+.dialogContentInner > .flex:has(> .availableImagesPaging) .selectContainer {
+    margin: 0;
+}
+
+.dialogContentInner > .flex:has(> .availableImagesPaging) > * {
+    margin-left: 0 !important; /* core: inline 1em */
+}
+
+.availableImagesPaging .paper-icon-button-light:disabled {
+    opacity: 0.3;
+}
+
+.raised-mini {
+    gap: 0.4rem;
+}
+
+.imageEditor-dropZone {
+    overflow: hidden;
+    border: 1px dashed var(--nf-field-line);
+    border-radius: var(--nf-radius-lg);
+    background: var(--nf-field-bg);
+    color: var(--nf-text-dim);
+    transition: border-color var(--nf-dur-1) var(--nf-ease-out);
+}
+
+.imageEditor-dropZone:hover {
+    border-color: var(--nf-field-line-hover);
+}
+
+#fldUpload:not(.hide) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#fldUpload > .selectContainer {
+    align-self: stretch;
 }
 
 .imageEditorCard .cardFooter .paper-icon-button-light {
